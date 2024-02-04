@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>23 JDBC 和数据库连接池 | HatidaBlog</title>
+  <meta name="keywords" content=" java , jdbc , 数据库 ">
+  <meta name="description" content="23 JDBC 和数据库连接池 | HatidaBlog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="第4章 检索数据4.5 检索不同的行DISTINCT关键字：此关键字指示MySQL只返回不同的值。  不能部分使用DISTINCT DISTINCT关键字应用于所有列而不仅是前置它的列。如果给出SELECT DISTINCT vend_id,prod_price，除非指定的两个列都不同，否则所有行都将被检索出来。 相当于将distinct后面的列放在一起作为条件  4.6 限制结果-limit关键">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql必知必会">
+<meta property="og:url" content="http://example.com/2024/02/05/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/index.html">
+<meta property="og:site_name" content="HatidaBlog">
+<meta property="og:description" content="第4章 检索数据4.5 检索不同的行DISTINCT关键字：此关键字指示MySQL只返回不同的值。  不能部分使用DISTINCT DISTINCT关键字应用于所有列而不仅是前置它的列。如果给出SELECT DISTINCT vend_id,prod_price，除非指定的两个列都不同，否则所有行都将被检索出来。 相当于将distinct后面的列放在一起作为条件  4.6 限制结果-limit关键">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gitee.com/kilomi/pic-bed/raw/master/img/202402050101323.png">
+<meta property="article:published_time" content="2024-02-04T17:00:28.000Z">
+<meta property="article:modified_time" content="2024-02-04T17:01:13.136Z">
+<meta property="article:author" content="hatida">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/kilomi/pic-bed/raw/master/img/202402050101323.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/darcula.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>hatida</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/hatida"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(19)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据库">
+            
+            数据库
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="编程语言">
+            <i class="fold iconfont icon-right"></i>
+            编程语言
+            <small>(17)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;java">
+            
+            java
+            <small>(17)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="19">
+<input type="hidden" id="yelog_site_word_count" value="137.6k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>查找</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>多线程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>反射</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>集合</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>类</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>枚举</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>面向对象</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>排序</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据库</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数组</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>网络</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>项目</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>异常</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>正则表达式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>注解</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>字符串</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GUI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>IO</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>java</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>jdbc</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>jvm</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>mysql</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All 数据库 "
+           href="/2024/02/05/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/"
+           data-tag="mysql"
+           data-author="" >
+            <span class="post-title" title="mysql必知必会">mysql必知必会</span>
+            <span class="post-date" title="2024-02-05 01:00:28">2024/02/05</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/10%20%E6%9E%9A%E4%B8%BE%E5%92%8C%E6%B3%A8%E8%A7%A3/"
+           data-tag="java,枚举,注解"
+           data-author="" >
+            <span class="post-title" title="10 枚举和注解">10 枚举和注解</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/11%20%E5%BC%82%E5%B8%B8%EF%BC%88Exception%EF%BC%89/"
+           data-tag="java,异常"
+           data-author="" >
+            <span class="post-title" title="11 异常（Exception）">11 异常（Exception）</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/21%20%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/"
+           data-tag="java,反射"
+           data-author="" >
+            <span class="post-title" title="21 反射">21 反射</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/25%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"
+           data-tag="java,正则表达式"
+           data-author="" >
+            <span class="post-title" title="25 正则表达式">25 正则表达式</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/5%20%E6%95%B0%E7%BB%84/"
+           data-tag="java,数组,排序,查找"
+           data-author="" >
+            <span class="post-title" title="5 数组、排序和查找">5 数组、排序和查找</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3String/"
+           data-tag="java,字符串,jvm"
+           data-author="" >
+            <span class="post-title" title="String深入理解">String深入理解</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/17%20IO%E6%B5%81/"
+           data-tag="java,IO"
+           data-author="" >
+            <span class="post-title" title="17 IO流">17 IO流</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/19%20%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"
+           data-tag="java,网络"
+           data-author="" >
+            <span class="post-title" title="19 网络编程">19 网络编程</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/7%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B(%E4%B8%AD%E7%BA%A7)/"
+           data-tag="java,面向对象"
+           data-author="" >
+            <span class="post-title" title="7 面向对象编程（中级）">7 面向对象编程（中级）</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/9%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B(%E9%AB%98%E7%BA%A7)/"
+           data-tag="java,类"
+           data-author="" >
+            <span class="post-title" title="9.1 类变量和类方法">9.1 类变量和类方法</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/12%20%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%92%8C%E6%B3%9B%E5%9E%8B/"
+           data-tag="java"
+           data-author="" >
+            <span class="post-title" title="12 常用类">12 常用类</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/16%20%E5%A4%9A%E7%BA%BF%E7%A8%8B/"
+           data-tag="java,多线程"
+           data-author="" >
+            <span class="post-title" title="16 多线程">16 多线程</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/23%20JDBC/"
+           data-tag="java,jdbc,数据库"
+           data-author="" >
+            <span class="post-title" title="23 JDBC 和数据库连接池">23 JDBC 和数据库连接池</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/6%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B(%E5%9F%BA%E7%A1%80)/"
+           data-tag="java"
+           data-author="" >
+            <span class="post-title" title="6.面向对象编程（基础）">6.面向对象编程（基础）</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/15%20%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1/"
+           data-tag="java,GUI"
+           data-author="" >
+            <span class="post-title" title="15 图形界面设计">15 图形界面设计</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/13%20java%E9%9B%86%E5%90%88/"
+           data-tag="java,集合"
+           data-author="" >
+            <span class="post-title" title="13 Java 数据结构">13 Java 数据结构</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/24%20%E6%BB%A1%E6%B1%89%E6%A5%BC%E9%A1%B9%E7%9B%AE/"
+           data-tag="java,项目"
+           data-author="" >
+            <span class="post-title" title="24 项目：满汉楼">24 项目：满汉楼</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 数据库 "
+           href="/2024/02/04/mysql/mysql/"
+           data-tag="mysql"
+           data-author="" >
+            <span class="post-title" title="mysql">mysql</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-Java基础/23 JDBC" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">23 JDBC 和数据库连接池</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="编程语言">编程语言</a> > 
+            
+            <a  data-rel="编程语言&lt;---&gt;java">java</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">java</a>
+            
+            <a class="color5">jdbc</a>
+            
+            <a class="color4">数据库</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2024-02-05 01:23:37'>2024-02-04 16:17</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:6.9k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">23 JDBC 和数据库连接池</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">23.1 连接数据库的 5 种方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">23.2 ReaultSet 结果集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">&#x3D;&#x3D;23.3 Statement&#x3D;&#x3D;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">23.3.1 PreparedStatement 预处理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">&#x3D;&#x3D;23.4 JDBCUtils&#x3D;&#x3D;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">&#x3D;&#x3D;23.5 事务&#x3D;&#x3D;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">23.6 批处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">23.6.1 说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">23.7 数据库连接池</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">23.7.1 C3P0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">23.7.2 Druid（德鲁伊）连接池</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">23.8 Apache - DbUtils</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">23.8.1 Apache-DbUtils 常用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">23.8.2 表和 JavaBean&#x2F;POJO 的对应关系</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">&#x3D;&#x3D;24. BasicDAO&#x3D;&#x3D;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">DBUtils数据库连接池多表连接查询</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1><span id="23-jdbc-和数据库连接池">23 JDBC 和数据库连接池</span></h1><p><img src="https://gitee.com/kilomi/pic-bed/raw/master/img/202311042134382.png" alt="bieming"></p>
+<blockquote>
+<p>JDBC：Java 提供的一套用于操作数据库的接口 API。它统一和规范了应用程序与数据库的连接、执行SQL语句，并到得到返回结果等各类操作，相关类和接口在<code>java.sql</code>与<code>javax.sql</code>包中，Java 程序员只需要面向该接口即可连接任何提供了 JDBC 驱动程序的数据库，完成对数据库的各种操作。不同的数据库厂商，需要针对这套接口提供不同的实现。</p>
+</blockquote>
+<p><strong>JDBC 程序编写步骤（示范）：</strong></p>
+<blockquote>
+<pre><code class="java">/* [0] 前置操作 */
+    /* [1] 注册驱动 */
+Driver driver = new com.mysql.cj.jdbc.Driver();
+    /* [2] 获取连接 */
+String url = &quot;jdbc:mysql://localhost:3306/melody&quot;;			//melody是创建的一个数据库
+Properties properties = new Properties();					//user和password的写法是固定的
+properties.setProperty(&quot;user&quot;, &quot;root&quot;);
+properties.setProperty(&quot;password&quot;, &quot;******&quot;);
+Connection connect = driver.connect(url, properties);	
+    /* [3] 执行语句 */
+String sql = &quot;insert into customer (customer_id,name,card_id) values(0004,&#39;赫尔&#39;,&#39;00000000000000000O&#39;)&quot;;
+Statement statement = connect.createStatement();
+int rows = statement.executeUpdate(sql);
+System.out.println(rows);
+    /* [4] 释放资源 */
+statement.close();
+connect.close();
+</code></pre>
+<ol>
+<li><p>&#x3D;&#x3D;前置操作：将 <code>mysql-connector-java-8.0.27.jar</code> 该文件拷贝到项目目录下，选中后右键选择 <code>Add as library</code>&#x3D;&#x3D;</p>
+</li>
+<li><p>注册驱动：加载 <code>Driver</code> 类</p>
+<p> 这里我导入了 <code>com.mysql.cj.jdbc.Driver</code>。根据前面的 <code>jar</code> 包的版本不同，应该导入的路径也会不同。</p>
+<p> 旧版本的 <code>jar</code> 包可能应该导入 <code>com.mysql.jdbc.Driver</code> 这个包。</p>
+</li>
+<li><p>获取连接：得到 <code>Connection</code></p>
+<blockquote>
+<pre><code class="java">String url = &quot;jdbc:mysql://localhost:3306/melody&quot;;
+</code></pre>
+<p>这里表示进入 <code>melody</code> 这个数据库。</p>
+</blockquote>
+</li>
+<li><p>执行语句：发送 SQL 命令给 MySQL 执行</p>
+<blockquote>
+<pre><code class="java">int rows = statement.executeUpdate(sql);
+</code></pre>
+<p>如果是 dml 语句，这里返回的 rows 是影响的行数。返回 0 表示失败。</p>
+</blockquote>
+</li>
+<li><p>释放资源：关闭相关连接<strong>（切记！）</strong></p>
+</li>
+</ol>
+</blockquote>
+<h2><span id="231-连接数据库的-5-种方式">23.1 连接数据库的 5 种方式</span></h2><ul>
+<li><p>方式 1：直接创建 <code>Driver</code>，调用 <code>driver.connet(url, properties);</code></p>
+<p>  这个方法就是 [23.0] 示范的方法</p>
+<blockquote>
+<pre><code class="java">Driver driver = new com.mysql.cj.jdbc.Driver();
+String url = &quot;jdbc:mysql://localhost:3306/melody&quot;;
+Properties properties = new Properties();				
+properties.setProperty(&quot;user&quot;, &quot;root&quot;);
+properties.setProperty(&quot;password&quot;, &quot;******&quot;);
+Connection connect = driver.connect(url, properties);
+</code></pre>
+</blockquote>
+</li>
+<li><p>方式 2：使用反射加载 <code>Driver</code> 类</p>
+<p>  这个方式是动态加载，更加灵活，减少依赖性。</p>
+<blockquote>
+<pre><code class="java">Class&lt;?&gt; aClass = Class.forName(&quot;com.mysql.cj.jdbc.Driver&quot;);
+Driver driver = (Driver) aClass.newInstance();
+Properties properties = new Properties();				
+properties.setProperty(&quot;user&quot;, &quot;root&quot;);
+properties.setProperty(&quot;password&quot;, &quot;******&quot;);
+Connection connect = driver.connect(url, properties);
+</code></pre>
+</blockquote>
+</li>
+<li><p>方式 3：使用 <code>DriverManager</code> 替代 <code>Driver</code> 进行统一管理</p>
+<p>  这个方式扩展性更好，更加清晰</p>
+<blockquote>
+<pre><code class="java">Class&lt;?&gt; aClass = Class.forName(&quot;com.mysql.cj.jdbc.Driver&quot;);
+Driver driver = (Driver) aClass.newInstance();
+String url = &quot;jdbc:mysql://localhost:3306/melody&quot;;
+String name = &quot;root&quot;;
+String password = &quot;******&quot;;
+DriverManager.registerDriver(driver);
+Connection connection = DriverManager.getConnection(url, name, password);
+</code></pre>
+<p>这里，<code>DriverManager.getConnetion()</code> 有三种方法。分别是：</p>
+<ul>
+<li><code>getConnetion(url);</code></li>
+<li><code>getConnetion(url, properties);</code></li>
+<li><code>getConnetion(url, name, password);</code></li>
+</ul>
+</blockquote>
+</li>
+<li><p>&#x3D;&#x3D;方式 4：使用 <code>Class.forName()</code> 自动完成注册驱动，实际开发中这种方式用的最多，推荐使用&#x3D;&#x3D;</p>
+<blockquote>
+<pre><code class="java">Class&lt;?&gt; aClass = Class.forName(&quot;com.mysql.cj.jdbc.Driver&quot;);		//可以不加引用
+String url = &quot;jdbc:mysql://localhost:3306/melody&quot;;
+String name = &quot;root&quot;;
+String password = &quot;******&quot;;
+Connection connection = DriverManager.getConnection(url, name, password);
+</code></pre>
+<p><code>Class.forName()</code> 在加载 <code>Driver</code> 类时，会自动完成注册。</p>
+</blockquote>
+<p>  原理：</p>
+<blockquote>
+<p><code>Driver</code> 类的源码中有这样一段</p>
+<pre><code class="java">static &#123;
+     try &#123;
+         DriverManager.registerDriver(new Driver());
+     &#125; catch (SQLException var1) &#123;
+         throw new RuntimeException(&quot;Can&#39;t register driver!&quot;);
+     &#125;
+&#125;
+</code></pre>
+<p>这个静态代码块在类加载时会被执行。</p>
+</blockquote>
+<blockquote>
+<p>另外，其实&#x3D;&#x3D;不执行 <code>Class.forName(...);</code> 语句的场合，也能正确获取 <code>Connection</code>。&#x3D;&#x3D;</p>
+<p>这是因为 JDK 1.5 以后使用了 jdbc4。这个场合，系统会自动调用 jar 包下 <code>META-INF\services\java.sql.Driver</code> 这个文件中的类名称去注册。</p>
+<p>……打开上述文件看看，里面赫然写着：<code>com.mysql.cj.jdbc.Driver</code></p>
+<p>即使如此，还是建议写上 <code>Class.forName(...)</code> 语句！</p>
+</blockquote>
+</li>
+<li><p>&#x3D;&#x3D;方式 5（推荐）：在方式 4 的基础上，使用配置文件，连接数据库更灵活&#x3D;&#x3D;。</p>
+</li>
+</ul>
+<pre><code class="java">这种方式是实际开发最常用的方式。
+
+&gt; 配置文件（创建 src\mysql.properties）：
+&gt;
+&gt; ```properties
+&gt; url=jdbc:mysql://localhost:3306/melody
+&gt; user=root
+&gt; password=******
+&gt; driver=com.mysql.cj.jdbc.DriverPROPERTIES
+&gt; ```
+&gt;
+&gt; 代码：
+&gt;
+&gt; ```java
+    /*得到配置文件信息*/
+&gt; Properties pro = new Properties();
+&gt; pro.load(new FileInputStream(&quot;src\\mysql.properties&quot;))
+&gt; String url = pro.getProperties(&quot;url&quot;);
+&gt; String user = pro.getProperties(&quot;user&quot;);
+&gt; String password = pro.getProperties(&quot;password&quot;);
+&gt; String driver = pro.getProperties(&quot;driver&quot;);
+
+/*注册驱动*/
+&gt; Class&lt;?&gt; aClass = Class.forName(driver);
+&gt; Connection connection = DriverManager.getConnection(url, user, password);
+&gt; ```
+</code></pre>
+<h2><span id="232-reaultset-结果集">23.2 <code>ReaultSet</code> 结果集</span></h2><blockquote>
+<p>ResultSet：表示数据库结果集的数据表。通常通过执行查询数据库的语句生成。</p>
+<p>ResultSet 对象保持一个光标指向其当前的数据行。该光标的初始位置在第一行之前。调用 next 方法将光标下移，移动到末端的场合会返回 false。</p>
+</blockquote>
+<p><strong>如何取出数据（示例）：</strong></p>
+<pre><code class="java">String sql = &quot;select * from customer&quot;;
+ResultSet resset = statement.executeQuery(sql);
+while (resset.next()) &#123;
+    int id = resset.getInt(1);
+    String name = resset.getString(2);
+    String sex = resset.getString(5);
+    String card_id = resset.getString(6);
+    System.out.println(id + &quot;\t&quot; + name + &quot;\t&quot; + sex + &quot;\t&quot; + card_id);
+&#125;
+</code></pre>
+<p>其中 <code>String sex = resset.getString(5);</code> 表示取出该行数据的第 5 列的字符串数据。</p>
+<p>ResultSet 的数据是以类似二维数组的形式保存在对象中。这不难理解，毕竟表格是二维的嘛。</p>
+<h2><span id="x3dx3d233-statementx3dx3d">&#x3D;&#x3D;23.3 <code>Statement</code>&#x3D;&#x3D;</span></h2><blockquote>
+<p><code>Statment</code> 对象用于执行静态 SQL 语句，并返回其生成的结果的对象</p>
+<p>在连接建立后，需要访问数据库、执行命名或 SQL 语句，有如下方式：</p>
+<ul>
+<li><code>Statment</code>（存在 SQL 注入问题，在实际开发中基本不使用）</li>
+<li><code>PerparedStatement</code>（预处理）</li>
+<li><code>CallableStatement</code>（存储过程）</li>
+</ul>
+<p>案例：</p>
+<p><img src="https://gitee.com/kilomi/pic-bed/raw/master/img/202311051151379.png" alt="image-20231105115143277"></p>
+<p>SQL 注入：利用某些系统没有对用户输入的数据进行充分的检查，故意注入非法的 SQL 语句段或命令，恶意攻击数据库。</p>
+<p>使用 <code>PreparedStatement</code> 可以防范 SQL 注入</p>
+</blockquote>
+<h3><span id="2331-preparedstatement-预处理">23.3.1 <code>PreparedStatement</code> 预处理</span></h3><pre><code class="java">    /* [1] */
+String sql = &quot;select * from customer where customer_id = ? and name = ?&quot;;
+PreparedStatement ps = connection.prepareStatement(sql);
+    /* [2] */
+ps.setInt(1, 0);
+ps.setString(2, &quot;萝茵&quot;);
+    /* [3] */
+ResultSet rs = ps.executeQuery();
+</code></pre>
+<ol>
+<li><p><code>PreparedStatement</code> 执行的 SQL 语句的参数用 <code>?</code> 表示。</p>
+</li>
+<li><p>调用方法设置 SQL 语句中的参数。</p>
+<p> 这些方法的两个参数中，第一个是设置的参数的索引，第二个是设置值</p>
+</li>
+<li><p>调用 <code>executeQuery()</code> 返回 <code>ResultSet</code> 对象。或者调用 <code>executeUpdate()</code> 执行增删改</p>
+<p> 这里，调用的方法不需要再传入参数sql进去，而且如果添加了“？”作为条件，传入参数会导致语法错误。</p>
+</li>
+</ol>
+<p><strong>预处理的好处</strong></p>
+<ol>
+<li>不再使用拼接语句，增加代码可读性，减少语法错误</li>
+<li>解决了 SQL 注入问题</li>
+<li>大大减少了编译次数，效率提高</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>类 &#x2F; 接口</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DriverManager 驱动管理类</td>
+<td>getConnection(url, user, pwd) 获取连接</td>
+</tr>
+<tr>
+<td>Connection 接口</td>
+<td>createStatement() 创建 Statement 对象</td>
+</tr>
+<tr>
+<td></td>
+<td>preparedStatement(sql) 生成预处理 PreparedStatement 对象</td>
+</tr>
+<tr>
+<td>Statement 接口</td>
+<td>executeUpdate(sql) 执行 dml 语句，返回影响行数</td>
+</tr>
+<tr>
+<td></td>
+<td>executeQuery(sql) 执行查询语句，返回 ResultSet,注意不能对PreparedStatement或CallableStatement调用此方法。</td>
+</tr>
+<tr>
+<td></td>
+<td>execute(sql) 执行任意 SQL 语句，返回布尔值</td>
+</tr>
+<tr>
+<td>PreparedStatement 接口</td>
+<td>executeUpdate() 执行 dml 语句，返回影响行数</td>
+</tr>
+<tr>
+<td></td>
+<td>executeQuery() 执行查询语句，返回 ResultSet</td>
+</tr>
+<tr>
+<td></td>
+<td>execute() 执行任意 SQL 语句，返回布尔值</td>
+</tr>
+<tr>
+<td></td>
+<td>setXXX(int, xxx) 设置 SQL 语句中占位符的值</td>
+</tr>
+<tr>
+<td></td>
+<td>setObject(int, xxx) 设置 SQL 语句中占位符的值</td>
+</tr>
+<tr>
+<td>ResultSet 结果集</td>
+<td>next() 向下移动一行。没有下一行的场合返回 false</td>
+</tr>
+<tr>
+<td></td>
+<td>previous() 向上移动一行。没有上一行的场合返回 false</td>
+</tr>
+<tr>
+<td></td>
+<td>getXXX(int)、getXXX(name) 返回 int 列 &#x2F; name 列的值</td>
+</tr>
+<tr>
+<td></td>
+<td>getObject(int)、getObject(name) 返回 int 列 &#x2F; name 列的值</td>
+</tr>
+</tbody></table>
+<h2><span id="x3dx3d234-jdbcutilsx3dx3d">&#x3D;&#x3D;23.4 JDBCUtils&#x3D;&#x3D;</span></h2><blockquote>
+<p>实际操作中，<strong>由于获取连接 和 释放资源 操作经常使用，所以会增加代码的冗余度</strong>，可以把这些操作统一封装成工具类 JDBCUtils，这样当需要数据库连接进行数据库操作的时候只需要通过这个JDBCUtils就可以获取。</p>
+</blockquote>
+<img src="https://gitee.com/kilomi/pic-bed/raw/master/img/202311051551103.png" alt="image-20231105155127050" style="zoom:50%;">
+
+<p><strong>JDBCUtils.java</strong></p>
+<pre><code class="java">package com.hspedu.jdbc.utils;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.sql.*;
+import java.util.Properties;
+
+/**
+ * @author 韩顺平
+ * @version 1.0
+ * 这是一个工具类，完成 mysql的连接和关闭资源
+ */
+public class JDBCUtils &#123;
+    //定义相关的属性(4个), 因为只需要一份，因此，我们做出static
+    private static String user; //用户名
+    private static String password; //密码
+    private static String url; //url
+    private static String driver; //驱动名
+
+    //在static代码块去初始化
+    static &#123;
+
+        try &#123;
+            Properties properties = new Properties();
+            properties.load(new FileInputStream(&quot;src\\mysql.properties&quot;));
+            //读取相关的属性值
+            user = properties.getProperty(&quot;user&quot;);
+            password = properties.getProperty(&quot;password&quot;);
+            url = properties.getProperty(&quot;url&quot;);
+            driver = properties.getProperty(&quot;driver&quot;);
+        &#125; catch (IOException e) &#123;
+            //在实际开发中，我们可以这样处理
+            //1. 将编译异常转成 运行异常
+            //2. 调用者，可以选择捕获该异常，也可以选择默认处理该异常，比较方便.
+            throw new RuntimeException(e);		//[1]
+
+        &#125;
+    &#125;
+
+    //连接数据库, 返回Connection
+    public static Connection getConnection() &#123;
+
+        try &#123;
+            return DriverManager.getConnection(url, user, password);
+        &#125; catch (SQLException e) &#123;
+            //1. 将编译异常转成 运行异常
+            //2. 调用者，可以选择捕获该异常，也可以选择默认处理该异常，比较方便.
+            throw new RuntimeException(e);			//[1]
+        &#125;
+    &#125;
+
+    //关闭相关资源
+    /*
+        1. ResultSet 结果集
+        2. Statement 或者 PreparedStatement
+        3. Connection
+        4. 如果需要关闭资源，就传入对象，否则传入 null
+     */
+    public static void close(ResultSet set, Statement statement, Connection connection) &#123;
+
+        //判断是否为null
+        try &#123;
+            if (set != null) &#123;
+                set.close();
+            &#125;
+            if (statement != null) &#123;
+                statement.close();
+            &#125;
+            if (connection != null) &#123;
+                connection.close();
+            &#125;
+        &#125; catch (SQLException e) &#123;
+            //将编译异常转成运行异常抛出
+            throw new RuntimeException(e);			//[1]
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<ol>
+<li>实际开发中，可以把编译异常转换为运行异常。这样，调用者可以自行选择捕获异常还是默认处理。</li>
+</ol>
+<h2><span id="x3dx3d235-事务x3dx3d">&#x3D;&#x3D;23.5 事务&#x3D;&#x3D;</span></h2><blockquote>
+<p>事务：JDBC 程序中，当一个 <code>Connection</code> 对象创建时，默认情况下会自动提交事务。为了让多个 SQL 语句一体执行，需要使用事务。</p>
+</blockquote>
+<pre><code class="java">Connection connection = null;
+try &#123;
+    connection = JDBCUtils.getConnection();
+    connection.setAutoCommit(false);					//[1] 取消自动提交事务
+    String sql = &quot;insert into actor values(9, &#39;赫尔萝茵&#39;)&quot;;
+    PreparedStatement preparedStatement = connection.prepareStatement(sql);
+    preparedStatement.executeUpdate();
+    sql = &quot;delete from actor where name = &#39;萝茵&#39; and id &gt; (select * from (select min(id) from actor where name = &#39;萝茵&#39;) a)&quot;;
+//如果在第一件语句执行成功，而在第二句前因为异常导致没有成功，就会导致数据发生错乱		
+    int i = 1/0;//产生一个异常，导致后面一句执行不成功	
+                                                        //[2]
+    preparedStatement = connection.prepareStatement(sql);
+    preparedStatement.executeUpdate();
+    connection.commit();								//[3] 提交事务
+    System.out.println(&quot;complete&quot;);
+&#125; catch (SQLException e) &#123;
+    System.out.println(&quot;fail&quot;);
+    System.out.println(e);
+    connection.rollback();								//[4] 回滚事务
+&#125; finally &#123;
+    connection.close();									//[5] 关闭连接
+&#125;
+</code></pre>
+<ol>
+<li>取消自动提交事务：</li>
+</ol>
+<pre><code class="java">```
+connection.setAutoCommit(false);
+```
+</code></pre>
+<ol start="2">
+<li><p>这是一个 SQL 语句。表示在 name &#x3D; 萝茵 的数据中只保留 id 最小的一条。</p>
+<pre><code>delete from actor where name = &#39;萝茵&#39; and id &gt; (select * from (select min(id) from actor where name = &#39;萝茵&#39;) a)
+MYSQL
+</code></pre>
+<p> 正常写法会提示不能同表查询（在 MySQL 中，不能在同一语句中先 select 出同一表中的某些值，再 update 这个表）。使用一个额外的 select 过渡就解决了这个问题。特此记录。</p>
+</li>
+<li><p>提交事务：</p>
+</li>
+</ol>
+<pre><code class="java">```
+connection.commit();
+```
+</code></pre>
+<ol start="4">
+<li>回滚事务：</li>
+</ol>
+<pre><code class="java">```
+connection.rollback();
+```
+
+写在 catch 里。这样，语句错误抛出异常的场合会执行到这句话。
+</code></pre>
+<ol start="5">
+<li>关闭连接：</li>
+</ol>
+<pre><code class="java">```
+connection.close();		//可以传参，参数为回滚点，不传参数默认回滚到开始的状态
+```
+
+写在 finally 里。这样，执行完语句总会关闭连接。这很好。
+</code></pre>
+<h2><span id="236-批处理">23.6 批处理</span></h2><blockquote>
+<p>批处理：把多条语句一次性提交给数据库进行批量处理。这样做比单独提交更有效率。</p>
+</blockquote>
+<p>&#x3D;&#x3D;要使用批处理功能，需要在 url 中加入 <code>?rewriteBatchedStatements=true</code>，即在配置文件中写成：&#x3D;&#x3D;</p>
+<blockquote>
+<pre><code class="properties">url=jdbc:mysql://localhost:3306/test?rewriteBatchedStatements=true
+</code></pre>
+</blockquote>
+<p>批处理往往和 PerparedStatement 搭配使用，既减少编译次数，又减少运行次数，岂不美哉？</p>
+<p><strong>示例：</strong></p>
+<blockquote>
+<pre><code class="java">    //[0] 事前准备
+Connection connection = JDBCUtils.getConnection();
+String sql = &quot;insert into test1 values(?)&quot;;
+PreparedStatement ps = connection.prepareStatement(sql);
+for (int i = 0; i &lt; 1000; i++) &#123;
+    ps.setInt(1,i);						
+    ps.addBatch();						//[1]
+&#125;
+ps.executeBatch();						//[2]
+JDBCUtils.close(connection, ps, null);
+</code></pre>
+<ol>
+<li>修改配置文件</li>
+</ol>
+<pre><code class="properties">url=jdbc:mysql://localhost:3306/test?rewriteBatchedStatements=true
+...
+</code></pre>
+<ol start="2">
+<li>添加需要批量处理的 SQL 语句</li>
+</ol>
+<pre><code class="java">preparedStatement.addBatch();
+</code></pre>
+<ol start="3">
+<li>执行批量处理语句</li>
+</ol>
+<pre><code class="java">preparedStatement.executeBatch();
+</code></pre>
+<ol start="4">
+<li>（前面的例子里没有这句）清空批处理包的语句</li>
+</ol>
+<pre><code class="java">preparedStatement.clearBatch();
+</code></pre>
+</blockquote>
+<h3><span id="2361-说明">23.6.1 说明</span></h3><ol>
+<li>第一次添加批处理语句时，创建一个 ArrayList。</li>
+</ol>
+<pre><code class="java">&gt; ```
+&gt; ...
+&gt; if (this.batchedArgs == null) &#123;
+&gt;     this.batchedArgs = new ArrayList();
+&gt; &#125;
+&gt; ...
+&gt; ```
+
+……会在其中放置批处理语句（指令的数据）
+</code></pre>
+<ol start="2">
+<li><p>该数组满后，按照 1.5 倍扩容</p>
+</li>
+<li><p>达到指定的值后，执行 executeBatch 吧</p>
+</li>
+<li><p>批处理能减少编译次数，也能减少发送 SQL 语句的网络开销。</p>
+</li>
+</ol>
+<h2><span id="237-数据库连接池">23.7 数据库连接池</span></h2><blockquote>
+<p><strong>传统获取 Connection 方法的问题：</strong></p>
+<ol>
+<li>传统的 JDBC 数据库连接使用 DriverManager 获取，每次建立连接都会把 Connection 载入内存，再进行身份验证。每次连接都会重复验证请求，这样会占用过多系统资源，容易造成服务器崩溃。</li>
+<li>每次连接，使用完毕后必须断开。如果不断开操作，会致使数据库内存泄漏，最终不得不重启数据库。</li>
+<li>传统连接方式不能控制创建的连接数量。连接数量过多的场合，也可能导致内存泄漏，MySQL 崩溃</li>
+</ol>
+</blockquote>
+<p><strong>因此，需要使用连接池技术：</strong></p>
+<ol>
+<li>预先在缓冲池放入一定数量的连接。需要建立数据库连接时，从缓冲池中取出一个连接。使用完后，把该连接放回缓冲池。</li>
+<li>数据库连接池负责分配、管理和释放数据库连接。其允许应用程序重复使用一个现有的数据库连接，而非建立新的连接。</li>
+<li>当请求连接的数量超过最大数量，这些连接请求会被加入等待队列。</li>
+</ol>
+<p><strong>数据库连接池种类：</strong></p>
+<p>JDBC 数据库连接池使用 javax.sql.DataSource 表示，称为&#x3D;&#x3D;数据源&#x3D;&#x3D;，DataSource 是一个接口，通常由第三方提供实现（提供 jar 包）</p>
+<ul>
+<li>C3P0：速度稍慢，稳定性好……但是速度再慢也不是传统 JDBC 能比得上的，不自量力！</li>
+<li>DBCP：速度稍快，稳定性差</li>
+<li>Proxool：可以监控连接池状态，稳定性稍差</li>
+<li>BoneCP：速度快</li>
+<li>Druid：阿里提供的数据库连接池，集 DBCP、C3P0、Proxool 优点于一身</li>
+</ul>
+<h3><span id="2371-c3p0">23.7.1 C3P0</span></h3><p>写在前面：C3P0 连接时跳一堆红字，不一定是报错……他就这样。</p>
+<p><strong>使用 C3P0 的前置工作：</strong></p>
+<ol>
+<li><p><a target="_blank" rel="noopener" href="https://sourceforge.net/projects/c3p0/?source=navbar">C3P0 jar 包下载</a></p>
+<blockquote>
+<p>&#x3D;&#x3D;注意0.9.2版本及之后要同时在libs文件夹导入c3p0和c3p0-oracle这两个jar包&#x3D;&#x3D;</p>
+</blockquote>
+</li>
+<li><p>……和前面一样，把 jar 包装载好。</p>
+</li>
+</ol>
+<p>  为了正常运行程序，这里（上面连接下载的） jar 包（似乎）至少是：</p>
+<p>  <code>mchange-commons-java-0.2.19.jar</code></p>
+<p>  <code>c3p0-0.9.5.5.jar</code></p>
+<blockquote>
+<p>csdn上说mchange-commons-java-0.2.19.jar这是<strong>c3p0数据库连接池</strong>的辅助包，如果没有这个包系统启动时会报classnotfoundexception，这是更新c3p0-0.9.2版本后分离出来的包，0.9.1的时候还是只是一个包。</p>
+</blockquote>
+<ul>
+<li><p>方式一：在程序中指定相关参数</p>
+<blockquote>
+<pre><code class="java">    /* [1] */
+ComboPooledDataSource cpds = new ComboPooledDataSource();
+    /* [2] */
+cpds.setDriverClass(dirver);
+cpds.setUser(user);
+cpds.setPassword(password);
+cpds.serJdbcUrl(url);
+    /* [3] */
+cpds.setInitialPoolSize(10);
+    /* [4] */
+cpds.setMaxPoolSize(50);
+    /* [5] */
+Connection connection = cpds.getConnection();
+...
+connection.close();
+</code></pre>
+<ol>
+<li><p>创建数据源对象（dataSource）</p>
+<pre><code class="java">ComboPooledDataSource cpds = new ComboPooledDataSource();
+</code></pre>
+</li>
+<li><p>设置参数</p>
+</li>
+</ol>
+<pre><code class="java">    cpds.setDriverClass(String dirver);
+    cpds.setUser(String user);
+    cpds.setPassword(String password);
+    cpds.serJdbcUrl(String url);
+    ```
+
+……上面输入的形参 `user` 是字符串 `&quot;root&quot;`。其他同理。
+
+3. 设置初始化连接数
+
+```java
+    cpds.setInitialPoolSize(10);
+    ```
+    
+    初始化连接数，就是指连接池创建时，初始持有的连接数
+
+4. 设置最大连接数
+
+    ```java
+cpds.setMaxPoolSize(50);
+    ```
+    
+5. 获取一个连接
+
+```java
+    Connection connection = cpds.getConnection();
+</code></pre>
+</blockquote>
+</li>
+<li><p>方式二：使用配置文件模板完成</p>
+<blockquote>
+<pre><code class="java">    /* [0] 前置操作 */ 
+    /* [1] 获取数据源对象 */ 
+ComboPooledDataSource cpds = new ComboPooledDataSource(&quot;Heruin&quot;);
+    /* [2] 获取连接 */ 
+Connection connection = cpds.getConnection();
+...
+connection.close();
+</code></pre>
+<ol>
+<li>加入配置文件</li>
+</ol>
+<p>  <strong>c3p0-config.xml：</strong>配置文件，文件名固定，放在 <code>src/c3p0-config.xml</code> 这个位置</p>
+<pre><code class="xml">&lt;c3p0-config&gt;
+        &lt;!-- 数据源（连接池）名称 --&gt;
+    &lt;named-config name=&quot;Heruin&quot;&gt;
+            &lt;!-- 驱动类 --&gt;
+        &lt;property name=&quot;driverClass&quot;&gt;com.mysql.cj.jdbc.Driver&lt;/property&gt;//com.mysql.jdbc.Driver 是 mysql-connector-java 5中的， com.mysql.cj.jdbc.Driver 是 mysql-connector-java 6以及以上中的
+            &lt;!-- url --&gt;
+        &lt;property name=&quot;jdbcUrl&quot;&gt;jdbc:mysql://localhost:3306/test&lt;/property&gt;
+            &lt;!-- 用户名 --&gt;
+        &lt;property name=&quot;user&quot;&gt;root&lt;/property&gt;
+            &lt;!-- 密码 --&gt;
+        &lt;property name=&quot;password&quot;&gt;******&lt;/property&gt;
+            &lt;!-- 初始化连接数 --&gt;
+        &lt;property name=&quot;initialPoolSize&quot;&gt;10&lt;/property&gt;
+            &lt;!-- 最大空闲时间 --&gt;
+        &lt;property name=&quot;maxIdleTime&quot;&gt;30&lt;/property&gt;
+            &lt;!-- 最大连接数 --&gt;
+        &lt;property name=&quot;maxPoolSize&quot;&gt;100&lt;/property&gt;
+            &lt;!-- 最小连接数 --&gt;
+        &lt;property name=&quot;minPoolSize&quot;&gt;10&lt;/property&gt;
+            &lt;!-- 每次增长的连接数 --&gt;
+        &lt;property name=&quot;acquireIncrement&quot;&gt;10&lt;/property&gt;
+            &lt;!-- 可连接的最多的命令对象数 --&gt;
+        &lt;property name=&quot;maxStatements&quot;&gt;10&lt;/property&gt;
+            &lt;!-- 每个连接可连接的最多的命令对象数 --&gt;
+        &lt;property name=&quot;maxStatementsPerConnection&quot;&gt;5&lt;/property&gt;
+    &lt;/named-config&gt;
+&lt;/c3p0-config&gt;
+</code></pre>
+<ol start="2">
+<li><p>获取数据源对象</p>
+<pre><code class="java">ComboPooledDataSource cpds = new ComboPooledDataSource(String name);
+</code></pre>
+<p> 这里的 <code>name</code> 就是配置文件中的 <code>数据源名称</code></p>
+</li>
+<li><p>获取连接</p>
+</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h3><span id="2372-druid德鲁伊连接池">23.7.2 Druid（德鲁伊）连接池</span></h3><p><del>有的人因为看见而相信，有的人因为相信而看见！</del></p>
+<p><strong>使用 Druid 的前置工作：</strong></p>
+<ol>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/alibaba/druid">Druid jar 包下载</a></p>
+<p> ……这个链接打不开的话，试试 <a target="_blank" rel="noopener" href="https://repo1.maven.org/maven2/com/alibaba/druid/">这个</a></p>
+</li>
+<li><p>配置 jar 包</p>
+</li>
+<li><p>加入配置文件</p>
+<blockquote>
+<p><strong>durid.properties：</strong>配置文件，文件名任意，放在 <code>src/druid.properties</code></p>
+<pre><code class="java">driverClassName=com.mysql.cj.jdbc.Driver
+url=jdbc:mysql://localhost:3306/test?rewriteBatchedStatements=true
+username=root
+password=720mel\im
+initialSize=10
+minIdle=5
+maxActive=20
+maxWait=5000PROPERTIES
+</code></pre>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li><p>使用 Druid：</p>
+<pre><code class="java">    /* [1] 加载配置文件 */
+Properties properties = new Properties();
+properties.load(new FileInputStream(&quot;src\\Druid.properties&quot;));
+    /* [2] 初始化数据池 */
+DataSource dataSource = DruidDataSourceFactory.createDataSource(properties);
+    /* [3] 获取连接 */
+Connection connection = dataSource.getConnection();
+...
+connection.close();
+</code></pre>
+<ol>
+<li><p>初始化数据池</p>
+<pre><code class="java">DataSource dataSource = DruidDataSourceFactory.createDataSource(properties);
+</code></pre>
+</li>
+<li><p>……没什么好说的，但要说一下这个：</p>
+<pre><code class="java">connection.close();
+</code></pre>
+</li>
+</ol>
+<p>  <code>Connection</code> 是一个接口，对于方法 <code>close()</code>，不同供应商有不同实现方法。</p>
+<p>  &#x3D;&#x3D;原生的 <code>MySQL</code> 的实现方法是关闭连接，而这些连接池的实现方法是取消引用（放回连接池）。&#x3D;&#x3D;</p>
+</li>
+</ul>
+<h2><span id="238-apache-dbutils">23.8 Apache - DbUtils</span></h2><blockquote>
+<p><code>commons-DbUtils</code>：是 Apache (阿帕奇)组织提供的一个开源的 JDBC 工具库。它是对 JDBC 的封装。使用 dbutils 能极大简化 JDBC 编码的工作量</p>
+<p><strong>DbUtils 的常用类：</strong></p>
+<ul>
+<li><code>QueryRunner</code> 类：封装了 SQL 的执行。是线程安全的，可以实现增、删、改、查、批处理操作</li>
+<li><code>ResultSetHandler</code> 接口：用于处理 <code>ResultSet</code>，按照需求将数据转化为其他形式</li>
+</ul>
+</blockquote>
+<p>JDBC 传统方法的不足：</p>
+<ol>
+<li>结果集和连接是关联的。在连接关闭后，就不能使用结果集。</li>
+<li>结果集只能使用一次，这样不便于数据管理</li>
+<li>使用返回信息不方便</li>
+</ol>
+<p>解决方案：</p>
+<ul>
+<li><ol>
+<li><p>土方法（只是演示，实际还是用Dbutils）：创建一个类（这个类统称为JavaBean&#x2F;POJO&#x2F;Domain&#x2F;entity），其属性与表格的列一一对应。将数据遍历并读取到一个个类对象中，再将这些类对象放置到集合中。这样，就得到了一个与表格数据关联的数据集合。</p>
+<blockquote>
+<p>&#x3D;&#x3D;参考&#x3D;&#x3D;：<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/3295496/what-is-a-javabean-exactly">javabean到底是什么？</a></p>
+</blockquote>
+</li>
+</ol>
+<blockquote>
+<p>数据类，根据需要创建：</p>
+<pre><code class="java">+------+------------+------+
+| id   | date       | name |
++------+------------+------+
+|    1 | 2003-11-20 | jack |
++------+------------+------+
+//对应上表
+public class SQL_Data &#123;
+ private Integer id;	//最好使用包装类
+ private Date date;
+ private String name;        
+
+ /* 一定要有无参构造器。这是因为后面会用到反射 */
+ public SQL_Data()&#123;&#125;
+
+ public SQL_Data(Integer id, Date date, String name) &#123;
+     this.id = id;
+     this.date = date;
+     this.name = name;
+ &#125;   
+
+ /* Geter &amp; Seter 笔记里就省略不记了。光占地方又没技术含量 */
+ ...
+&#125;
+</code></pre>
+<p>……然后遍历 ResultSet，存放。就不写了。</p>
+</blockquote>
+</li>
+<li><ol start="2">
+<li>&#x3D;&#x3D;使用 <code>DbUtils</code>&#x3D;&#x3D;：</li>
+</ol>
+<blockquote>
+<pre><code class="java">    /* [0] 前置操作 */
+String sql = &quot;select * from account where ? = ?&quot;;
+    /* [1] 创建 QueryRunner */
+QueryRunner qr = new QueryRunner();
+    /* [2] 执行相关方法 */
+List&lt;SQL_Data&gt; list = 
+qr.query(connection, sql, new BeanListHandler&lt;&gt;(SQL_Data.class), &quot;id&quot;, 1);
+...
+    /* [3] 释放资源*/
+connection.close();
+</code></pre>
+<ol>
+<li><p>前置操作：</p>
+<p> <a target="_blank" rel="noopener" href="https://commons.apache.org/proper/commons-dbutils/download_dbutils.cgi">获取 jar 包</a>，并完成配置</p>
+<p> 得到连接 <code>Connection connection</code>，创建数据类（这里是 <code>SQL_Data</code>）</p>
+</li>
+<li><p>执行相关方法，返回结果集</p>
+</li>
+</ol>
+<pre><code class="java">List&lt;SQL_Data&gt; list = 
+    queryRunner.query(connection, sql, new BeanListHandler&lt;&gt;(SQL_Data.class), ...);
+</code></pre>
+<ul>
+<li><p><code>queryRunner.query</code> 方法：执行 SQL 语句，把得到的 <code>ResultSet</code> 封装到 List 集合。这个方法会**自动关闭获得的 <code>ResultSet</code>**，所以不会造成资源泄漏</p>
+</li>
+<li><p><code>connection</code>：前置操作中得到的连接</p>
+</li>
+<li><p><code>sql</code>：SQL 语句</p>
+</li>
+<li><p><code>new BeanListHander&lt;&gt;(SQL_Data.class)</code>：利用反射机制，将数据封装到 <code>SQL_Data</code> 对象中</p>
+</li>
+<li><p><code>&quot;id&quot;, 1</code>：给 SQL 语句中的 <code>?</code> 赋值。因为是<strong>可变参数</strong>，可以写多个，如：<code>queryRunner.query(connection, sql, new BeanListHandler&lt;&gt;(SQL_Data.class), &quot;id&quot;, 1, &quot;name&quot;, &quot;识之律者&quot;);</code></p>
+</li>
+<li><p><code>SQL_Data</code>：是数据库当中的表映射的javabean。</p>
+<p><font color="red">……这里，可变参数也包含列名的场合，筛选似乎会失效。还不知道原理。特此记录。</font></p>
+<blockquote>
+<p>这种语法或者本身就要避免，是不合法的。</p>
+</blockquote>
+</li>
+</ul>
+<ol start="3">
+<li><p>&#x3D;&#x3D;此时只需要关闭 <code>Connection</code>&#x3D;&#x3D;</p>
+<p> &#x3D;&#x3D;<code>query()</code> 方法已经关闭了 <code>ResultSet</code> 和 <code>PreparedStatement</code>&#x3D;&#x3D;</p>
+</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h3><span id="2381-apache-dbutils-常用方法">23.8.1 Apache-DbUtils 常用方法</span></h3><ul>
+<li><p><code>queryRunner.update(connection, sql, ...)</code>：DML 语句。增删改。</p>
+<p>  后面传入可变参数，用于给 SQL 语句中的 <code>?</code> 赋值</p>
+<p>  返回值 int 代表被影响的行数。</p>
+</li>
+<li><p><code>queryRunner.query(connection, sql, ResultSetHandler, ...)</code>：查询。</p>
+<p>  后面传入可变参数，用于给 SQL 语句中的 <code>?</code> 赋值</p>
+<p>  关于 <code>ResultSetHandler</code>：</p>
+<ul>
+<li>传入 <code>new BeanListHander&lt;&gt;(SQL_Data.class)</code>：返回多行多列。这个场合，用 <code>List</code> 接收返回值。</li>
+<li>传入 <code>new BeanHandler&lt;&gt;(SQL_Data.class)</code>：返回单行。这个场合，用 <code>SQL_Data data</code> 接收返回值。<ul>
+<li><code>SQL_Data data</code> 表中的某一行数据映射的对象。</li>
+</ul>
+</li>
+<li>传入 <code>new ScalarHander&lt;&gt;()</code>：返回单行单列。这个场合，用 <code>Object</code> 接收返回值。<strong>注意没有参数</strong></li>
+</ul>
+</li>
+</ul>
+<h3><span id="2382-表和-javabeanx2fpojo-的对应关系">23.8.2 表和 JavaBean&#x2F;POJO 的对应关系</span></h3><table>
+<thead>
+<tr>
+<th>表类型</th>
+<th>JavaBean类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int、samllint……</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>char、varchar……</td>
+<td>String</td>
+</tr>
+<tr>
+<td>double</td>
+<td>Double</td>
+</tr>
+<tr>
+<td>date</td>
+<td>java.util.Date&#x2F;String</td>
+</tr>
+</tbody></table>
+<h2><span id="x3dx3d24-basicdaox3dx3d">&#x3D;&#x3D;24. BasicDAO&#x3D;&#x3D;</span></h2><p>项目设计的模式：</p>
+<p>具体各个层的作用参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Restarting2019/article/details/122296373">什么是Dao层、Entity层、Service层、Servlet层、Utils层？-CSDN博客</a></p>
+<p><img src="https://gitee.com/kilomi/pic-bed/raw/master/img/202311071112561.png" alt="image-20231107111159462"></p>
+<blockquote>
+<p>实际写代码是先完成下层的，再完成上层的。</p>
+<p>一般开发中关于dao里的方法是否应该是static的，stackoverflow上有讨论，搜关键词 dao method static就行，主要完成的是service层，<strong>从下往上分析。</strong>，&#x3D;&#x3D;映射的javabean应该有无参构造器，，因为底层反射是使用无参构造器构造javabean对象的。而且属性名要以数据库为准，底层是用setName()来初始化属性的(会根据列名对应方法，比如列名为name，如果javabean中写的是name2，他就找不到应该为setName()的方法(此时javabean中的是setName2()方法，它匹配不到)，这种场合就需要在sql语句起别名，将列名置为name2，这样就可以找到setName2()了)，<font color="red">映射的属性必须要和列名一致或者为列名的别名</font>，前提是每个sql语句都取别名&#x3D;&#x3D;</p>
+<p>数据库会根据自己的字段找到对应实体类的属性，通过set方法对属性进行注入。 如果实体类的属性名name2和数据库的字段名name不相同,则没有通过set方法进行注入，就会将name2置为null。</p>
+</blockquote>
+<blockquote>
+<p>Apache - DbUtils + Druid 简化了 JDBC 开发，但还有不足。</p>
+<ol>
+<li>SQL 语句固定，不能通过传入参数控制，通用性不好。</li>
+<li>select 操作的返回类型未知，需要使用泛型。</li>
+<li>将来的表很多，业务需求复杂，不可能只靠一个 Java 类完成</li>
+</ol>
+</blockquote>
+<p>DAO：数据访问对象（data access object）</p>
+<ol>
+<li><p>我们把通用的和数据库交互的操作封装到一个通用类中，称为 BasicDAO。</p>
+</li>
+<li><p>在 BasicDAO 基础上，每张表对应一个特化的 DAO（继承 BasicDAO），从而更好地完成功能。</p>
+<p> 比如：Data 表 -&gt; Data.java 类（JavaBean）-&gt; DataDAO.java</p>
+</li>
+</ol>
+<p><strong>BasicDAO.java（示例）</strong></p>
+<pre><code class="java">public class BasicDAO&lt;T&gt; &#123;
+    private QueryRunner qr = new QueryRunner();
+    
+    /*这个方法完成插入和修改的操作，在底层是使用executeUpdate执行sql语句*/
+    //可以利用这个方法检查是否插入成功，返回值&lt;0则表明插入失败，返回值&gt;0表明插入成功
+    public int update(String sql, Object... parameters)&#123;
+        Connection connection = null;
+        try &#123;
+            connection = JDBCUtils.getConnection();
+            return qr.update(connection, sql, parameters);
+        &#125; catch (SQLException e) &#123;
+            throw new RuntimeException(e);
+        &#125; finally &#123;
+            JDBCUtils.close(connection, null, null);
+        &#125;
+    &#125;
+
+    /*因为返回的是list集合 要用到反射,所以用到class对象作为参数*/
+    public List&lt;T&gt; queryMulti(String sql, Class&lt;T&gt; tClass, Object... parameters)&#123;
+        Connection connection = null;
+        try &#123;
+            connection = JDBCUtils.getConnection();
+            return qr.query(connection, sql, new BeanListHandler&lt;T&gt;(tClass), parameters);
+        &#125; catch (SQLException e) &#123;
+            throw new RuntimeException(e);
+        &#125; finally &#123;
+            JDBCUtils.close(connection, null, null);
+        &#125;
+    &#125;
+
+    public T querySingle(String sql, Class&lt;T&gt; tClass, Object... parameters)&#123;
+        Connection connection = null;
+        try &#123;
+            connection = JDBCUtils.getConnection();
+            return qr.query(connection, sql, new BeanHandler&lt;T&gt;(tClass), parameters);
+        &#125; catch (SQLException e) &#123;
+            throw new RuntimeException(e);
+        &#125; finally &#123;
+            JDBCUtils.close(connection, null, null);
+        &#125;
+    &#125;
+    
+    /*注意这里查询单个数据不需要用到class*/
+    public Object queryScalar(String sql, Object... parameters)&#123;
+        Connection connection = null;
+        try &#123;
+            connection = JDBCUtils.getConnection();
+            return qr.query(connection, sql, new ScalarHandler&lt;&gt;(), parameters);
+        &#125; catch (SQLException e) &#123;
+            throw new RuntimeException(e);
+        &#125; finally &#123;
+            JDBCUtils.close(connection, null, null);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h1><span id="dbutils数据库连接池多表连接查询">DBUtils数据库连接池多表连接查询</span></h1><p>方案一：</p>
+<p>老韩的思路：单独写一个javabean映射多表查询的结果，它包含其他javabean的属性(将这些属性重复组合放在这个单独的javabean中，但不是将其他javabean作为它的属性)。它也有自己的Dao，也可以有service，具体实现根据业务完成。<br>缺点：每次增加业务时，就要在这个javabean添加相应的字段。</p>
+<p><em>随着业务增加，字段越来越多怎么办？</em></p>
+<p>解决方案：</p>
+<p><img src="https://gitee.com/kilomi/pic-bed/raw/master/img/202311100001554.png" alt="image-20231110000127498"></p>
+<p>方案二：</p>
+<p>MapListHandler的使用（具体使用方式查看官方文档<a target="_blank" rel="noopener" href="http://commons.apache.org/proper/commons-dbutils/apidocs/index.html%EF%BC%89">http://commons.apache.org/proper/commons-dbutils/apidocs/index.html）</a><br>key——sql语句查询的字段<br>value——数据库中查询得到的结果<br>出现的问题描述<br>&#x3D;&#x3D;对于多表连接查询，如果使用<code>BeanListHandler</code>，则会出现空指针异常。&#x3D;&#x3D;<br>例如employee和department分类封装为Javabean。employee中声明一个department的对象。如下图所示：</p>
+<p><img src="https://gitee.com/kilomi/pic-bed/raw/master/img/202311092320599.png"></p>
+<p>解决方案<br>使用MapListHandler最终返回List&lt;map&lt;String,Object&gt;&gt;,使用迭代的方式通过查询字段取出value，首先根据Department类中的key从map中取出对应的value，并将其封装为Department对象。最终再封装为Employee对象，这样就解决了使用BeanListHandler出现空指针异常的现象。<br>具体实现代码如下图</p>
+<p><img src="https://img-blog.csdnimg.cn/20200116215105911.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L01yY2hhaTUyMQ==,size_16,color_FFFFFF,t_70"></p>
+<p>ResultSetHandler实现类介绍（由DbUtils框架提供）</p>
+<pre><code> 备注：DbUtils给我们提供了10个ResultSetHandler实现类，分别是：
+
+ ①ArrayHandler：     将查询结果的第一行数据，保存到Object数组中
+
+ ②ArrayListHandler     将查询的结果，每一行先封装到Object数组中，然后将数据存入List集合
+
+ ③BeanHandler     将查询结果的第一行数据，封装到user对象
+
+ ④BeanListHandler     将查询结果的每一行封装到user对象，然后再存入List集合
+
+ ⑤ColumnListHandler     将查询结果的指定列的数据封装到List集合中
+
+ ⑥MapHandler     将查询结果的第一行数据封装到map结合（key==列名，value==列值）
+
+ ⑦MapListHandler     将查询结果的每一行封装到map集合（key==列名，value==列值），再将map集合存入List集合
+
+ ⑧BeanMapHandler     将查询结果的每一行数据，封装到User对象，再存入mao集合中（key==列名，value==列值）
+
+ ⑨KeyedHandler     将查询的结果的每一行数据，封装到map1（key==列名，value==列值 ），然后将map1集合（有多个）存入map2集合（只有一个）
+
+ ⑩ScalarHandler     封装类似count、avg、max、min、sum......函数的执行结果
+</code></pre>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 Yelog
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().trim().split('\n').length, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 18px 3px 15px 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: ;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<div class="aplayer"
+
+    data-id="9126522781"
+
+    data-server="netease"
+
+    data-type="playlist"
+
+    data-fixed="true"
+
+    data-autoplay="false"
+
+    data-loop="all"
+
+    data-order="random"
+
+    data-preload="auto"
+
+    data-volume="0.7"
+
+    data-mutex="true"
+
+>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+
+<script>
+(function() {
+
+  var arr = new Array();
+  var $tags = $('.post-tags').children('a');
+  $tags.each(function() {
+    arr.push($(this).html())
+  })
+  if (arr.indexOf("图集") !== -1) {
+
+    $('.hj_img').each(function() {
+      $(this).wrap('<a class="fancybox" data-fancybox="gallery" href="' + $(this).prop("src") + '"></a>'); 
+    })
+    //初始化fancybox，padding设为0，loop设为false
+    $('.fancybox').fancybox({
+      padding: 0,
+      loop: false
+    });
+  }
+})();
+</script>
+
+<!-- // 文字 -->
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/shehuizhuyi.js"></script>
+<!-- // 爱心 -->
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/love.js"></script>
+<!-- // 按键屏蔽 需要jQuery -->
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn@latest/js/noSomeKey.js"></script>
+
+
+</html>

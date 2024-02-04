@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>12 常用类 | HatidaBlog</title>
+  <meta name="keywords" content=" java ">
+  <meta name="description" content="12 常用类 | HatidaBlog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="第4章 检索数据4.5 检索不同的行DISTINCT关键字：此关键字指示MySQL只返回不同的值。  不能部分使用DISTINCT DISTINCT关键字应用于所有列而不仅是前置它的列。如果给出SELECT DISTINCT vend_id,prod_price，除非指定的两个列都不同，否则所有行都将被检索出来。 相当于将distinct后面的列放在一起作为条件  4.6 限制结果-limit关键">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql必知必会">
+<meta property="og:url" content="http://example.com/2024/02/05/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/index.html">
+<meta property="og:site_name" content="HatidaBlog">
+<meta property="og:description" content="第4章 检索数据4.5 检索不同的行DISTINCT关键字：此关键字指示MySQL只返回不同的值。  不能部分使用DISTINCT DISTINCT关键字应用于所有列而不仅是前置它的列。如果给出SELECT DISTINCT vend_id,prod_price，除非指定的两个列都不同，否则所有行都将被检索出来。 相当于将distinct后面的列放在一起作为条件  4.6 限制结果-limit关键">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gitee.com/kilomi/pic-bed/raw/master/img/202402050101323.png">
+<meta property="article:published_time" content="2024-02-04T17:00:28.000Z">
+<meta property="article:modified_time" content="2024-02-04T17:01:13.136Z">
+<meta property="article:author" content="hatida">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/kilomi/pic-bed/raw/master/img/202402050101323.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/darcula.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>hatida</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/hatida"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(19)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据库">
+            
+            数据库
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="编程语言">
+            <i class="fold iconfont icon-right"></i>
+            编程语言
+            <small>(17)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;java">
+            
+            java
+            <small>(17)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="19">
+<input type="hidden" id="yelog_site_word_count" value="137.6k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>查找</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>多线程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>反射</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>集合</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>类</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>枚举</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>面向对象</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>排序</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据库</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数组</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>网络</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>项目</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>异常</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>正则表达式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>注解</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>字符串</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GUI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>IO</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>java</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>jdbc</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>jvm</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>mysql</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All 数据库 "
+           href="/2024/02/05/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/"
+           data-tag="mysql"
+           data-author="" >
+            <span class="post-title" title="mysql必知必会">mysql必知必会</span>
+            <span class="post-date" title="2024-02-05 01:00:28">2024/02/05</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/10%20%E6%9E%9A%E4%B8%BE%E5%92%8C%E6%B3%A8%E8%A7%A3/"
+           data-tag="java,枚举,注解"
+           data-author="" >
+            <span class="post-title" title="10 枚举和注解">10 枚举和注解</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/11%20%E5%BC%82%E5%B8%B8%EF%BC%88Exception%EF%BC%89/"
+           data-tag="java,异常"
+           data-author="" >
+            <span class="post-title" title="11 异常（Exception）">11 异常（Exception）</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/21%20%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/"
+           data-tag="java,反射"
+           data-author="" >
+            <span class="post-title" title="21 反射">21 反射</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/25%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"
+           data-tag="java,正则表达式"
+           data-author="" >
+            <span class="post-title" title="25 正则表达式">25 正则表达式</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/5%20%E6%95%B0%E7%BB%84/"
+           data-tag="java,数组,排序,查找"
+           data-author="" >
+            <span class="post-title" title="5 数组、排序和查找">5 数组、排序和查找</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3String/"
+           data-tag="java,字符串,jvm"
+           data-author="" >
+            <span class="post-title" title="String深入理解">String深入理解</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/17%20IO%E6%B5%81/"
+           data-tag="java,IO"
+           data-author="" >
+            <span class="post-title" title="17 IO流">17 IO流</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/19%20%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"
+           data-tag="java,网络"
+           data-author="" >
+            <span class="post-title" title="19 网络编程">19 网络编程</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/7%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B(%E4%B8%AD%E7%BA%A7)/"
+           data-tag="java,面向对象"
+           data-author="" >
+            <span class="post-title" title="7 面向对象编程（中级）">7 面向对象编程（中级）</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/9%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B(%E9%AB%98%E7%BA%A7)/"
+           data-tag="java,类"
+           data-author="" >
+            <span class="post-title" title="9.1 类变量和类方法">9.1 类变量和类方法</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/12%20%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%92%8C%E6%B3%9B%E5%9E%8B/"
+           data-tag="java"
+           data-author="" >
+            <span class="post-title" title="12 常用类">12 常用类</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/16%20%E5%A4%9A%E7%BA%BF%E7%A8%8B/"
+           data-tag="java,多线程"
+           data-author="" >
+            <span class="post-title" title="16 多线程">16 多线程</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/23%20JDBC/"
+           data-tag="java,jdbc,数据库"
+           data-author="" >
+            <span class="post-title" title="23 JDBC 和数据库连接池">23 JDBC 和数据库连接池</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/6%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B(%E5%9F%BA%E7%A1%80)/"
+           data-tag="java"
+           data-author="" >
+            <span class="post-title" title="6.面向对象编程（基础）">6.面向对象编程（基础）</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/15%20%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1/"
+           data-tag="java,GUI"
+           data-author="" >
+            <span class="post-title" title="15 图形界面设计">15 图形界面设计</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/13%20java%E9%9B%86%E5%90%88/"
+           data-tag="java,集合"
+           data-author="" >
+            <span class="post-title" title="13 Java 数据结构">13 Java 数据结构</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/24%20%E6%BB%A1%E6%B1%89%E6%A5%BC%E9%A1%B9%E7%9B%AE/"
+           data-tag="java,项目"
+           data-author="" >
+            <span class="post-title" title="24 项目：满汉楼">24 项目：满汉楼</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 数据库 "
+           href="/2024/02/04/mysql/mysql/"
+           data-tag="mysql"
+           data-author="" >
+            <span class="post-title" title="mysql">mysql</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-Java基础/12 常用类和泛型" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">12 常用类</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="编程语言">编程语言</a> > 
+            
+            <a  data-rel="编程语言&lt;---&gt;java">java</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">java</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2024-02-05 01:18:31'>2024-02-04 16:17</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:7k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">12 常用类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">12.1 包装类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">12.1.1 装箱和拆箱</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">12.1.2 包装类和 String 的相互转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">12.1.3 包装类的常用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">12.1.4 strictfp 关键字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">12.2 String 类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">12.2.1 String 构造方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">12.2.2 字符串的特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">12.2.3 String 的常用方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">12.3 StringBuffer 类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">12.3.1 StringBuffer 构造方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">12.3.2 String 和 StringBuffer的转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">12.3.3 StringBuffer 的常用方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">12.4 StringBuilder 类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">12.4.1 String、StringBuffer、StringBuilder 的对比</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">12.5 Math 类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">12.6 Arrays 类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">12.7 System 类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">12.8 BigInteger 和 BigDecimal 类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">12.9 日期类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">12.9.1 第一代日期类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">12.9.2 第二代日期类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">12.9.3 第三代日期类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">12 泛型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">12.10 泛型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">使用方法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">自定义泛型类 · 接口：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">#自定义泛型方法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">#泛型继承：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">课后练习</span></a></li></ol></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1><span id="12-常用类">12 常用类</span></h1><h2><span id="121-包装类">12.1 包装类</span></h2><blockquote>
+<p>包装类（Wrapper）：针对 八种基本数据类型 相应的 引用类型</p>
+<p>有了类的特点，就可以调用类中的方法</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>基本数据类型</th>
+<th>包装类</th>
+<th>父类</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>boolean</td>
+<td>Boolean</td>
+<td>Object</td>
+</tr>
+<tr>
+<td>char</td>
+<td>Character</td>
+<td>Object</td>
+</tr>
+<tr>
+<td>int</td>
+<td>Integer</td>
+<td>Number</td>
+</tr>
+<tr>
+<td>float</td>
+<td>Float</td>
+<td>Number</td>
+</tr>
+<tr>
+<td>double</td>
+<td>Double</td>
+<td>Number</td>
+</tr>
+<tr>
+<td>long</td>
+<td>Long</td>
+<td>Number</td>
+</tr>
+<tr>
+<td>short</td>
+<td>Short</td>
+<td>Number</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>Byte</td>
+<td>Number</td>
+</tr>
+<tr>
+<td>void</td>
+<td>Void</td>
+<td>Object</td>
+</tr>
+</tbody></table>
+<h3><span id="1211-装箱和拆箱">12.1.1 装箱和拆箱</span></h3><ul>
+<li><p><strong>手动装箱和拆箱（JDK 5 以前）</strong></p>
+<pre><code>int n1 = 100;
+Integer integer = new Integer(n1);			// 手动装箱
+Integer integer2 = Integer.valueOf(n1);		// 手动装箱
+int i = integer.intValue();					// 手动拆箱JAVA
+</code></pre>
+</li>
+<li><p><strong>自动装箱和拆箱（JDK 5 以后）</strong></p>
+<pre><code>n2 = 200;
+Integer integer3 = n2;						// 自动装箱
+int j = integer3;							// 自动拆箱JAVA
+</code></pre>
+<p>  虽然可以自动装箱、拆箱，但使用 &#x3D;&#x3D; 直接比较两个包装类时，仍然是比较其地址。以下比较通常会失败：</p>
+<pre><code>Integer ia = 1000;
+Integer ib = 1000;
+System.out.print(ia == ib);					// falseJAVA
+</code></pre>
+<p>  但，Java 实现仍有可能使其成立。Byte、Boolean 以及 Short、Integer 中 [-128, 127] 间的值已被包装到固定的对象中。对他们的比较可以成功。</p>
+<pre><code>Integer ia = 127;
+Integer ib = 127;
+System.out.print(ia == ib);					// trueJAVA
+</code></pre>
+<p>  由此可见，使用 &#x3D;&#x3D; 直接比较两个包装类会带来不确定性。<strong>尽量使用 equals 方法对包装类进行比较。</strong></p>
+</li>
+</ul>
+<p>装箱与拆箱是 <strong>编译器</strong> 的工作。在生成可执行的字节码文件时，编译器已经插入了必要的方法调用。</p>
+<h3><span id="1212-包装类和-string-的相互转换">12.1.2 包装类和 <code>String</code> 的相互转换</span></h3><ul>
+<li><p>包装类转 <code>String</code>：</p>
+<blockquote>
+<pre><code>&gt;Integer integer = 100;
+&gt;String str1 = integer + &quot;&quot;;					//方法1（自动拆箱）
+&gt;String str2 = integer.toString();			//方法2（toString方法）
+&gt;String str3 = String.valueOf(integer);		//方法3（自动拆箱）JAVA
+</code></pre>
+</blockquote>
+</li>
+<li><p><code>String</code> 转包装类：</p>
+<blockquote>
+<pre><code>String str4 = &quot;100&quot;;
+Integer integer2 = Integer.parseInt(str4);	//方法1（自动装箱）
+Integer integer3 = new Integer(str4);		//方法2（构造器）JAVA
+</code></pre>
+</blockquote>
+</li>
+</ul>
+<h3><span id="1213-包装类的常用方法">12.1.3 包装类的常用方法</span></h3><ul>
+<li><p><code>Integer.MIN_VALUE</code>：返回最大值</p>
+</li>
+<li><p><code>Double.MAX_VALUE</code>：返回最小值</p>
+</li>
+<li><p><code>byteValue()</code>、<code>doubleValue()</code>、<code>floatValue()</code>、<code>intValue()</code>、<code>longValue()</code></p>
+<p>  按各种基本数据类型返回该对象的值</p>
+</li>
+<li><p><code>Character.isDigit(int)</code>：判断是不是数字</p>
+<p>  <code>Character.isLetter(int)</code>：判断是不是字母</p>
+<p>  <code>Character.isUpperCase(int)</code>：判断是不是大写字母</p>
+<p>  <code>Character.isLowerCase(int)</code>：判断是不是小写字母</p>
+<p>  <code>Characher.isWhitespace(int)</code>：判断是不是空格</p>
+</li>
+<li><p><code>Character.toUpperCase(int)</code>：转成大写字母</p>
+<p>  <code>Character.toLowerCase(int)</code>：转成小写字母</p>
+</li>
+<li><p><code>Integer.parseInt(string)</code>：将 String 内容转为 int</p>
+<p>  <code>Double.parseDouble(string)</code></p>
+</li>
+<li><p><code>Integer.toBinaryString(int)</code>：将数字转为 2 进制表示的字符串</p>
+<p>  <code>Integer.toHexString(int)</code>：将数字转为 16 进制表示的字符串</p>
+<p>  <code>Integer.toOctalString(int)</code>：将数字转为 8 进制表示的字符串</p>
+<p>  特别地，浮点数类型的包装类只有转成 16 进制的方法。而 Short、Byte 及其他包装类无此方法</p>
+</li>
+<li><p><code>int Integer.bitCount(i int)</code>：统计指定数字的二进制格式中 1 的数量</p>
+</li>
+</ul>
+<h3><span id="1214-strictfp-关键字">12.1.4 strictfp 关键字</span></h3><blockquote>
+<p>由于不同处理器对于浮点数寄存采取不同策略（有些处理器使用 64 位寄存 double，有些则是 80 位），对于浮点数的运算在不同平台上可能出现不同结果。</p>
+</blockquote>
+<p>使用 strictfp 关键字标记的方法或类中，所有指令都会使用严格统一的浮点数运算。</p>
+<p>比如，把 main 方法标记为 strictfp</p>
+<pre><code>public static strictfp void main(String[] args) &#123;
+    double ᓚᘏᗢ = 1 / 13.97;
+    System.out.println(ᓚᘏᗢ);
+&#125;JAVA
+</code></pre>
+<h2><span id="122-string-类">12.2 <code>String</code> 类</span></h2><ol>
+<li><p><code>String</code> 对象用于保存字符串，也就是一组字符序列</p>
+</li>
+<li><p>字符串常量对象是用双引号扩起的字符序列。例如 <code>&quot;你好&quot;</code></p>
+</li>
+<li><p>字符串的字符使用 Unicode 字符编码。一个字符（不论字母汉字）占 2 字节</p>
+</li>
+<li><p>常用构造器：</p>
+<ul>
+<li><p><code>String str1 = new String();</code></p>
+</li>
+<li><p><code>String str2 = new String(String original);</code></p>
+</li>
+<li><p><code>String str3 = new String(char[] a);</code></p>
+</li>
+<li><p><code>String str4 = new String(char[] a, int startIndex, int count);</code></p>
+<p>  这句意思是：<code>char[]</code> 从 <code>startIndex</code> 起的 <code>count</code> 个字符</p>
+</li>
+</ul>
+</li>
+<li><p><code>String</code> 实现了接口 <code>Serializable</code> 和 <code>Comparable</code> ，可以 串行化和 比较大小</p>
+<p> <em><strong>串行化：即，可以被网络传输，也能保存到文件</strong></em></p>
+</li>
+<li><p><code>String</code> 是 <code>final</code> 类，不能被继承</p>
+</li>
+<li><p><code>String</code> 有属性 <code>private final char[] value;</code> 用于存放字符串内容。</p>
+<p> <code>value</code> 是 <code>final</code> 属性。其在栈中的地址不能修改，但堆中的内容可以修改。</p>
+</li>
+</ol>
+<h3><span id="1221-string-构造方法">12.2.1 <code>String</code> 构造方法</span></h3><ul>
+<li><p>直接指定</p>
+<pre><code>String str1 = &quot;哈哈哈&quot;;
+JAVA
+</code></pre>
+<p>  该方法：先从常量池看是否有 <code>&quot;哈哈哈&quot;</code> 数据空间。有的场合，指向那个空间；否则重新创建然后指向。</p>
+<p>  这个方法，<code>str1</code> 指向 常量池中的地址。</p>
+</li>
+<li><p>构造器</p>
+<pre><code>String str2 = new String(&quot;嘿嘿嘿&quot;);
+JAVA
+</code></pre>
+<p>  该方法：先在堆中创建空间，里面维护一个 <code>value</code> 属性，指向 或 创建后指向 常量池的 <code>&quot;嘿嘿嘿&quot;</code> 空间。</p>
+<p>  这个方法，<code>str2</code> 指向 堆中的地址</p>
+</li>
+</ul>
+<h3><span id="1222-字符串的特性">12.2.2 字符串的特性</span></h3><ul>
+<li><p>常量相加，看的是池</p>
+<pre><code>String str1 = &quot;aa&quot; + &quot;bb&quot;;				//常量相加，看的是池
+JAVA
+</code></pre>
+<blockquote>
+<p>上例由于构造器自身优化，相当于 <code>String str1 = &quot;aabb&quot;;</code></p>
+</blockquote>
+</li>
+<li><p>变量相加，是在堆中</p>
+<pre><code>String a = &quot;aa&quot;;
+String b = &quot;bb&quot;;
+String str2 = a + b;					//变量相加，是在堆中JAVA
+</code></pre>
+<blockquote>
+<p>上例的底层是如下代码</p>
+<pre><code>StringBuilder sb = new StringBuilder();
+sb.append(a);
+sb.append(b);
+str2 = sb.toString();	//sb.toString()：return new String(value, 0, count);JAVA
+</code></pre>
+</blockquote>
+</li>
+</ul>
+<h3><span id="1223-string-的常用方法">12.2.3 <code>String</code> 的常用方法</span></h3><p>以下方法不需死记硬背，手熟自然牢记</p>
+<ul>
+<li><p><code>boolean equals(String s)</code>：区分大小写，判断内容是否相等</p>
+<p>  <code>boolean equalsIgnoreCase(String s)</code>：判断内容是否相等（忽略大小写）</p>
+</li>
+<li><p><code>boolean empty()</code>：返回是否为空</p>
+</li>
+<li><p><code>int charAt(int index)</code>：获取某索引处的字符（代码单元）。</p>
+<p>  必须用 <code>char c = str.charAt(15);</code>，不能用 <code>char c = str[15];</code></p>
+<p>  <code>int codePointAt(int index)</code></p>
+<p>  <code>int length()</code>：获取字符（<strong>代码单元</strong>）的个数</p>
+<p>  <em><strong>—— 代码单元，见 [[2.6.2.4 字符本质与编码表]](<a target="_blank" rel="noopener" href="https://i-melody.github.io/2021/11/22/Java/%E5%85%A5%E9%97%A8%E9%98%B6%E6%AE%B5/2">https://i-melody.github.io/2021/11/22/Java/入门阶段/2</a> 变量&#x2F;#2-6-2-字符本质与编码表)</strong></em></p>
+<p>  <code>IntStream codePoints()</code>：返回字符串中全部码点构成的流</p>
+<p>  <code>long codePoints().count()</code>：返回真正长度（码点数量）</p>
+<p>  <em><strong>—— 流，见 [[27.4 Stream API]](<a target="_blank" rel="noopener" href="https://i-melody.github.io/2022/03/09/Java/%E5%85%A5%E9%97%A8%E9%98%B6%E6%AE%B5/27">https://i-melody.github.io/2022/03/09/Java/入门阶段/27</a> Java 8 新特性&#x2F;#27-4-Stream-API)</strong></em></p>
+</li>
+<li><p><code>int indexOf(String str)</code>：获取字符（串）在字符串中第一次出现的索引。如果找不到，返回 -1</p>
+<p>  <code>int indexOf(int char)</code> 参数也可以传入一个 int。由于自动类型转换的存在，也能填入 char</p>
+<p>  <code>int indexOf(String str, int index)</code>：从 index 处（包含）开始查找指定字符（串）</p>
+<p>  <code>int lastIndexOf(String str)</code>：获取字符在字符串中最后一次出现的索引。如果找不到，返回 -1</p>
+</li>
+<li><p><code>String substring(int start, int end)</code>：返回截取指定范围 [start, end) 的 <strong>新</strong> 字符串</p>
+<p>  <code>String substring(int index)</code>：截取 index（包含）之后的部分</p>
+</li>
+<li><p><code>String trim()</code>：返回去前后空格的新字符串</p>
+</li>
+<li><p><code>String toUperCase()</code>：返回字母全部转为大写的新字符串</p>
+<p>  <code>String toLowerCase()</code>：返回字母全部转为小写的新字符串</p>
+</li>
+<li><p><code>String concat(String another)</code>：返回拼接字符串</p>
+</li>
+<li><p><code>String replace(char oldChar, char newChar)</code>：替换字符串中的元素</p>
+<pre><code>String str1 = &quot;Foolish cultists&quot;;
+String str2 = str1.replace(&quot;cultists&quot;, &quot;believers&quot;);	//str1不变，str2为改变的值JAVA
+</code></pre>
+</li>
+<li><p><code>String[] split(String regex)</code>：分割字符串。</p>
+<p>  对于某些分割字符，我们需要转义</p>
+<pre><code>String str1 = &quot;aaa,bbb,ccc&quot;;
+String[] strs1 = str1.split(&quot;,&quot;);		//这个场合，strs = &#123;&quot;aaa&quot;, &quot;bbb&quot;, &quot;ccc&quot;&#125;;4
+String str2 = &quot;aaa\bbb\ccc&quot;;
+String[] strs2 = str2.split(&quot;\\&quot;);		//&quot;\&quot; 是特殊字符，需要转义为 &quot;\\&quot;JAVA
+</code></pre>
+</li>
+<li><p><code>int compareTo(String another)</code>：按照字典顺序比较两个字符串（的大小）。</p>
+<p>  返回出现第一处不同的字符的编号差。前面字符相同，长度不同的场合，返回那个长度差。</p>
+<pre><code>String str1 = &quot;ccc&quot;;
+String str2 = &quot;ca&quot;;
+String str3 = &quot;ccc111abc&quot;;
+int n1 = str1.compareTo(str2);			//此时 n1 = &#39;c&#39; - &#39;a&#39; = 2
+int n2 = str1.compareTo(str3);			//此时 n2 = str1,length - str3.length = -6
+int n3 = str1.compareTo(str1);			//此时 n3 = 0JAVA
+</code></pre>
+</li>
+<li><p><code>char[] toCharArray()</code>：转换成字符数组</p>
+<p>  <code>byte[] getBytes()</code>：字符串转为字节数组</p>
+</li>
+<li><p><code>String String.format(String format, Object... args)</code>：（静态方法）格式字符串</p>
+<pre><code>String name = &quot;Roin&quot;;
+String age = &quot;1M&quot;;
+String state = &quot;computer&quot;;
+String formatStr = &quot;I am %s, I am %s old, I am a %s&quot;;
+String str = String.format(formatStr, name, age, state);
+//其中 %s 是占位符。此时，str = &quot;I am Roin, I am 1M old, I am a computer&quot;;
+//%s 表示字符串替换；%d 表示整数替换；#.2f 表示小数（四舍五入保留2位）替换；%c 表示字符替换JAVA
+</code></pre>
+</li>
+<li><p><code>String join(deli, ele...)</code>：拼接字符串（<code>ele...</code>），以 <code>deli</code> 间隔。</p>
+</li>
+<li><p><code>boolean startsWith(str)</code>：测试 str 是否为当前字符串的前缀</p>
+</li>
+<li><p><code>String repeat(int n)</code>：返回该字符串重复 n 次的结果</p>
+</li>
+</ul>
+<h2><span id="123-stringbuffer-类">12.3 <code>StringBuffer</code> 类</span></h2><blockquote>
+<p><code>java.lang.StringBuffer</code> 代表可变的字符序列。可以对字符串内容进行增删。</p>
+<p>很多方法和 <code>String</code> 相同，但 <code>StringBuffer</code> 是可变长度。同时，<code>StringBuffer</code> 是一个容器</p>
+</blockquote>
+<ol>
+<li><code>StringBuffer</code> 的直接父类是 <code>AbstractStringBuffer</code></li>
+<li><code>StringBuffer</code> 实现了 <code>Serialiazable</code>，可以串行化</li>
+<li>在父类中，<code>AbstractStringBuffer</code> 有属性 <code>char[] value</code> 不是 <code>final</code></li>
+<li><code>StringBuffer</code> 是一个 <code>final</code> 类，不能被继承</li>
+</ol>
+<p><strong><code>String</code> 对比 <code>StringBuffer</code></strong></p>
+<ul>
+<li><code>String</code> 保存字符串常量，其中的值不能更改。每次更新实际上是更改地址，效率较低</li>
+<li><code>StringBuffer</code> 保存字符串变量，里面的值可以更改。每次更新是更新内容，不用每次更新地址。</li>
+</ul>
+<h3><span id="1231-stringbuffer-构造方法">12.3.1 <code>StringBuffer</code> 构造方法</span></h3><ol>
+<li><p>无参构造</p>
+<pre><code>StringBuffer strb1 = new StringBuffer();
+JAVA
+</code></pre>
+<blockquote>
+<p>创造一个 16 位容量的空 <code>StringBuffer</code></p>
+</blockquote>
+</li>
+<li><p>传入字符串构造</p>
+<pre><code>String str1 = &quot;abcabc&quot;;
+StringBuffer strb2 = new StringBuffer(str1);JAVA
+</code></pre>
+<blockquote>
+<p>（上例）创造一个 str1.length + 16 容量的 <code>StringBuffer</code></p>
+</blockquote>
+</li>
+<li><p>指定容量构造</p>
+<pre><code>StringBuffer strb3 = new StringBuffer(3);
+JAVA
+</code></pre>
+<blockquote>
+<p>（上例）创造一个 3 容量的空 <code>StringBuffer</code></p>
+</blockquote>
+</li>
+</ol>
+<h3><span id="1232-string-和-stringbuffer的转换">12.3.2 <code>String</code> 和 <code>StringBuffer</code>的转换</span></h3><ol>
+<li><p>转 <code>StringBuffer</code></p>
+<pre><code>String str1 = &quot;abcabc&quot;;
+StringBuffer strb1 = new StringBuffer(str1);	//方法1（构造器）
+StringBuffer strb1 = new StringBuffer();		
+strb1 = strb1.append(str1);						//方法2（先空再append）JAVA
+</code></pre>
+</li>
+<li><p>转 <code>String</code></p>
+<pre><code>String str2 = strb1.toString();					//方法1（toString）
+String str3 = new String(strb1);				//方法2（构造器）JAVA
+</code></pre>
+</li>
+</ol>
+<h3><span id="1233-stringbuffer-的常用方法">12.3.3 <code>StringBuffer</code> 的常用方法</span></h3><ul>
+<li><p><code>append(char c)</code>：增加</p>
+<p>  <code>append(String s)</code> 参数也能是字符串</p>
+<p>  特别的，<code>append(null);</code> 的场合，等同于 <code>append(&quot;null&quot;);</code></p>
+</li>
+<li><p><code>delete(start, end)</code>：删减 [start, end) 的内容</p>
+</li>
+<li><p><code>replace(start, end, string)</code>：将 start 与 end 间的内容替换为 string</p>
+</li>
+<li><p><code>indexOf</code>：查找指定字符串第一次出现时的索引。没找到的场合返回 -1</p>
+</li>
+<li><p><code>insert</code>：在指定索引位置之前插入指定字符串</p>
+</li>
+<li><p><code>length()</code>：返回字符长度</p>
+<p>  <code>capacity()</code>：返回当前的容量</p>
+<p>  String 类对象分配内存时，按照对象中所含字符个数等量分配。</p>
+<p>  StringBuffer 类对象分配内存时，除去字符所占空间外，会另加 16 字符大小的缓冲区。</p>
+<p>  对于 <code>length()</code> 方法，返回的是字符串长度。对于 <code>capacity()</code> 方法，返回的是 字符串 + 缓冲区 的大小。</p>
+</li>
+</ul>
+<h2><span id="124-stringbuilder-类">12.4 <code>StringBuilder</code> 类</span></h2><blockquote>
+<p>一个可变的字符序列。此类提供一个与 <code>StringBuffer</code> 兼容的 API，但不保证同步（有线程安全问题）。该类被设计成 <code>StringBuffer</code> 的一个简易替换，<strong>用在字符串缓冲区被单个线程使用的时候</strong>。如果可能，建议优先使用该类。因为在大多数实现中，它比起 <code>StringBuffer</code> 要快。</p>
+<p>在 <code>StringBuilder</code> 是的主要操作是 <code>append</code> 和 <code>insert</code> 方法。可以重载这些方法，以接受任意类型的数据。</p>
+</blockquote>
+<ol>
+<li><code>StringBuilder</code> 也继承了 <code>AbstractStringBuffer</code></li>
+<li><code>StringBuilder</code> 也实现了 <code>Serialiazable</code>，可以串行化</li>
+<li>仍然是在父类中有属性 <code>char[] value</code> ，而且不是 <code>final</code></li>
+<li><code>StringBuilder</code> 也是一个 <code>final</code> 类，不能被继承</li>
+<li><code>StringBuilder</code> 的方法，没有做互斥的处理（没有 <code>synchronize</code>），故而存在线程安全问题</li>
+</ol>
+<h3><span id="1241-string-stringbuffer-stringbuilder-的对比">12.4.1 <code>String</code>、<code>StringBuffer</code>、<code>StringBuilder</code> 的对比</span></h3><ol>
+<li><p><code>StringBuilder</code> 和 <code>StringBuffer</code> 类似，均代表可变字符序列，而且方法也一样</p>
+</li>
+<li><p><code>String</code>：不可变字符序列，效率低，但复用率高</p>
+</li>
+<li><p><code>StringBuffer</code>：可变字符序列，效率较高，线程安全</p>
+</li>
+<li><p><code>StringBuilder</code>：可变字符序列，效率最高，存在线程安全问题</p>
+</li>
+<li><p><code>String</code> 为何效率低：</p>
+<blockquote>
+<pre><code>String str1 = &quot;aa&quot;;					//创建了一个字符串
+for(int n = 0; n &lt; 100; n++)&#123;		
+    str1 += &quot;bb&quot;;					//这里，原先的字符串被丢弃，创建新字符串
+&#125;									//多次执行后，大量副本字符串留在内存中
+                                    //导致效率降低，也会影响程序性能JAVA
+</code></pre>
+<p>如上，对 <code>String</code> 大量修改的场合，不要使用 <code>String</code></p>
+</blockquote>
+</li>
+</ol>
+<h2><span id="125-math-类">12.5 <code>Math</code> 类</span></h2><ul>
+<li><p><code>Math.multiplyExact(int n1, int n2)</code>：进行乘法运算，返回运算结果</p>
+<p>  通常的乘法 <code>n1 * n2</code> 在结果大于那个数据类型存储上限时，可能返回错误的值。</p>
+<p>  使用此方法，结果大于那个数据类型存储上限时，会抛出异常</p>
+<p>  <code>Math.addExact(int n1, int n2)</code>：加法</p>
+<p>  <code>Math.subtractExact(int n1, int n2)</code>：减法</p>
+<p>  <code>Math.incrementExact(int n1)</code>：自增</p>
+<p>  <code>Math.decrementExact(int n1)</code>：自减</p>
+<p>  <code>Math.negateExact(int n1, int n2)</code>：改变符号</p>
+</li>
+<li><p><code>Math.abs(n)</code>：求绝对值，返回 |n1|</p>
+</li>
+<li><p><code>Math.pow(n, i)</code>：求幂，返回 n3 ^ i</p>
+</li>
+<li><p><code>Math.ceil(n)</code>：向上取整，返回 &gt;&#x3D; n3 的最小整数（转成double）</p>
+</li>
+<li><p><code>Math.floor(n)</code>：向下取整，返回 &lt;&#x3D;n4 的最小整数（转成double）</p>
+</li>
+<li><p><code>Math.floorMod(int n1, int n2)</code>：返回 n1 除以 n2 的余数</p>
+<p>  <code>n1 % n2</code> 的场合，返回的可能是负数，而不是数学意义上的余数</p>
+</li>
+<li><p><code>Math.round(n)</code>：四舍五入，相当于 <code>Math.floor(n5 + 0.5)</code></p>
+</li>
+<li><p><code>Math.sqrt(n)</code>：求开方。负数的场合，返回 <code>NaN</code></p>
+</li>
+<li><p><code>Math.random()</code>：返回一个 [0, 1) 区间的随机小数</p>
+</li>
+<li><p><code>Math.sin(n)</code>：正弦函数</p>
+<p>  <code>Math.cos(n)</code>：余弦函数</p>
+<p>  <code>Math.tan(n)</code>、<code>Math.atan(n)</code>、<code>Math.atan2(n)</code></p>
+<p>  要注意，上述方法传入的参数是 <strong>弧度值</strong>。</p>
+<p>  要得到一个角度的弧度值，应使用：<code>Math.toRadians(n)</code></p>
+</li>
+<li><p><code>Math.exp(n)</code>：e 的 n 次幂</p>
+<p>  <code>Math.log10(n)</code>：10 为底的对数</p>
+<p>  <code>Math.log()</code>：自然对数</p>
+</li>
+<li><p><code>Math.PI</code>：圆周率的近似值</p>
+<p>  <code>Math.E</code>：e 的近似值</p>
+</li>
+</ul>
+<h2><span id="126-arrays-类">12.6 <code>Arrays</code> 类</span></h2><ul>
+<li><p><code>Arrays.toString()</code>：返回数组的字符串形式</p>
+<blockquote>
+<pre><code>int[] nums = &#123;0, 1, 33&#125;;
+String str = Array.toString(nums);		//此时，str = &quot;[0, 1, 33]&quot;JAVA
+</code></pre>
+<p>特别的，输入为 null 时返回 “null”</p>
+</blockquote>
+</li>
+<li><p><code>Arrays.sort(arr)</code>：排序</p>
+<p>  因为数组是引用类型，使用 sort 排序后，会直接影响到实参。</p>
+<p>  默认（自然排序）从小到大排序。</p>
+<p>  <code>Arrays.sort(arr, Comparator c)</code>：按照传入的比较器决定排序方法</p>
+<pre><code>Integer[] nums;
+...
+Comparator&lt;Integer, Integer&gt; c = new Comparator&lt;Integer, Integer&gt;()&#123;
+    @Override
+    public int compare(Integer o1, Integer o2)&#123;
+        return n2 - n1;						// 这个场合，变成从大到小排序
+    &#125;
+&#125;
+Arrays.sort(nums, c);JAVA
+</code></pre>
+</li>
+<li><p><code>Arrays.binarySearch(array, num)</code>：通过二分搜索法查找。前提是必须先排序。</p>
+<p>  找不到的场合，返回 - (low + 1)。即，其应该在的位置的负值</p>
+<pre><code>Integer[] nums2 = &#123;-10, -5, -2, 0, 4, 5, 9&#125;;
+int index = Arrays.binarySearch(nums2, 7);	// 此时 index = -7
+                                            // 如果 7 存在，应该在第 7 个位置JAVA
+</code></pre>
+</li>
+<li><p><code>Arrays.copyOf(arr, n)</code>：从 <code>arr</code> 中，复制 n 个元素（成为新的数组）。</p>
+<p>  n &gt; arr.length 的场合，在多余的位置添加 <code>null</code>。n &lt; 0 的场合，抛出异常。</p>
+<p>  该方法的底层使用的是 <code>System.arraycopy</code></p>
+</li>
+<li><p><code>Arrays.fill(arr, o)</code>：用 o 填充 <code>num</code> 的所有元素。</p>
+</li>
+<li><p><code>Arrays.equals(arr1, arr2)</code>：比较两个数组元素是否完全一致（<code>true</code>&#x2F;<code>false</code>）</p>
+</li>
+<li><p><code>Arrays.asList(a, b, c, d)</code>：将输入数据转成一个 <code>List</code> 集合</p>
+</li>
+</ul>
+<h2><span id="127-system-类">12.7 <code>System</code> 类</span></h2><ul>
+<li><p><code>System.exit(0)</code>：退出当前程序。0 表示一个状态，正常状态是 0</p>
+</li>
+<li><p><code>System.arraycopy(arr, 0, newArr, 0 ,3)</code>：复制数组元素。</p>
+<p>  上例是：arr 自下标 0 起开始，向 newArr 自下标 0 开始，依次拷贝 3 个值</p>
+<p>  这个方法比较适合底层调用。我们一般使用 <code>Arrays.copyOf</code> 来做</p>
+</li>
+<li><p><code>System.currentTimeMillis</code>：返回当前时间距离 1970 - 1 - 1 的毫秒数</p>
+</li>
+<li><p><code>System.gc</code>：运行垃圾回收机制</p>
+</li>
+</ul>
+<h2><span id="128-biginteger-和-bigdecimal-类">12.8 <code>BigInteger</code> 和 <code>BigDecimal</code> 类</span></h2><blockquote>
+<p><code>BigInteger</code>：适合保存更大的整数</p>
+<p><code>BigDecimal</code>：适合保存精度更大的浮点数</p>
+</blockquote>
+<pre><code>//用引号把大数变成字符串
+BigInteger bigNum = new BigInteger(&quot;100000000000000000000000&quot;);JAVA
+</code></pre>
+<p><strong>构造方法：</strong></p>
+<ul>
+<li><code>new BigInteger(String intStr)</code>：通过一个字符串构建大数</li>
+<li><code>BigInteger BigInteger.valueOf(1)</code>：通过静态方法，让整数类型转成大数</li>
+</ul>
+<p>另外，在对 <code>BigInteger</code> 和 <code>BigDecimal</code> 进行加减乘除的时候，需要使用对应方法</p>
+<p>不能直接用 <code>+</code> <code>-</code> <code>*</code> <code>/</code></p>
+<p><strong>常用方法：</strong></p>
+<ul>
+<li><p><code>BigInteger add(BigInteger)</code>：加法运算。返回新的大数</p>
+</li>
+<li><p><code>BigInteger subtract(BigInteger)</code>：减法</p>
+</li>
+<li><p><code>BigInteger multiply(BigInteger)</code>：乘法</p>
+</li>
+<li><p><code>BigInteger divide(BigInteger)</code>：除法运算</p>
+<p>  该方法可能抛出异常。因为可能产生是无限长度小数。</p>
+<p>  解决方法（保留分子精度）：<code>bigDecimal.divide(bD3, BigDecimal.ROUND_CELLING)</code></p>
+</li>
+<li><p>一些常量：</p>
+<p>  <code>BigInteger.ONE</code>、<code>BigInteger.ZERO</code>、<code>BigInteger.TEN</code> 分别是 1、0、10</p>
+<p>  one 就是英文的 1，zero 就是英文的 0……这个大家都懂的吧？</p>
+</li>
+</ul>
+<h2><span id="129-日期类">12.9 日期类</span></h2><h3><span id="1291-第一代日期类">12.9.1 第一代日期类</span></h3><blockquote>
+<p>Date：精确到毫秒，代表特定瞬间。这里的是 java.util.Date</p>
+<p>SimpleDateFormat：格式和解析日期的类</p>
+</blockquote>
+<ol>
+<li><p><code>Date d1 = new Date();</code>：调用默认无参构造器，获取当前系统时间。</p>
+<p> 默认输出日期格式是国外的格式，因此通常需要进行格式转换</p>
+<pre><code>SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy.MM.dd HH.mm.ss&quot;);
+String dateFormated = sdf.(d1);							//日期转成指定格式。JAVA
+</code></pre>
+</li>
+<li><p>通过指定毫秒数得到时间：</p>
+<pre><code>Date d2 = new Date(10000000000);
+JAVA
+</code></pre>
+</li>
+<li><p>把一个格式化的字符串转成对应的 Date：</p>
+<pre><code>SimpleDateFormat sdf2 = new SimpleDateFormat(&quot;yyyy年MM月dd日 HH点mm分 E&quot;);
+Date d3 = sdf2.parse(&quot;2021年12月22日 00点03分 星期三&quot;);JAVA
+</code></pre>
+<p> 这个场合，给定的字符串格式应和 <code>sdf2</code> 格式相同，否则会抛出异常</p>
+</li>
+</ol>
+<h3><span id="1292-第二代日期类">12.9.2 第二代日期类</span></h3><blockquote>
+<p>Calendar：构造器是私有的，要通过 getInstance 方法获取实例</p>
+</blockquote>
+<ol>
+<li><p>Calendar 是一个抽象类，其构造器私有</p>
+<pre><code>Calendar c1 = Calendar.genInstance();				//获取实例的方法
+JAVA
+</code></pre>
+</li>
+<li><p>提供大量方法和字段提供给程序员使用</p>
+<ul>
+<li><p><code>c1.get(Calendar.YEAR)</code>：获取年份数</p>
+</li>
+<li><p><code>c1.get(Calendar.MONTH)</code>：获取月份数</p>
+<p>  特别的，实际月份是 返回值 +1。因为 Calendar 的月份是从 0 开始编号的</p>
+</li>
+<li><p><code>c1.get(Calendar.DAY_OF_MONTH)</code>：获取日数</p>
+</li>
+<li><p><code>c1.get(Calendar.HOUR)</code>：获取小时数（12小时制）</p>
+<p>  <code>c1.get(Calendar.HOUR_OF_DATE)</code>：获取小时数（24小时制）</p>
+</li>
+<li><p><code>c1.get(Calendar.MINUTE)</code>：获取分钟数</p>
+</li>
+<li><p><code>c1.get(Calendar.SECOND)</code>：获取秒数</p>
+</li>
+</ul>
+<p> Calendar 没有专门的格式化方法，需要程序员自己组合来显示</p>
+</li>
+</ol>
+<h3><span id="1293-第三代日期类">12.9.3 第三代日期类</span></h3><blockquote>
+<p>JDK 1.0 加入的 Date 在 JDK 1.1 加入 Calendar 后已被弃用</p>
+<p>然而，Calendar 也存在不足：</p>
+<ol>
+<li>可变性：像日期和实际这样的类应该是不可改变的</li>
+<li>偏移性：年份都是从 1900 年开始，月份都是从 0 开始</li>
+<li>格式化：只对 Date 有用，对 Calendar 没用</li>
+<li>其他问题：如不能保证线程安全，不能处理闰秒（每隔 2 天多 1 秒）等</li>
+</ol>
+<p>于是，在 JDK 8 加入了以下新日期类：</p>
+<ul>
+<li>LocalDate：只包含 日期（年月日），可以获取 日期字段</li>
+<li>LocalTime：只包含 时间（时分秒），可以获取 时间字段</li>
+<li>LocalDateTime：包含 日期 + 时间，可以获取 日期 + 时间字段</li>
+<li>DateTimeFormatter：格式化日期</li>
+<li>Instant：时间戳</li>
+</ul>
+</blockquote>
+<ol>
+<li><p>使用 <code>now()</code> 方法返回当前时间的对象</p>
+<pre><code>LocalDateTime ldt = LocalDateTime.now();				//获取当前时间
+JAVA
+</code></pre>
+</li>
+<li><p>获取各字段方法：</p>
+<ul>
+<li><p><code>ldt.getYear();</code>：获取年份数</p>
+</li>
+<li><p><code>ldt.getMonth();</code>：获取月份数（英文）</p>
+<p>  <code>ldt.getMonthValue();</code>：获取月份数（数字）</p>
+</li>
+<li><p><code>ldt.getDayOfMonth();</code>：获取日数</p>
+</li>
+<li><p><code>LocalDateTime ldt2 = ldt.plusDays(100);</code>：获取 ldt 时间 100 天后的时间实例</p>
+</li>
+<li><p><code>LocalDateTime ldt3 = ldt.minusHours(100);</code>：获取 ldt 时间 100 小时前的时间实例</p>
+</li>
+<li><p>…</p>
+</li>
+</ul>
+</li>
+<li><p>格式化日期：</p>
+<pre><code>DateTimeFormatter dtf = new DateTimeFormatter(&quot;yyyy.MM.dd HH.mm.ss&quot;);
+String date = dtf.format(ldt);							//获取格式化字符串JAVA
+</code></pre>
+</li>
+<li><p><code>Instant</code> 和 <code>Date</code> 类似</p>
+<ul>
+<li>获取当前时间戳：<code>Instant instant = Instant.now();</code></li>
+<li>转换为 <code>Date</code>：<code>Date date = Date.form(instant);</code></li>
+<li>由 <code>Date</code> 转换：<code>Instant instant = date.toInstant;</code></li>
+</ul>
+</li>
+</ol>
+<h1><span id="12-泛型">12 泛型</span></h1><h2><span id="1210-泛型">12.10 泛型</span></h2><blockquote>
+<p>泛型（generic）：又称 参数化类型。是JDK 5 出现的新特性。解决数据类型的安全性问题。</p>
+<p>在类声明或实例化时只要制定好需要的具体类型即可。</p>
+</blockquote>
+<p>举例说明：</p>
+<pre><code class="java">Properties&lt;Person&gt; prop = new Properties&lt;Person&gt;();
+</code></pre>
+<blockquote>
+<p>上例表示存放到 <code>prop</code> 中的必须是 <code>Person</code> 类型。</p>
+<p>如果编译器发现添加类型不符合要求，即报错。</p>
+<p>遍历时，直接取出 <code>Person</code> 而非 <code>Object</code></p>
+</blockquote>
+<ol>
+<li><p>编译时，检查添加元素的类型。可以保证如果编译时没发出警告，运行就不会产生 ClassCastException 异常。提高了安全性，使代码更加简洁、健壮。</p>
+</li>
+<li><p>&#x3D;&#x3D;也减少了向下转型的次数，提高了效率。&#x3D;&#x3D;</p>
+</li>
+<li><pre><code class="java"> //案例1
+ //需要在for增强循环中如果要对特定集合内的对象的属性进行遍历
+ 
+ //没有引入泛型需要这样:
+ /*
+   Set set = new HashSet();
+   for(Objecto o: set)&#123;//只能定义为Object类型
+      Stu stu = (Stu) o;//每次循环都进行一次类型转换,效率低.
+      System.out.prinln(stu.getName);
+   &#125;
+ */
+ 
+ //如果在创建集合时这样做(添加类型参数):
+ Set&lt;Stu&gt; set = new HashSet&lt;Stu&gt;();
+  for (Stu stu :set) &#123;//在这里原本只能放Object类型的stu,现在引入泛型后可以指定类型了,不用向下转型了.
+     System.out.println(stu.getName());
+ &#125;
+</code></pre>
+</li>
+<li><pre><code class="java"> //案例2
+ //迭代器,在没有引出泛型的代码如下,在右边还是要强制转型.因为返回的是个Object类型的对象,泛型后则直接返回一个指定类型的对象,所以无需强转,直接接收.
+ while (iterator.hasNext()) &#123;
+         Map.Entry e =  (Map.Entry)iterator.next();//右边强转类型
+         Stu stu =  (Stu) e.getValue();//右边强转类型	
+         System.out.println(stu.getName()+stu.getAge());
+ &#125;
+ //引入后(添加&lt;Map.Entry&lt;k,v&gt;&gt;并指定类型),直接可以省去向下转型的操作
+ 
+  Set&lt;Map.Entry&lt;String,Stu&gt;&gt; entrySet = hashMap.entrySet();
+  Iterator&lt;Map.Entry&lt;String,Stu&gt;&gt; iterator = entrySet.iterator();
+ 
+ while (iterator.hasNext()) &#123;
+         Map.Entry&lt;String, Stu&gt; next = iterator.next();//无需转类型
+         Stu stu = next.getValue();//无需转类型
+         System.out.println(stu.getName()+stu.getAge());
+ &#125;
+</code></pre>
+</li>
+<li><p>泛型的作用是：&#x3D;&#x3D;可以在类声明是通过一个标识表示类中某个属性的类型，或某个方法返回值的类型，或参数类型。&#x3D;&#x3D;</p>
+</li>
+</ol>
+<pre><code class="java">class P&lt;E&gt; &#123;
+    E e;				//E 表示 e 的数据类型，在定义 P类 时指定。在编译期间即确认类型
+    public P(E e)&#123;		//可作为参数类型
+        this.e = e;
+    &#125;
+    public E doSth()&#123;	//可作为返回类型
+        return this.e;
+    &#125;
+&#125;
+</code></pre>
+<p>  实例化时指定 E 的类型，编译时上例所有 E 会被编译器替换为那个指定类型</p>
+<h4><span id="使用方法">使用方法：</span></h4><ul>
+<li><p><strong>声明泛型：</strong></p>
+<pre><code class="java">interface InterfaceName&lt;T&gt; &#123;...&#125;
+class ClassName&lt;A, B, C, D&gt; &#123;...&#125;
+</code></pre>
+<p>  上例 T、A、B、C、D 不是值，而是类型。可以用任意字母代替</p>
+</li>
+<li><p><strong>实例化泛型：</strong></p>
+<pre><code class="java">List&lt;String&gt; strList = new ArrayList&lt;String&gt;();
+Iterator&lt;Integer&gt; iterator = vector.interator&lt;Integer&gt;();
+</code></pre>
+<p>  类名后面指定类型参数的值</p>
+</li>
+</ul>
+<p><strong>注意细节：</strong></p>
+<ol>
+<li><p>泛型只能是引用类型</p>
+</li>
+<li><p>指定泛型具体类型后，&#x3D;&#x3D;可以传入该类型或其子类类型&#x3D;&#x3D;</p>
+</li>
+<li><p>&#x3D;&#x3D;在实际开发中往往简写泛型&#x3D;&#x3D;</p>
+</li>
+</ol>
+<pre><code class="java">List&lt;String&gt; strList = new ArrayList&lt;&gt;();
+</code></pre>
+<p>  &#x3D;&#x3D;编译器会进行类型推断，右边 <code>&lt; &gt;</code> 内容可以省略&#x3D;&#x3D;</p>
+<ol start="4">
+<li><p>实例化不写泛型的场合，相当于默认泛型为 <code>Object</code></p>
+<pre><code class="java">ArrayList arrayList = new ArrayList();//等价于ArrayList&lt;Object&gt; arrayList = new ArrayList&lt;&gt;();可以传入任意类型
+</code></pre>
+</li>
+</ol>
+<h4><span id="自定义泛型类-接口">自定义泛型类 · 接口：</span></h4><pre><code class="java">class Name&lt;A, B...&gt; &#123;...&#125;				//泛型标识符 可有多个，一般是单个大写字母表示
+</code></pre>
+<ol>
+<li><p>普通成员可以使用泛型（属性、方法）</p>
+</li>
+<li><p>&#x3D;&#x3D;泛型类的类型，是在创建对象时确定的。&#x3D;&#x3D;</p>
+</li>
+</ol>
+<p>  因此：&#x3D;&#x3D;静态方法中不能使用类的泛型&#x3D;&#x3D;,但可以定义为我泛型方法；&#x3D;&#x3D;使用泛型的数组，也不能初始化。&#x3D;&#x3D;</p>
+<pre><code class="java">public static void m1(T a)&#123;&#125;;//错误用法，静态方法是和类相关的，在类加载时对象还没有创建。而泛型在类创建对象的时候才会指定。
+</code></pre>
+<pre><code class="java">T[] ts = new T[3]//错误用法，不允许初始化。
+</code></pre>
+<ol start="3">
+<li><p>创建对象时不指定的场合，默认 Object。建议还是写上 <code>&lt;Object&gt;</code>，大气，上档次</p>
+</li>
+<li><p>自定义泛型接口</p>
+<pre><code class="java">interface Name&lt;T, R...&gt; &#123;...&#125;
+</code></pre>
+<p> &#x3D;&#x3D;泛型接口，其泛型在 继承接口 或 实现接口 时确定&#x3D;&#x3D;。</p>
+<pre><code class="java">//继承接口：
+interface A extends Name&lt;String,Intager&gt;&#123;...&#125;//指定了泛型
+//实现接口：
+class B implements Name&lt;String,Intager&gt;&#123;...&#125;//指定了泛型
+</code></pre>
+</li>
+</ol>
+<h4><span id="自定义泛型方法">#自定义泛型方法：</span></h4><pre><code class="java">修饰符 &lt;T, R...&gt; 返回类型 方法名(形参) &#123;...&#125;
+</code></pre>
+<ol>
+<li><p>&#x3D;&#x3D;可以定义在普通类中，也可以定义在泛型类中&#x3D;&#x3D;</p>
+<pre><code class="java">//在泛型中
+class F&lt;T,R&gt;&#123;
+    public&lt;U,M&gt; void eat(U u,M m)&#123;...&#125;//调用时传入的类型指定了U，M
+&#125;
+</code></pre>
+</li>
+<li><p>当泛型方法被&#x3D;&#x3D;调用时，类型会根据传入的数据确定&#x3D;&#x3D;</p>
+</li>
+<li><p>以下场合</p>
+</li>
+</ol>
+<blockquote>
+<pre><code class="java">Class C&lt;T&gt; &#123;
+    public void cMethord(T t)&#123;...&#125;
+&#125;
+</code></pre>
+</blockquote>
+<p>  注意！！！&#x3D;&#x3D;没有 <code>&lt; &gt;</code>，不是泛型方法，而是使用了泛型的普通方法&#x3D;&#x3D;</p>
+<h4><span id="泛型继承">#泛型继承：</span></h4><ol>
+<li><p>泛型&#x3D;&#x3D;不具有继承性&#x3D;&#x3D;</p>
+</li>
+<li><p><code>&lt;?&gt;</code>：&#x3D;&#x3D;支持任意泛型类型&#x3D;&#x3D;</p>
+</li>
+<li><p><code>&lt;? extends A&gt;</code>：&#x3D;&#x3D;支持 A 及 A的子类，规定了泛型的上限（后续还可以增加传入的对象，只要继承了A类）&#x3D;&#x3D;，只有A和A的子类可以传入</p>
+<pre><code class="java">public static void printCollection(List&lt;? extend A&gt; c)&#123;...&#125;//一个打印list集合数据的方法，List指定了只能传入A和A的子类。
+</code></pre>
+</li>
+<li><p><code>&lt;? super A&gt;</code>：&#x3D;&#x3D;支持 A及 A 的父类，不限于直接父类，规定了泛型的下限（固定住了）&#x3D;&#x3D;，只有A和A的父类可以使用泛型。</p>
+</li>
+</ol>
+<h4><span id="课后练习">课后练习</span></h4><pre><code class="java">public class GenericExercise02 &#123;
+    public static void main(String[] args) &#123;
+
+        ArrayList&lt;Employee&gt; employees = new ArrayList&lt;&gt;();
+        employees.add(new Employee(&quot;tom&quot;, 20000, new MyDate(1980,12,11)));
+        employees.add(new Employee(&quot;jack&quot;, 12000, new MyDate(2001,12,12)));
+        employees.add(new Employee(&quot;tom&quot;, 50000, new MyDate(1980,12,10)));
+
+        System.out.println(&quot;employees=&quot; + employees);
+
+
+        employees.sort(new Comparator&lt;Employee&gt;() &#123;
+            @Override
+            public int compare(Employee emp1, Employee emp2) &#123;
+                //先按照name排序，如果name相同，则按生日日期的先后排序。【即：定制排序】
+                //先对传入的参数进行验证
+                if(!(emp1 instanceof  Employee &amp;&amp; emp2 instanceof Employee)) &#123;
+                    System.out.println(&quot;类型不正确..&quot;);
+                    return 0;
+                &#125;
+                //比较name
+                int i = emp1.getName().compareTo(emp2.getName());
+                if(i != 0) &#123;
+                    return i;
+                &#125;
+
+                //下面是对birthday的比较，因此，我们最好把这个比较，放在MyDate类完成
+                //封装后，将来可维护性和复用性，就大大增强.
+                return emp1.getBirthday().compareTo(emp2.getBirthday());
+            &#125;
+        &#125;);
+
+        System.out.println(&quot;==对雇员进行排序==&quot;);
+        System.out.println(employees);
+
+    &#125;
+&#125;
+/**
+ * 定义Employee类
+ * 1) 该类包含：private成员变量name,sal,birthday，其中 birthday 为 MyDate 类的对象；
+ * 2) 为每一个属性定义 getter, setter 方法；
+ * 3) 重写 toString 方法输出 name, sal, birthday
+ * 4) MyDate类包含: private成员变量month,day,year；并为每一个属性定义 getter, setter 方法；
+ * 5) 创建该类的 3 个对象，并把这些对象放入 ArrayList 集合中（ArrayList 需使用泛型来定义），对集合中的元素进行排序，并遍历输出：
+ *
+ * 排序方式： 调用ArrayList 的 sort 方法 ,
+ * 传入 Comparator对象[使用泛型]，先按照name排序，如果name相同，则按生日日期的先后排序。【即：定制排序】
+ * 有一定难度 15min , 比较经典 泛型使用案例 GenericExercise02.java
+ */
+</code></pre>
+<pre><code class="java">public class MyDate implements Comparable&lt;MyDate&gt;&#123;
+    private int year;
+    private int month;
+    private int day;
+
+    public MyDate(int year, int month, int day) &#123;
+        this.year = year;
+        this.month = month;
+        this.day = day;
+    &#125;
+
+    public int getYear() &#123;
+        return year;
+    &#125;
+
+    public void setYear(int year) &#123;
+        this.year = year;
+    &#125;
+
+    public int getMonth() &#123;
+        return month;
+    &#125;
+
+    public void setMonth(int month) &#123;
+        this.month = month;
+    &#125;
+
+    public int getDay() &#123;
+        return day;
+    &#125;
+
+    public void setDay(int day) &#123;
+        this.day = day;
+    &#125;
+
+    @Override
+    public String toString() &#123;
+        return &quot;MyDate&#123;&quot; +
+                &quot;year=&quot; + year +
+                &quot;, month=&quot; + month +
+                &quot;, day=&quot; + day +
+                &#39;&#125;&#39;;
+    &#125;
+
+    @Override
+    public int compareTo(MyDate o) &#123; //把对year-month-day比较放在这里
+
+        int yearMinus = year - o.getYear();
+        if(yearMinus != 0) &#123;
+            return  yearMinus;
+        &#125;
+        //如果year相同，就比较month
+        int monthMinus = month - o.getMonth();
+        if(monthMinus != 0) &#123;
+            return monthMinus;
+        &#125;
+        //如果year 和 month
+        return day - o.getDay();
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="java">    public List&lt;T&gt; list()&#123;
+        List&lt;T&gt; list = new ArrayList&lt;&gt;();
+//        方法1：
+//        Set&lt;Map.Entry&lt;String,T&gt;&gt; set = this.map.entrySet();
+//        Iterator&lt;Map.Entry&lt;String,T&gt;&gt; iterator = set.iterator();
+//        while (iterator.hasNext()) &#123;
+//            Map.Entry&lt;String, T&gt; next = iterator.next();
+//              list.add(next.getValue());
+//        &#125;
+//         方法2：
+        Set&lt;String&gt; keyset = map.keySet();
+        for (String key:
+             keyset) &#123;
+            list.add(get(key));
+        &#125;
+        //方法3：
+//        Collection collections = map.values();
+//        list.addAll(collections);
+        return list;
+    &#125;
+</code></pre>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 Yelog
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().trim().split('\n').length, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 18px 3px 15px 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: ;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<div class="aplayer"
+
+    data-id="9126522781"
+
+    data-server="netease"
+
+    data-type="playlist"
+
+    data-fixed="true"
+
+    data-autoplay="false"
+
+    data-loop="all"
+
+    data-order="random"
+
+    data-preload="auto"
+
+    data-volume="0.7"
+
+    data-mutex="true"
+
+>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+
+<script>
+(function() {
+
+  var arr = new Array();
+  var $tags = $('.post-tags').children('a');
+  $tags.each(function() {
+    arr.push($(this).html())
+  })
+  if (arr.indexOf("图集") !== -1) {
+
+    $('.hj_img').each(function() {
+      $(this).wrap('<a class="fancybox" data-fancybox="gallery" href="' + $(this).prop("src") + '"></a>'); 
+    })
+    //初始化fancybox，padding设为0，loop设为false
+    $('.fancybox').fancybox({
+      padding: 0,
+      loop: false
+    });
+  }
+})();
+</script>
+
+<!-- // 文字 -->
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/shehuizhuyi.js"></script>
+<!-- // 爱心 -->
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/love.js"></script>
+<!-- // 按键屏蔽 需要jQuery -->
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn@latest/js/noSomeKey.js"></script>
+
+
+</html>

@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>16 多线程 | HatidaBlog</title>
+  <meta name="keywords" content=" java , 多线程 ">
+  <meta name="description" content="16 多线程 | HatidaBlog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="第4章 检索数据4.5 检索不同的行DISTINCT关键字：此关键字指示MySQL只返回不同的值。  不能部分使用DISTINCT DISTINCT关键字应用于所有列而不仅是前置它的列。如果给出SELECT DISTINCT vend_id,prod_price，除非指定的两个列都不同，否则所有行都将被检索出来。 相当于将distinct后面的列放在一起作为条件  4.6 限制结果-limit关键">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql必知必会">
+<meta property="og:url" content="http://example.com/2024/02/05/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/index.html">
+<meta property="og:site_name" content="HatidaBlog">
+<meta property="og:description" content="第4章 检索数据4.5 检索不同的行DISTINCT关键字：此关键字指示MySQL只返回不同的值。  不能部分使用DISTINCT DISTINCT关键字应用于所有列而不仅是前置它的列。如果给出SELECT DISTINCT vend_id,prod_price，除非指定的两个列都不同，否则所有行都将被检索出来。 相当于将distinct后面的列放在一起作为条件  4.6 限制结果-limit关键">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gitee.com/kilomi/pic-bed/raw/master/img/202402050101323.png">
+<meta property="article:published_time" content="2024-02-04T17:00:28.000Z">
+<meta property="article:modified_time" content="2024-02-04T17:01:13.136Z">
+<meta property="article:author" content="hatida">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/kilomi/pic-bed/raw/master/img/202402050101323.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/darcula.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>hatida</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/hatida"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(19)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据库">
+            
+            数据库
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="编程语言">
+            <i class="fold iconfont icon-right"></i>
+            编程语言
+            <small>(17)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;java">
+            
+            java
+            <small>(17)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="19">
+<input type="hidden" id="yelog_site_word_count" value="137.6k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>查找</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>多线程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>反射</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>集合</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>类</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>枚举</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>面向对象</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>排序</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据库</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数组</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>网络</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>项目</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>异常</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>正则表达式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>注解</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>字符串</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GUI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>IO</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>java</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>jdbc</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>jvm</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>mysql</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All 数据库 "
+           href="/2024/02/05/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/"
+           data-tag="mysql"
+           data-author="" >
+            <span class="post-title" title="mysql必知必会">mysql必知必会</span>
+            <span class="post-date" title="2024-02-05 01:00:28">2024/02/05</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/10%20%E6%9E%9A%E4%B8%BE%E5%92%8C%E6%B3%A8%E8%A7%A3/"
+           data-tag="java,枚举,注解"
+           data-author="" >
+            <span class="post-title" title="10 枚举和注解">10 枚举和注解</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/11%20%E5%BC%82%E5%B8%B8%EF%BC%88Exception%EF%BC%89/"
+           data-tag="java,异常"
+           data-author="" >
+            <span class="post-title" title="11 异常（Exception）">11 异常（Exception）</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/21%20%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/"
+           data-tag="java,反射"
+           data-author="" >
+            <span class="post-title" title="21 反射">21 反射</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/25%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"
+           data-tag="java,正则表达式"
+           data-author="" >
+            <span class="post-title" title="25 正则表达式">25 正则表达式</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/5%20%E6%95%B0%E7%BB%84/"
+           data-tag="java,数组,排序,查找"
+           data-author="" >
+            <span class="post-title" title="5 数组、排序和查找">5 数组、排序和查找</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3String/"
+           data-tag="java,字符串,jvm"
+           data-author="" >
+            <span class="post-title" title="String深入理解">String深入理解</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/17%20IO%E6%B5%81/"
+           data-tag="java,IO"
+           data-author="" >
+            <span class="post-title" title="17 IO流">17 IO流</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/19%20%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"
+           data-tag="java,网络"
+           data-author="" >
+            <span class="post-title" title="19 网络编程">19 网络编程</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/7%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B(%E4%B8%AD%E7%BA%A7)/"
+           data-tag="java,面向对象"
+           data-author="" >
+            <span class="post-title" title="7 面向对象编程（中级）">7 面向对象编程（中级）</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/9%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B(%E9%AB%98%E7%BA%A7)/"
+           data-tag="java,类"
+           data-author="" >
+            <span class="post-title" title="9.1 类变量和类方法">9.1 类变量和类方法</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/12%20%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%92%8C%E6%B3%9B%E5%9E%8B/"
+           data-tag="java"
+           data-author="" >
+            <span class="post-title" title="12 常用类">12 常用类</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/16%20%E5%A4%9A%E7%BA%BF%E7%A8%8B/"
+           data-tag="java,多线程"
+           data-author="" >
+            <span class="post-title" title="16 多线程">16 多线程</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/23%20JDBC/"
+           data-tag="java,jdbc,数据库"
+           data-author="" >
+            <span class="post-title" title="23 JDBC 和数据库连接池">23 JDBC 和数据库连接池</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/6%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B(%E5%9F%BA%E7%A1%80)/"
+           data-tag="java"
+           data-author="" >
+            <span class="post-title" title="6.面向对象编程（基础）">6.面向对象编程（基础）</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/15%20%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1/"
+           data-tag="java,GUI"
+           data-author="" >
+            <span class="post-title" title="15 图形界面设计">15 图形界面设计</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/13%20java%E9%9B%86%E5%90%88/"
+           data-tag="java,集合"
+           data-author="" >
+            <span class="post-title" title="13 Java 数据结构">13 Java 数据结构</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/24%20%E6%BB%A1%E6%B1%89%E6%A5%BC%E9%A1%B9%E7%9B%AE/"
+           data-tag="java,项目"
+           data-author="" >
+            <span class="post-title" title="24 项目：满汉楼">24 项目：满汉楼</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 数据库 "
+           href="/2024/02/04/mysql/mysql/"
+           data-tag="mysql"
+           data-author="" >
+            <span class="post-title" title="mysql">mysql</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-Java基础/16 多线程" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">16 多线程</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="编程语言">编程语言</a> > 
+            
+            <a  data-rel="编程语言&lt;---&gt;java">java</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">java</a>
+            
+            <a class="color4">多线程</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2024-02-05 01:20:52'>2024-02-04 16:17</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:7.3k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">16 多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">16.1 线程的概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">16.1.1 线程的结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">16.1.2 线程的状态</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">16.2 线程的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">16.2.1 继承 Thread 类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">16.2.2 实现 Runable 接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">16.2.3 继承 Thread 和 实现 Runable 的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">16.2.4 线程中止</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">16.2.5 线程常用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">&#x3D;&#x3D;Java中断线程（interrupt）&#x3D;&#x3D;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">相关函数介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">示例解释</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">16.2.6 用户线程和&#x3D;&#x3D;守护线程&#x3D;&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">&#x3D;&#x3D;16.2.7 线程的生命周期&#x3D;&#x3D;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">&#x3D;&#x3D;16.3 线程的互斥&#x3D;&#x3D;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">16.3.1 互斥锁</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">售票代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">16.3.2 线程死锁</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">16.4 线程的同步</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">项目-坦克大战</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1><span id="16-多线程">16 多线程</span></h1><h2><span id="161-线程的概念">16.1 线程的概念</span></h2><blockquote>
+<p>对于一般程序而言，其结构大都可以分为一个入口、一个出口、一个顺次执行的语句序列。这样的语句结构称为进程，它是程序的一次动态执行，对应了代码加载、执行至完毕的全过程。</p>
+<p>进程即是程序在处理机中的一次运行。在这样一个结构中不仅包含程序代码，也包括了系统资源的概念。</p>
+<p>在单 CPU 计算机内部，微观上讲，同一时间只能有一个线程运行。实现多线程即从宏观上使多个作业同时执行。</p>
+</blockquote>
+<p><img src="https://gitee.com/kilomi/pic-bed/raw/master/img/202310112105312.png" alt="image-20231011210512208"></p>
+<p><strong>程序</strong>：为完成特定任务，用某种语言编写的一组指令的集合。</p>
+<p><strong>进程</strong>：运行中的程序。当你运行一个程序，系统就会为该进程分配空间。进程是程序的一次执行过程。是一个动态过程：有其自身产生、存在、消亡的过程。</p>
+<p><strong>线程</strong>：由进程创建的，进程的一个实体。一个进程可以有多个线程。比如在百度网盘里里有多个下载任务，每一个任务就是一个线程。</p>
+<p><strong>单线程</strong>：同一时刻，只允许执行一个线程。</p>
+<p><strong>多线程</strong>：同一时刻，可以执行多个线程。比如QQ聊天窗口、迅雷下载。</p>
+<p><strong>并发</strong>：同一时刻，多个任务<strong>交替执行</strong>，造成一种貌似并行的状态。单核 CPU 实现的多任务就是并发。</p>
+<p><strong>并行</strong>：同一时刻，多个任务<strong>同时进行</strong>。多核 CPU 可以实现并行。</p>
+<p>&#x3D;&#x3D;tips:并发和并行可以同时进行。&#x3D;&#x3D;</p>
+<h3><span id="1611-线程的结构">16.1.1 线程的结构</span></h3><p>在 Java 中，线程由以下 3 部分组成：</p>
+<ul>
+<li>虚拟 CPU：封装在 java.lang.Thread 类中，控制着整个线程的运行</li>
+<li>执行的代码：传递给 Thread 类，由其控制按序执行</li>
+<li>处理的数据：传递给 Thread 类，是在代码执行过程中需要处理的数据</li>
+</ul>
+<h3><span id="1612-线程的状态">16.1.2 线程的状态</span></h3><blockquote>
+<p>Java 的线程是通过包 java.lang 中定义的类 Thread 来实现的。当生成了一个 Thread 类后就产生了一个线程。通过该对象实例，可以启动线程、终止线程，或暂时挂起线程</p>
+<p>mian线程和Thread-0、…子线程，&#x3D;&#x3D;主线程结束不一定意味整个进程结束&#x3D;&#x3D;，此时子线程可能还在运行中，而应用程序还在运行中，在主线程结束的基础上当所有的子线程也结束才意味着整个进程结束。</p>
+</blockquote>
+<p>线程共有 4 种状态：新建（New）、可运行（Runnable）、死亡（Dead）、阻塞（Blocked）</p>
+<ul>
+<li><p><strong>新建（New）：</strong></p>
+<p>  线程对象刚刚创建，还未启动（New）。此时还处于不可运行状态，但已有了相应内存空间及其他资源</p>
+</li>
+<li><p><strong>可运行（Runnable）：</strong>（细化为两个状态）</p>
+<p>  此时线程已经启动，处于线程的 <code>run()</code> 方法中。这种情况下线程可能正在运行；也可能没有运行，但只要 CPU 空闲就会立刻运行。</p>
+<p>  可以运行但没在运行的线程都排在一个队列中，这个队列称为<strong>就绪队列</strong>。</p>
+<p>  可运行状态下，运行中的线程处于<strong>运行状态（Running）</strong>，未运行线程处于<strong>就绪状态（Ready）</strong>。</p>
+<p>  调用 <code>start()</code> 方法可以让线程进入可运行状态。</p>
+</li>
+<li><p><strong>死亡（Dead）：</strong></p>
+<p>  <strong>线程死亡（Terminated）</strong>的原因有两个：一是 <code>run()</code> 方法最后一个语句执行完毕，二是线程遇到异常退出</p>
+</li>
+<li><p><strong>阻塞（Blocked）：</strong></p>
+<p>  一个正常运行的线程因为特殊原因被暂停执行，就进入阻塞状态（Blocked）。</p>
+<p>  阻塞时线程不能进入就绪对流排队，必须等到引起阻塞的原因消除，才能重新进入队列排队。</p>
+<p>  引起阻塞的方法很多，<code>sleep()</code> 和 <code>wait()</code> 是两个常用的阻塞方法</p>
+</li>
+<li><p><strong>中断线程：</strong></p>
+<ul>
+<li><p><code>void interrupt()</code>：向一个线程发送一个中断请求，并把该线程的 interruptd 状态变为 true。</p>
+<p>  中断阻塞线程的场合，会抛出 InterruptException 异常</p>
+</li>
+<li><p><code>static boolean interrupted()</code>：检测当前线程是否被中断，并重置状态 interrupted 的值。</p>
+<p>  连续调用该方法的场合，第二次调用会返回 false</p>
+</li>
+<li><p><code>boolean isInterrupted()</code>：检测当前线程是否中断。不改变 interrupted 的值</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2><span id="162-线程的使用">16.2 线程的使用</span></h2><p>在 Java 中线程使用有两种方法：</p>
+<ol>
+<li><p>继承 <code>Thread</code> 类，重写 <code>run</code> 方法</p>
+<blockquote>
+<pre><code class="java">public class Thread implements Runnable		//可见 Thread 也是实现了 Runable 接口
+</code></pre>
+</blockquote>
+</li>
+<li><p>实现 <code>Runable</code> 接口，重写 <code>run</code> 方法</p>
+</li>
+</ol>
+<h3><span id="1621-继承-thread-类">16.2.1 继承 Thread 类</span></h3><blockquote>
+<p>Thread 类是 Java 用于表示线程的类。那么，一个类被定义为其子类，则该类也能用来表示线程</p>
+</blockquote>
+<pre><code class="java">public static void main(String[] args) &#123;
+ Type type = new Type();
+ type.start();								//开始线程
+                                             //如果用 run 方法，则还是停留在主线程
+                                             //  那样，相当于 串行。执行完毕才继续
+&#125;
+class Type extends Thread &#123;						//先继承 Thread 类
+ int i = 0;
+ @Override
+ public void run() &#123;
+     while (true) &#123;
+         System.out.println(i);
+         try &#123;
+             Thread.sleep(100);				//休眠 100 毫秒
+         &#125; catch (InterruptedException e) &#123;
+             e.printStackTrace();
+         &#125;
+         if (i++ == 10) &#123;					//i = 10 时停止循环
+             break;
+         &#125;
+     &#125;
+ &#125;
+&#125;
+</code></pre>
+<p><strong>关于 <code>start()</code> 方法</strong></p>
+<pre><code class="java">public synchronized void start() &#123;
+    ...
+    start0();
+&#125;
+
+private native void start0();					//start0 是 native。即，底层方法
+</code></pre>
+<ol>
+<li><code>start()</code> 方法调用了一个 <code>start0()</code> 底层方法</li>
+<li><code>start0()</code> 是本地方法，<u>由 JVM 调用</u>，底层是 c&#x2F;c++ 实现</li>
+<li>真正的多线程效果，是 <code>start0()</code>，而不是 <code>run()</code></li>
+<li><code>start()</code> 方法调用 <code>start0()</code> 方法后，该线程不一定会立刻执行，只是将线程变成了可运行状态。具体何时运行，由 CPU 统一调度</li>
+</ol>
+<h3><span id="1622-实现-runable-接口">16.2.2 实现 Runable 接口</span></h3><blockquote>
+<p>Runnable 是 Java 用以实现线程的接口。从根本上将，任何实现线程的类都必须实现该接口。</p>
+</blockquote>
+<pre><code class="java">public static void main(String[] args) &#123;
+ Runnable type = new Type();					//Runable 没有 start()方法
+ Thread thread = new Thread(type);				//所以，这里使用了 静态代理
+ thread.start();								//传入Thread
+&#125;JAVA
+class Type implements Runnable &#123;				//这部分和 Thread 相似
+ @Override
+ public void run() &#123;
+     int i = 0;
+     while (true)&#123;
+         System.out.println(i &lt;&lt; i);
+         try &#123;
+             Thread.sleep(100);
+         &#125; catch (InterruptedException e) &#123;
+             e.printStackTrace();
+         &#125;
+         if (++i &gt; 15)&#123;
+             break;
+         &#125;
+     &#125;
+ &#125;
+&#125;
+</code></pre>
+<p><strong>关于 &#x3D;&#x3D;静态代理&#x3D;&#x3D;</strong></p>
+<blockquote>
+<pre><code class="java">//Thread源代码
+class Thread implements Runable &#123;&#125;
+    ...	
+    private Runnable target;  
+    ...
+ public Thread(Runnable target) &#123;	//构造器
+     init(null, target, &quot;Thread-&quot; + nextThreadNum(), 0);
+                                     //这句话可以先理解为 this.target = target;
+ &#125;
+    ...
+ public void run() &#123;
+     if (target != null) &#123;	
+         target.run();		//在这里调用run方法，进行动态绑定，实际的运行类型是传入代理的类型，调用的是它实现的run方法。
+     &#125;
+ &#125;
+    public void start()&#123;
+        start0();			//这个方法是底层JVM完成的,真正实现多线程的方法。
+    &#125;
+    public void start0()&#123;
+        run();				//调用run    
+    &#125;
+    ...
+&#125;
+</code></pre>
+<p>相当于，先创建了一个新线程，然后在新线程中调用 run 方法</p>
+</blockquote>
+<h3><span id="1623-继承-thread-和-实现-runable-的区别">16.2.3 继承 Thread 和 实现 Runable 的区别</span></h3><ol>
+<li><p>从 Java 设计来看，两者本质上没有区别。&#x3D;&#x3D;<code>Thread</code> 类本身就实现了 <code>Runable</code> 接口&#x3D;&#x3D;,所以在继承的时候Thread的时候也要实现</p>
+</li>
+<li><p>&#x3D;&#x3D;实现 <code>Runable</code> 接口的方式更加适合多个线程共享一个资源的情况，&#x3D;&#x3D;且&#x3D;&#x3D;避免了单继承的限制&#x3D;&#x3D;。&#x3D;&#x3D;建议使用。&#x3D;&#x3D;</p>
+</li>
+</ol>
+<pre><code class="java">T t1 = new T(&quot;hello&quot;);
+Thread thread01 = new Thread(t1);
+Thread thread02 = new Thread(t2);//两个线程共享t1
+thread01.start();
+thread02.start();
+</code></pre>
+<pre><code class="java">//下面这种情况会导致A无法继承Tread作为进程使用，因为java的单继承机制，但可以实现Runable接口来作为进程使用
+class A extend B implements Runable&#123;&#125;
+</code></pre>
+<h3><span id="1624-线程中止">16.2.4 线程中止</span></h3><ol>
+<li><p>当线程结束后，会自动退出</p>
+</li>
+<li><p>&#x3D;&#x3D;还可以通过使用变量来控制 <code>run</code> 方法退出的方式来停止线程，即 <strong>通知方式。</strong>&#x3D;&#x3D;</p>
+<blockquote>
+<pre><code class="java">//A类线程
+public void run() &#123;
+while (loop) &#123;					//这个场合，只要外部控制loop 即可
+  try &#123;
+      Thread.sleep(1);
+  &#125; catch (InterruptedException e) &#123;
+      e.printStackTrace();
+  &#125;
+  move();
+&#125;
+    //提供一个setLoop
+    public void setLoop(boolean loop)&#123;this.loop = loop;&#125;
+&#125;
+</code></pre>
+<pre><code class="java">//外部：
+public static void main(Stirng[] args)&#123;
+    Thread.sleep(10000);//休眠10秒然后通过控制线程内部变量终止进程
+      a.setLoop(false);//让另外一个线程中止  
+&#125;
+</code></pre>
+<p>另外这种方法还可以在其他的线程中使用而不仅仅局限于主线程(main方法内)，比如线程b要让线程a中止就可以用这种方法，</p>
+</blockquote>
+</li>
+</ol>
+<h3><span id="1625-线程常用方法">16.2.5 线程常用方法</span></h3><ul>
+<li><p>&#x3D;&#x3D;<code>setName(name)</code>：设置线程名称，使之与参数 name 相&#x3D;&#x3D;同</p>
+</li>
+<li><p><code>getName()</code>：返回线程名称</p>
+</li>
+<li><p>&#x3D;&#x3D;<code>start()</code>：线程开始执行。JVM 调用 <code>start0</code> 方法&#x3D;&#x3D;</p>
+<p>  该方法会创建新的线程，新线程调用 <code>run</code>。</p>
+</li>
+<li><p><code>run()</code>：到下面玩跑步</p>
+<p>  就是简单的方法调用，不会产生新线程。</p>
+</li>
+<li><p><code>setPriority(int priority)</code>：更改线程优先级</p>
+<p>  <code>getPriority()</code>：获取<strong>线程优先级</strong></p>
+<p>  priority 范围：</p>
+<ul>
+<li>MAX_PRIORITY：最高优先级（10）</li>
+<li>MIN_PRIORITY：最低优先级（1）</li>
+<li>NORM_PRIORITY：不高不低，真是好极了的优先级（5）</li>
+</ul>
+<p>  每个线程都有一个<strong>优先级</strong>。Java 线程调度采用如下优先级策略：</p>
+<ul>
+<li>优先级高的先执行，优先级低的后执行</li>
+<li>每个线程创建时会被自动分配一个优先级。默认的场合，继承父类优先级</li>
+<li>任务紧急的线程，优先级较高</li>
+<li>同优先级线程按 “<strong>先进先出</strong>” 原则调度</li>
+</ul>
+</li>
+<li><p><code>sleep(int millsecond)</code>：让线程休眠指定的时间</p>
+<p>  该方法是 Thread 类的静态方法，可以直接调用</p>
+</li>
+<li><p>&#x3D;&#x3D;<code>interrupt()</code>：中断线程（不是 中止）&#x3D;&#x3D;</p>
+</li>
+</ul>
+<h4><span id="x3dx3djava中断线程interruptx3dx3d">&#x3D;&#x3D;Java中断线程（interrupt）&#x3D;&#x3D;</span></h4><h4><span id="概念">概念</span></h4><blockquote>
+<p>当 <code>A</code> 线程想让 <code>B</code> 线程终止运行，应该怎么办呢？在Java之前的版本中，可以利用 <code>stop</code> 方法来使一个线程终止，但是该方法已经被废弃了，不要这么用。</p>
+<p>现在可以在 <code>A</code> 线程中调用 <code>B</code> 线程的 <code>interrupt()</code> 方法，来使 <code>B</code> 线程知道有线程想要使自己终止，&#x3D;&#x3D;但是是否终止取决于 <code>B</code> 线程自己，<code>B</code> 完全可以不理会这个终止请求。&#x3D;&#x3D;（&#x3D;&#x3D;当然最好不要这么做&#x3D;&#x3D;）下面我们来看看细节。</p>
+</blockquote>
+<h4><span id="相关函数介绍">相关函数介绍</span></h4><blockquote>
+<ul>
+<li><code>void interrupt()</code></li>
+</ul>
+<p>中断这个线程。</p>
+<ul>
+<li><code>boolean isInterrupted()</code></li>
+</ul>
+<p>检查这个线程是否被中断。</p>
+<ul>
+<li><p><code>static boolean interrupted()</code></p>
+<p>检查<strong>当前线程</strong>是否被中断，该方法在调用后还会清除该线程的中断状态。</p>
+</li>
+</ul>
+</blockquote>
+<h4><span id="示例解释">示例解释</span></h4><blockquote>
+<ul>
+<li><p><code>boolean isInterrupted()</code> 方法和 <code>static boolean interrupted()</code> 方法区别</p>
+<p>如下代码首先测试 <code>boolean isInterrupted()</code> 方法。</p>
+<pre><code class="java">public static void main(String[] args) &#123;
+    Thread.currentThread().interrupt();
+    System.out.println(Thread.currentThread().isInterrupted()); // true
+    System.out.println(Thread.currentThread().isInterrupted()); // true
+&#125;
+</code></pre>
+</li>
+</ul>
+<pre><code class="java">会发现两次输出都是 `true` 。
+
+接着测试 `static boolean interrupted()` 方法。
+
+    public static void main(String[] args) &#123;
+        Thread.currentThread().interrupt();
+        System.out.println(Thread.interrupted());  // true
+        System.out.println(Thread.interrupted());  // false
+    &#125;
+</code></pre>
+<p>测试发现第一次输出是 true ，而第二次输出是 false ，说明&#x3D;&#x3D;这个方法在调用后会清除线程的中断状态&#x3D;&#x3D;。</p>
+<ul>
+<li><p>中断且不理会</p>
+<p>这里我们让主线程中断线程 <code>aThread</code> ，<u>但是 <code>aThread</code> 线程<strong>不理会</strong></u>(最好不要怎么做)，看会发生什么。代码如下：</p>
+<pre><code class="java">public static void main(String[] args)&#123;
+    // create and start aThread
+    Runnable r = () -&gt; &#123;			//一个lamda表达式，表示的是实现Runable接口的一个对象，Runable是函数式接口，只有一个抽象方法run。
+        while (true) &#123;
+            System.out.println(&quot;I&#39;m alive&quot;);
+        &#125;
+    &#125;;
+    Thread aThread = new Thread(r);
+    aThread.start();
+                
+    // interrupt aThread
+    aThread.interrupt();
+&#125;
+</code></pre>
+</li>
+</ul>
+<p>测试发现 <code>aThread</code> 线程的运行没有任何影响，还是一直输出 <code>I&#39;m alive</code> 。</p>
+<ul>
+<li><p>一般用法</p>
+<p>既然如果中断不被处理的话不会有任何效果，按应该怎么响应中断呢？应该在线程中一直判断线程是否被中断，如果线程被中断，应该根据当前任务的要求选择接下来的工作，在结束线程前关闭必要的资源。看下面的代码。</p>
+<pre><code class="java">public static void main(String[] args)&#123;
+    // create and start aThread
+    Runnable r = () -&gt; &#123;
+        try &#123;
+            while (!Thread.currentThread().isInterrupted()) &#123;
+                //do work
+                System.out.println(&quot;I&#39;m alive&quot;);    //当前线程未中断
+            &#125;
+            System.out.println(&quot;I ll die&quot;);			//线程被中断了
+        &#125; finally &#123;
+            // close some resources	
+        &#125;
+                
+    &#125;;
+    Thread aThread = new Thread(r);					//静态代理
+    aThread.start();
+                
+    try &#123;
+        Thread.currentThread().sleep(1);
+    &#125; catch (InterruptedException e) &#123;
+        e.printStackTrace();
+    &#125;
+    // interrupt aThread							//中断进程
+    aThread.interrupt();
+&#125;
+</code></pre>
+</li>
+</ul>
+<p>线程在没有被中断时，一直执行自己的任务，当被中断时，就会跳出循环，&#x3D;&#x3D;并在 <code>finally</code> 中关闭相应的资源和并做一些清理操作&#x3D;&#x3D;。</p>
+<ul>
+<li><p>线程被阻塞时</p>
+<p>上面的情况在线程没有被阻塞时可以运行，但是&#x3D;&#x3D;当线程被阻塞时，线程是无法检查线程的中断状态的，&#x3D;&#x3D;所以引入了 <code>InterruptedException</code> 异常帮助中断阻塞。不同的阻塞还有一些区别，具体如下。</p>
+<ul>
+<li><p>线程被 <code>sleep()</code> 方法或 <code>join()</code> 方法阻塞时</p>
+<p>如下代码：</p>
+<pre><code class="java">public static void main(String[] args) &#123;
+    // create and start aThread
+    Runnable r = () -&gt; &#123;
+        try &#123;
+            Thread.currentThread().sleep(5000);
+        &#125; catch (InterruptedException e) &#123;
+            System.out.println(&quot;die&quot;);
+            e.printStackTrace();
+        &#125; finally &#123;
+            // close some resources
+        &#125;
+    &#125;;
+    Thread aThread = new Thread(r);
+    aThread.start();
+                                
+    try &#123;
+        Thread.currentThread().sleep(500);
+    &#125; catch (InterruptedException e) &#123;
+        e.printStackTrace();
+    &#125;
+    // interrupt aThread
+    aThread.interrupt();
+&#125;
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p>在这些线程上调用 <code>interrupt()</code> 方法时，<code>sleep()/join()</code> 方法会被中断不再执行，它会清除中断状态并直接跳入 <code>catch</code> 块中执行，所以如果在循环中调用了 <code>sleep()</code> 方法，就不要去检测中断状态了，因为会直接跳入 <code>catch</code> 块中执行，应该直接捕获 <code>InterruptedException</code> 异常。</p>
+<ul>
+<li><p>线程被 <code>wait()</code> 方法阻塞时</p>
+<p>线程被 <code>wait()</code> 方法阻塞时，调用 <code>interrupt()</code> 方法的效果和线程被 <code>sleep()</code> 方法或 <code>join()</code> 方法阻塞的效果基本一样，它也会清除中断状态并跳入 <code>catch</code> 块中去执行。但是有一点点不同，就是被 <code>interrupt()</code> 调用的线程会先去获取调用 <code>wait()</code> 方法的对象的锁，获取完对象的锁之后才会抛出异常并进入 <code>catch</code> 块中去执行，如果获得不到锁，那么就无法抛出异常，也无法进入 <code>catch</code> 块中。如下代码，首先 <code>aThread</code> 获得锁并 <code>wait</code>（注意 <code>wait()</code> 方法会释放锁），然后 <code>bThead</code> 获得锁，但是 <code>b</code> 永远不释放锁，在 <code>aThread</code> <code>wait</code> 的时候，主线程调用 <code>interrupt()</code> 去中断 <code>aThread</code>，但是由于 <code>aThread</code> 永远无法获得锁，所以它不会抛出异常，也不会进入到 <code>catch</code> 块中运行。代码如下。</p>
+</li>
+</ul>
+<pre><code class="java">
+        public static void main(String[] args) &#123;
+
+            Runnable r = () -&gt; &#123;
+                try &#123;
+                    synchronized (o) &#123;
+                        System.out.println(&quot;aThread get lock&quot;);
+                        o.wait(10000);
+                    &#125;
+                &#125; catch (InterruptedException e) &#123;
+                    e.printStackTrace(); // can&#39;t come here
+                &#125; 
+            &#125;;
+            Thread aThread = new Thread(r);
+            aThread.start();
+
+            Runnable r2 = () -&gt; &#123;
+                try &#123;
+                    Thread.currentThread().sleep(250);
+                    synchronized (o) &#123;
+                        System.out.println(&quot;bThread get lock&quot;);
+                        while (true) &#123;
+                        &#125;
+                    &#125;
+                &#125; catch (InterruptedException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;;
+            Thread bThread = new Thread(r2);
+            bThread.start();
+
+            try &#123;
+                Thread.currentThread().sleep(1000);
+            &#125; catch (InterruptedException e) &#123;
+                e.printStackTrace();
+            &#125;
+            // interrupt aThread
+            aThread.interrupt();
+        &#125;
+</code></pre>
+<ul>
+<li><p>其他阻塞</p>
+<p>在 API 中还有其他的阻塞情况。如果线程被 <code>InterruptibleChannel</code> 的IO操作阻塞，则这个管道会被关闭，线程的中断状态会被置位，同时会抛出 <code>ClosedByInterruptException</code> 异常。</p>
+<p>如果线程被 <code>Selector</code> 阻塞，则这个线程的中断状态会被置位，并且立即从选择操作中返回，可能返回一个非零值，就像 <code>selector</code> 的 <code>wakeup</code> 方法被调用一样。</p>
+<p>这两种阻塞我都没有用过（太菜了），所以没有写代码去测试，之后遇到我会去测试。</p>
+<p>除了以上这几种情况，其他情况都会置位线程的中断状态。</p>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li><p>&#x3D;&#x3D;<code>yield()</code>：<strong>线程的礼让</strong>。让出 CPU 让其他线程执行。因为礼让的时间不确定，所以不一定礼让成功。&#x3D;&#x3D;</p>
+<p>本质是 RUNNING 切换为 READY，即让当前线程放弃执行权</p>
+</li>
+<li><p><code>wait()</code>：导致当前线程等待</p>
+<p>直到其他线程调用此对象的 <code>notify()</code> 方法或 <code>notifyAll()</code> 方法才能唤醒此线程</p>
+<p><code>notify()</code>、<code>notifyAll()</code>：唤醒因 <code>wait()</code> 阻塞的线程。</p>
+<p>这些方法（<code>wait()</code>、<code>notify()</code>、<code>notifyAll()</code>）只能在 synchrnized 方法或代码块中调用</p>
+</li>
+<li><p>&#x3D;&#x3D;<code>join()</code>：<strong>线程的插队</strong>。插队的线程一旦插入成功，则必定先执行完插队线程的所有任务然后再执行其他进程&#x3D;&#x3D;，在另一个进程调用。</p>
+<p>将导致其他线程的等待，直到 <code>join()</code> 方法的线程结束</p>
+<p><code>join(long timeout)</code>：join，但是时间到后也能结束其他线程的等待</p>
+</li>
+<li><p><code>isAlive()</code>：测试当前线程是否在活动</p>
+</li>
+<li><p><code>Thread.currentThread()</code>：引用当前运行中的线程</p>
+</li>
+</ul>
+<h3><span id="1626-用户线程和x3dx3d守护线程x3dx3d">16.2.6 用户线程和&#x3D;&#x3D;守护线程&#x3D;&#x3D;</span></h3><blockquote>
+<p>&#x3D;&#x3D;如果希望当main线程结束后，其他子进程自动结束，只需要将其设置为守护进程。&#x3D;&#x3D;</p>
+<p>注意如果有另外一个子进程不是守护进程却在main进程结束时仍然运行，那么这个设置的守护进程也不会随着main进程终止而终止，将其设置为守护进程属于无效操作。</p>
+</blockquote>
+<ul>
+<li><p>用户线程：也叫工作线程。当线程任务执行完毕或通知方式结束</p>
+</li>
+<li><p>守护线程：一般是为工作线程服务的。&#x3D;&#x3D;当所有线程结束，守护线程自动结束&#x3D;&#x3D;</p>
+<p>  常见的守护线程：<strong>垃圾回收机制</strong></p>
+<blockquote>
+<pre><code class="java">Thread thraed = new Thread(bullet);
+thread.setDeamon(true);//将子线程设置为主线程的守护线程
+thread.start();
+</code></pre>
+</blockquote>
+</li>
+</ul>
+<h3><span id="x3dx3d1627-线程的生命周期x3dx3d">&#x3D;&#x3D;16.2.7 线程的生命周期&#x3D;&#x3D;</span></h3><p>线程的状态有</p>
+<ul>
+<li><p>NEW：尚未启动</p>
+</li>
+<li><p>RUNNABLE：在 JVM 中执行的线程</p>
+<p>  可细分为 READY 和 RUNNING，这个状态由内核决定。</p>
+</li>
+<li><p>BLOCKED：被阻塞等待监视器锁定的线程</p>
+</li>
+<li><p>WAITING：正等待另一个线程执行特定动作的线程</p>
+</li>
+<li><p>TIMED_WAITING：正等待另一个线程执行特定动作达到等待时间的线程</p>
+</li>
+<li><p>TERMINATED：已退出的线程</p>
+</li>
+</ul>
+<p>&#x3D;&#x3D;重要的图：&#x3D;&#x3D;</p>
+<p><img src="https://gitee.com/kilomi/pic-bed/raw/master/img/202310122023919.png" alt="image-20231012202310763"></p>
+<h2><span id="x3dx3d163-线程的互斥x3dx3d">&#x3D;&#x3D;16.3 线程的互斥&#x3D;&#x3D;</span></h2><blockquote>
+<p>在多线程编程，&#x3D;&#x3D;一些敏感数据不允许被多个线程<strong>同时访问</strong>&#x3D;&#x3D;。此时就用同步访问技术，保证数据在任意时刻，&#x3D;&#x3D;最多有一个线程同时访问&#x3D;&#x3D;，以保证数据的完整性。</p>
+<p>也可以这样理解：<strong>线程同步</strong>，即当有一个线程对内存进行操作时，其他线程都不能对这个内存地址进行操作（被阻塞），直到该线程完成操作，再让下一线程进行操作。</p>
+</blockquote>
+<h3><span id="1631-互斥锁">16.3.1 互斥锁</span></h3><p><img src="https://gitee.com/kilomi/pic-bed/raw/master/img/202310122132570.png" alt="image-20231012213214200"></p>
+<p>在对象上加了一把锁，这把锁在同一时刻只能由一个线程(比如t1)可以得到，如果一个t1得到这把锁，可以对对象数据进行操作，操作结束把锁返还给对象，然后对象又上了锁，接着其他进程(t2、t3)和获得过这把锁的进程t1继续争夺锁，在这一时刻进程t1还可以继续争夺，所以这把锁也加不公平锁（&#x3D;&#x3D;有可能会出现锁一直被同一个对象访问的情况，可以在争夺锁的开始休眠一段时间)&#x3D;&#x3D;</p>
+<pre><code class="java">while (true) &#123;
+    try &#123;
+        Thread.sleep(100);	//先让进程等待一段时间再开始抢锁，如果休眠放在锁里，当休眠结束后，线程1又去争夺到这把锁，所以一直是线程1在得这把锁
+    &#125; catch (InterruptedException e) &#123;			
+        e.printStackTrace();
+    &#125;
+    synchronized (User.class) &#123;
+        if (money &lt;= 0) &#123;
+            break;
+        &#125;
+        System.out.println(Thread.currentThread().getName() + &quot;在取钱，剩余&quot; + (money -= 1000));
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>在 Java 语言中，引入了 “对象互斥锁” 的概念，也称为监视器，来保证&#x3D;&#x3D;共享数据操作的完整性&#x3D;&#x3D;</p>
+<p>&#x3D;&#x3D;每个对象都对应一个可称为 “互斥锁” 的标记，&#x3D;&#x3D;这个标记用来保证在任一时刻都只能有一个线程访问对象。使用实现接口Runable的方式，通过静态代理实现对同一个共享数据的操作。</p>
+<pre><code class="java">假如有三个售票口售票，一共有100张票，当票数小于0时则售票结束，如果没有实现同步访问技术，就会出现这种情况：售票口1、售票口2和售票口3同时检查票的张数，若此时票还剩余1张，售票口1判断符合条件将剩余的一张票售卖出去（此时的票数为0了），而其他2个售票口则会误以为此时的票数还为1张。接着继续售卖，就会导致超卖的情况(即票数为负数)
+Tik tik = new Tik();
+new Thread(tik).start();
+new Thread(tik).start();
+new Thread(tik).start();
+//这里不能用通过继承Thread的方式开启进程，用继承后的锁不是一个锁，因为每个对象对应一把锁,所以在操作的过程其实并没有起到锁的作用，如果要使用继承的方式实现同步方法，可以在在静态方法或代码块中实现当前类的锁，所有的对象就共用同一把锁了。
+new Tik().start();
+new Tik().start();
+new Tik().start();
+</code></pre>
+<p>Java 语言中，有 2 种方式实现<strong>互斥锁</strong>：</p>
+<ul>
+<li><p>用关键字 volatile 声明一个共享数据（变量）。一般很少使用该关键字</p>
+</li>
+<li><p>用关键字 synchronized 声明共享数据的一个方法或一个代码</p>
+<p>  <u>在前面的<strong>售票案例</strong>中&#x3D;&#x3D;只有一个线程卖票&#x3D;&#x3D;有两种可能，&#x3D;&#x3D;1.线程锁加在run方法，2.sleep不在run方法&#x3D;&#x3D;</u></p>
+</li>
+</ul>
+<p>同步的局限性：导致程序的执行<u>效率要降低。</u></p>
+<p><strong>非静态</strong>的对象，&#x3D;&#x3D;同步方法的锁可以是 <strong>this</strong>&#x3D;&#x3D;，也可以是其他对象，比如说这个对象是类的一个属性，也可以表示当前对象的锁（&#x3D;&#x3D;要求是同一对象的&#x3D;&#x3D;（被多个线程操作）），适用于实现Runnable接口的类对象，使用的是<strong>”对象锁“</strong></p>
+<ol>
+<li><p>添加在方法上，同步方法</p>
+<pre><code class="java">public sychronized  void m1()&#123;&#125;
+</code></pre>
+</li>
+<li><p>添加在方法内，同步代码块</p>
+<pre><code class="java">public void m1()&#123;
+    sychronized(this)&#123;	//this可以传递为
+        ...
+    &#125;
+&#125;
+</code></pre>
+</li>
+</ol>
+<p><strong>静态</strong>对象，&#x3D;&#x3D;同步方法的锁为<strong>当前类</strong>本身&#x3D;&#x3D;，适用于使用继承Thread的方式，多个当前类对象都使用<strong>‘’类的锁‘’。</strong></p>
+<ol>
+<li><p>添加在方法上，方法叫同步方法</p>
+<pre><code class="java">public synchronized static void m1()&#123;&#125;
+</code></pre>
+</li>
+<li><p>添加在方法内，叫同步代码块</p>
+<pre><code class="java">public static void m2()&#123;
+   synchronized (当前类.class)&#123;	//这里括号不能再填this了，因为是静态方法(只能访问静态域)，所以是静态锁
+   &#125;
+&#125;
+</code></pre>
+</li>
+</ol>
+</blockquote>
+<ol>
+<li><p><strong>同步代码块</strong>(尽量使用)</p>
+<pre><code class="java">synchronized (对象) &#123;		//得到对象的锁，才能操作同步代码
+    需要被同步代码;
+&#125;
+</code></pre>
+<p> 在第一个线程持有锁定标记时，如果另一个线程企图执行该代码块语句，将从对象中索取锁定标记。</p>
+<p> 因为此时该标记不可得，故该线程不能继续执行，而是加入等待队列。</p>
+<p> 程序运行完 synchronized 代码块后，锁定标记会被自动返还。即使该同步代码块执行过程中抛出异常也是如此。一个线程多次调用该同步代码块的场合，也会在最外层执行完毕后正确返还。</p>
+</li>
+<li><p><strong>放在方法声明中</strong>，表示整个方法为<strong>同步方法</strong></p>
+<p> 因为 &#x3D;&#x3D;synchronized 语句的参数必须是 this&#x3D;&#x3D;，因此允许下面这种简洁的写法：</p>
+<pre><code class="java">public synchronized void method()&#123;
+    代码;
+&#125;
+</code></pre>
+</li>
+</ol>
+<h4><span id="售票代码">售票代码</span></h4><pre><code class="java">public class Tikets &#123;
+    public static void main(String[] args) &#123;
+//        Tik2 tik1 = new Tik2();
+//        new Thread(tik1).start();
+//        new Thread(tik1).start();
+//        new Thread(tik1).start();
+        new Tik().start();
+        new Tik().start();
+        new Tik().start();
+    &#125;
+&#125;
+
+
+class Tik2 implements Runnable &#123;//用实现接口的方式，每个对象对应一把锁
+    private  int tikits = 10;
+    boolean loop = true;
+                                                        //在synchronnized只要传一个属于当前对象的属性																				也可以当作锁(属性必须是个对象)
+                                                    //这样做还需要将run方法设置为同步方法才可以防止出现票超卖的情														况(即在run方法签名处添加synchronized设置为同步方法)
+    public synchronized void m() &#123;						/*synchronized (Integer.valueOf(tikits))&#123;
+                                                            if (tikits &lt;= 0) &#123;...&#125;
+                                                                ...
+                                                                System.out.println(...);&#125;
+            
+            */
+         try &#123;
+            Thread.sleep(50);
+        &#125; catch (InterruptedException e) &#123;
+            e.printStackTrace();
+        &#125;
+
+        if (tikits &lt;= 0) &#123;
+            System.out.println(&quot;售票结束&quot;);
+            loop = false;
+            return;
+        &#125;
+            System.out.println(Thread.currentThread().getName() + &quot;剩余票数&quot; + (--tikits));
+
+    &#125;
+
+    @Override
+    public void run() &#123;	//若采用第二种方式就将其改为public synchronized void run()
+        while (loop) &#123;
+            m();
+        &#125;
+    &#125;
+&#125;
+
+class Tik extends Thread&#123;//用继承的方式，同步方法的锁为类本身，也可以通过传递一个本类静态属性(必须是个对象)给synchronized(类的静态属性)的方式来添加锁，实质也是实现的”类的锁“;
+    private static int tikits = 10;
+
+    static boolean loop = true;
+
+    public synchronized static void m() &#123;		//方式2：改为synchronized(类的静态属性)&#123;方法内部的代码...&#125;
+        if (tikits &lt;= 0) &#123;
+            System.out.println(&quot;售票结束&quot;);
+            loop = false;
+            return;
+        &#125;
+        try &#123;
+            Thread.sleep(50);
+        &#125; catch (InterruptedException e) &#123;
+            e.printStackTrace();
+        &#125;
+
+        System.out.println(Thread.currentThread().getName() + &quot;剩余票数&quot; + (--tikits));
+
+    &#125;
+    @Override
+    public void run() &#123;						// 方式2：synchronized (Integer.valueOf(tikits)) &#123;...&#125;
+        while (loop) &#123;			
+            m();
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>总之，需要确保检查使用的是同一把锁，否则都会造成超卖的情况。如果要使用类的锁(&#x3D;&#x3D;继承Thread的做法合适&#x3D;&#x3D;)，则将其置为静态同步方法或者&#x3D;&#x3D;静态同步代码块&#x3D;&#x3D;。如果要使用对象锁(&#x3D;&#x3D;实现Runnable接口的做法合适&#x3D;&#x3D;)就将方法置为非静态同步方法或非静态同步代码块。&#x3D;&#x3D;建议在实际中选择同步代码块(除了必须使用在方法上除外)，范围越小效率就越高。&#x3D;&#x3D;</p>
+<h3><span id="1632-线程死锁">16.3.2 线程死锁</span></h3><blockquote>
+<p>多个线程都占用了对方的资源，不肯相让，就导致了死锁。编程时要避免死锁的产生。</p>
+</blockquote>
+<ul>
+<li><p>以下操作会释放锁</p>
+<ol>
+<li>当前线程的同步方法、同步代码块执行结束。</li>
+<li>当前线程在同步方法、同步代码块中遇到 <code>break</code>、<code>return</code></li>
+<li>当前线程在同步方法、同步代码块中出现了未处理的 <code>Error</code></li>
+<li>当前线程在同步方法、同步代码块中执行了 <code>wait()</code> 方法，当前线程暂停，并释放锁</li>
+</ol>
+</li>
+<li><p>以下操作不会释放锁</p>
+<ol>
+<li><p>执行同步方法、同步代码块时，程序调用 <code>Thread.sleep()</code> 或 <code>Thread.yield()</code> 方法暂停当前线程的执行，不会释放锁</p>
+</li>
+<li><p>线程执行同步代码块时，其他线程调用了该线程的 <code>suspend()</code> 方法将该线程挂起，该线程不会释放锁</p>
+</li>
+</ol>
+<p>  所以，应尽量避免使用 <code>suspend()</code> 和 <code>resume()</code> 来控制线程，它们是是<strong>过时的方法</strong>。</p>
+<p>  &#x3D;&#x3D;尽量避免synchronized嵌套使用。&#x3D;&#x3D;</p>
+<pre><code class="java">public class DeadLock_ &#123;
+    public static void main(String[] args) &#123;
+        //模拟死锁现象
+        DeadLockDemo A = new DeadLockDemo(true);
+        A.setName(&quot;A线程&quot;);
+        DeadLockDemo B = new DeadLockDemo(false);
+        B.setName(&quot;B线程&quot;);
+        A.start();
+        B.start();
+    &#125;
+&#125;
+
+
+//线程
+class DeadLockDemo extends Thread &#123;
+    static Object o1 = new Object();// 保证多线程，共享一个对象,这里使用static
+    static Object o2 = new Object();
+    boolean flag;
+
+    public DeadLockDemo(boolean flag) &#123;//构造器
+        this.flag = flag;
+    &#125;
+
+    @Override
+    public void run() &#123;
+
+        //下面业务逻辑的分析
+        //1. 如果flag 为 T, 线程A 就会先得到/持有 o1 对象锁, 然后尝试去获取 o2 对象锁
+        //2. 如果线程A 得不到 o2 对象锁，就会Blocked
+        //3. 如果flag 为 F, 线程B 就会先得到/持有 o2 对象锁, 然后尝试去获取 o1 对象锁
+        //4. 如果线程B 得不到 o1 对象锁，就会Blocked
+        if (flag) &#123;
+            synchronized (o1) &#123;//对象互斥锁, 下面就是同步代码
+                System.out.println(Thread.currentThread().getName() + &quot; 进入1&quot;);
+                synchronized (o2) &#123; // 这里获得li对象的监视权
+                    System.out.println(Thread.currentThread().getName() + &quot; 进入2&quot;);
+                &#125;
+                
+            &#125;
+        &#125; else &#123;
+            synchronized (o2) &#123;
+                System.out.println(Thread.currentThread().getName() + &quot; 进入3&quot;);
+                synchronized (o1) &#123; // 这里获得li对象的监视权
+                    System.out.println(Thread.currentThread().getName() + &quot; 进入4&quot;);
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+</li>
+</ul>
+<h2><span id="164-线程的同步">16.4 线程的同步</span></h2><blockquote>
+<p>Java 中，可以使用 <code>wait()</code>、<code>notify()</code>、<code>notifyAll()</code> 来协调线程间的运行速度关系。这些方法都被定义在 java.lang.Object 中</p>
+<p>Java 中的每个对象实例都有两个线程队列和它相连。一个用以实现等待锁定标志的线程，另一个用来实现 <code>wait()</code> 和 <code>notify()</code> 的交互机制</p>
+</blockquote>
+<ul>
+<li><p><code>wait()</code>：让当前线程释放所有其持有的 “对象互斥锁”，进入等待队列</p>
+</li>
+<li><p><code>notify()</code>、<code>notifyAll()</code>：唤醒一个或所有在等待队列中等待的线程，并将他们移入同一个等待 “对象互斥锁” 的队列。</p>
+<p>  执行这些方法时如果没有等待中的线程，则其不会生效，也不会被保留到以后再生效</p>
+</li>
+</ul>
+<pre><code class="java">synchronized (key) &#123;
+    if (key.value == 0) key.wait();
+    key.value--;
+&#125;
+synchronized (key) &#123;
+    key.value++;
+    key.nitifyAll();
+&#125;
+</code></pre>
+<p>因为调用这些方法时必须持有对象的 “对象互斥锁”，所以上述方法只能在 synhronized 方法或代码块中执行。</p>
+<h1><span id="项目-坦克大战">项目-坦克大战</span></h1>
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 Yelog
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().trim().split('\n').length, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 18px 3px 15px 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: ;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<div class="aplayer"
+
+    data-id="9126522781"
+
+    data-server="netease"
+
+    data-type="playlist"
+
+    data-fixed="true"
+
+    data-autoplay="false"
+
+    data-loop="all"
+
+    data-order="random"
+
+    data-preload="auto"
+
+    data-volume="0.7"
+
+    data-mutex="true"
+
+>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+
+<script>
+(function() {
+
+  var arr = new Array();
+  var $tags = $('.post-tags').children('a');
+  $tags.each(function() {
+    arr.push($(this).html())
+  })
+  if (arr.indexOf("图集") !== -1) {
+
+    $('.hj_img').each(function() {
+      $(this).wrap('<a class="fancybox" data-fancybox="gallery" href="' + $(this).prop("src") + '"></a>'); 
+    })
+    //初始化fancybox，padding设为0，loop设为false
+    $('.fancybox').fancybox({
+      padding: 0,
+      loop: false
+    });
+  }
+})();
+</script>
+
+<!-- // 文字 -->
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/shehuizhuyi.js"></script>
+<!-- // 爱心 -->
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/love.js"></script>
+<!-- // 按键屏蔽 需要jQuery -->
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn@latest/js/noSomeKey.js"></script>
+
+
+</html>

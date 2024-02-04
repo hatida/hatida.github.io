@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>HatidaBlog</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="HatidaBlog">
+  <title>String深入理解 | HatidaBlog</title>
+  <meta name="keywords" content=" java , 字符串 , jvm ">
+  <meta name="description" content="String深入理解 | HatidaBlog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="第4章 检索数据4.5 检索不同的行DISTINCT关键字：此关键字指示MySQL只返回不同的值。  不能部分使用DISTINCT DISTINCT关键字应用于所有列而不仅是前置它的列。如果给出SELECT DISTINCT vend_id,prod_price，除非指定的两个列都不同，否则所有行都将被检索出来。 相当于将distinct后面的列放在一起作为条件  4.6 限制结果-limit关键">
 <meta property="og:type" content="article">
@@ -59,7 +59,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -500,12 +500,66 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-Java基础/深入理解String" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-Blog"><span class="toc-text">Why Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-text">对博客的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%8F%B6%E8%90%BD%E9%98%81"><span class="toc-text">关于叶落阁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0"><span class="toc-text">博客平台</span></a></li></ol></li></ol>
+        <h1 class="article-title">String深入理解</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="编程语言">编程语言</a> > 
+            
+            <a  data-rel="编程语言&lt;---&gt;java">java</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">java</a>
+            
+            <a class="color4">字符串</a>
+            
+            <a class="color4">jvm</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2024-02-05 01:27:36'>2024-02-04 16:17</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:915</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        
     
 <style>
     .left-col .switch-btn,
@@ -518,33 +572,95 @@
     }
 </style>
 </div>
-            <h1 id="Why-Blog"><a href="#Why-Blog" class="headerlink" title="Why Blog"></a>Why Blog</h1><h2 id="对博客的理解"><a href="#对博客的理解" class="headerlink" title="对博客的理解"></a>对博客的理解</h2><p>喜欢写Blog的人，会经历三个阶段。</p>
-<blockquote>
-<p>第一阶段，刚接触Blog，觉得很新鲜，试着选择一个免费空间来写。</p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>String str &#x3D; “a” + “b” + “c”到底创建了几个对象？这是我们在讨论中最经常遇到的一个问题同时也是面试题。我们都知道在Java中从”.java”文件编译成”.class”文件的过程，会有一个优化器去优化我们的代码。这个问题需要分成三种情况去考虑，下面我们就来分析这三种情况！！</p>
 </blockquote>
+<p><strong>前言</strong><br>在<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=JVM&spm=1001.2101.3001.7020">JVM</a>(JDK8)的内存结构中有一块区域叫作字符串常量池，这块区域存储了两样东西，分别是“字面量”和“符号引用”。字面量也就是一串字，例如String str &#x3D; “abc” 这里的”abc”就是字面量。符号引用是用于定位引用指向的问题。(JDK8完完全全把字符串常量池从方法区搬到堆中了)</p>
+<p><strong>一、第一种情况（常量相加）</strong></p>
 <blockquote>
-<p>第二阶段，发现免费空间限制太多，就自己购买域名和空间，搭建独立博客。</p>
+<p>String str &#x3D; “a” + “b” + “c</p>
 </blockquote>
-<blockquote>
-<p>第三阶段，觉得独立博客的管理太麻烦，最好在保留控制权的前提下，让别人来管，自己只负责写文章。</p>
-</blockquote>
-<p>我们每个人的在网络上产生的数据越来越多，这些信息是我们在互联网上存在过的痕迹，值得我们认真对待。但是它们被分散分布在各个网站上。很多时候我们很难将它们聚合在一起，而且各个网站的信息排布方式也没有办法自由控制，所以我们需要一个可以由自己主宰的空间——博客。</p>
-<p>通过博客，我们可以记录自己的生活和成长的轨迹。它不像 Twitter 那样碎片化，也不像 Facebook 那样关系化，它是私人的空间。</p>
-<h2 id="关于叶落阁"><a href="#关于叶落阁" class="headerlink" title="关于叶落阁"></a>关于叶落阁</h2><p><strong>叶落阁</strong> 是阁主（杨玉杰）的个人站。</p>
-<p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
-<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 生成，部署在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主题 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a> 已经在github上开源</p>
-<p><code>3-hexo</code> 主题使用交流可以加 Q群: <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=e8cf083cc097141eaf323396f1766809b8e90ff00c67bb441898f672892f6904"><img data-ignore border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="3-hexo使用交流" title="3-hexo使用交流"></a></p>
-<p>主要功能：</p>
-<ul>
-<li>搜索支持文章标题、标签(#标签)、作者(@作者)</li>
-<li>pad&#x2F;手机等移动端适配</li>
-<li>页面全局快捷键 <a target="_blank" rel="noopener" href='http://yelog.org/2017/03/24/3-hexo-shortcuts/'>3-hexo快捷键说明</a></li>
-</ul>
+<p>因为这种情况是常量之间相加，经过编译器优化成了String str &#x3D; “abc”，所以答案是创建了一个对象。“a”、“b”、”c”这些都是常量，因为它们是final修饰放在<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%AD%97%E7%AC%A6%E4%B8%B2&spm=1001.2101.3001.7020">字符串</a>常量池中的对象(注意：字面量也是对象)</p>
+<p>我们通过javac编译，然后反编译后的结果和内存分配情况如下</p>
+<pre><code class="java">//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
 
-        </article>
-        
-        
+package com.soft.wesker;
+
+public class Test &#123;
+    public Test() &#123;
+    &#125;
+
+    public static void main(String[] var0) &#123;
+        String var1 = &quot;abc&quot;;
+    &#125;
+&#125;
+</code></pre>
+<p>​    </p>
+<p><img src="https://gitee.com/kilomi/pic-bed/raw/master/img/202310022218765.png"><br><strong>二、第二种情况（变量相加)</strong></p>
+<blockquote>
+<p>String a &#x3D; “a”;<br>String b &#x3D; “b”;<br>String c &#x3D; “c”;<br>String str &#x3D; a + b + c;</p>
+</blockquote>
+<p>因为这种情况是变量之间相加，已经不是之前的常量相加了，经过编译器优化成了StringBuilder，所以答案是创建了三个对象。new StringBuilder()、new String()、“abc”，&#x3D;&#x3D;因为最终会通过StringBuilder()里面的toString()方法进行new String(“abc”)类型转换&#x3D;&#x3D;。&#x3D;&#x3D;”abc”：这是 StringBuilder 的 toString 方法返回的新字符串对象&#x3D;&#x3D;</p>
+<p>&#x3D;&#x3D;注意：str接收的是toString返回的对象，而不是在toString里创建的对象&#x3D;&#x3D;</p>
+<p>源码：</p>
+<pre><code class="java"> @Override
+    public String toString() &#123;
+        // Create a copy, don&#39;t share the array
+        return new String(value, 0, count);
+    &#125;
+</code></pre>
+<p>我们通过javac编译，然后反编译后的结果和内存分配情况如下</p>
+<pre><code class="java">//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
+package com.soft.wesker;
+
+public class Test &#123;
+    public Test() &#123;
+    &#125;
+
+    public static void main(String[] var0) &#123;
+        String var1 = &quot;a&quot;;
+        String var2 = &quot;b&quot;;
+        String var3 = &quot;c&quot;;
+        (new StringBuilder()).append(var1).append(var2).append(var3).toString();
+    &#125;
+&#125;
+</code></pre>
+<p>​    </p>
+<p><img src="https://img-blog.csdnimg.cn/0744c08f8cb04be58cf0408b6bc55df4.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzODQyMDkz,size_16,color_FFFFFF,t_70"> </p>
+<p>&#x3D;&#x3D;在这里字符串常量池其实还没有“abc”,在堆中虽然创建了这个字符串，<strong>只有字符串字面量和调用intern()方法的字符串才会被添加到字符串常量池</strong>。其他通过new String()或者字符串连接等方式创建的字符串，都是在堆上创建的，不会被添加到字符串常量池，除非你显式地调用intern()方法。&#x3D;&#x3D;<br><strong>三、第三种情况（无优化)</strong></p>
+<blockquote>
+<p>String str &#x3D; “a” + “b” + “c</p>
+</blockquote>
+<p>如果不考虑优化的情况下，这一共是创建了5个对象的，因为一个双引号就是一个字面量(对象)，这里创建了5个对象，分别是”a”、“b”、“c”、“ab”、“abc”。</p>
+<p>下面是内存分配情况<br><img src="https://img-blog.csdnimg.cn/5c80178feb494e7ea3bc502601556f65.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzODQyMDkz,size_16,color_FFFFFF,t_70">  </p>
+<p><strong>最后我们还需要考虑一个问题，在创建字面量的时候，JVM会先从字符串常量池中寻找是否已经存在，如果已经存在则直接返回引用，不存在就会先创建一个字面量，然后再返回引用。所以就会出现创建了0个对象的问题</strong></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -553,11 +669,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 </body>

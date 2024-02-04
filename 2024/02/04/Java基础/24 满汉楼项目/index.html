@@ -1,0 +1,3073 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>24 项目：满汉楼 | HatidaBlog</title>
+  <meta name="keywords" content=" java , 项目 ">
+  <meta name="description" content="24 项目：满汉楼 | HatidaBlog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="第4章 检索数据4.5 检索不同的行DISTINCT关键字：此关键字指示MySQL只返回不同的值。  不能部分使用DISTINCT DISTINCT关键字应用于所有列而不仅是前置它的列。如果给出SELECT DISTINCT vend_id,prod_price，除非指定的两个列都不同，否则所有行都将被检索出来。 相当于将distinct后面的列放在一起作为条件  4.6 限制结果-limit关键">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql必知必会">
+<meta property="og:url" content="http://example.com/2024/02/05/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/index.html">
+<meta property="og:site_name" content="HatidaBlog">
+<meta property="og:description" content="第4章 检索数据4.5 检索不同的行DISTINCT关键字：此关键字指示MySQL只返回不同的值。  不能部分使用DISTINCT DISTINCT关键字应用于所有列而不仅是前置它的列。如果给出SELECT DISTINCT vend_id,prod_price，除非指定的两个列都不同，否则所有行都将被检索出来。 相当于将distinct后面的列放在一起作为条件  4.6 限制结果-limit关键">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gitee.com/kilomi/pic-bed/raw/master/img/202402050101323.png">
+<meta property="article:published_time" content="2024-02-04T17:00:28.000Z">
+<meta property="article:modified_time" content="2024-02-04T17:01:13.136Z">
+<meta property="article:author" content="hatida">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/kilomi/pic-bed/raw/master/img/202402050101323.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/darcula.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>hatida</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/hatida"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(19)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据库">
+            
+            数据库
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="编程语言">
+            <i class="fold iconfont icon-right"></i>
+            编程语言
+            <small>(17)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;java">
+            
+            java
+            <small>(17)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="19">
+<input type="hidden" id="yelog_site_word_count" value="137.6k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>查找</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>多线程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>反射</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>集合</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>类</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>枚举</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>面向对象</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>排序</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据库</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数组</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>网络</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>项目</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>异常</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>正则表达式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>注解</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>字符串</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GUI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>IO</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>java</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>jdbc</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>jvm</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>mysql</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All 数据库 "
+           href="/2024/02/05/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/"
+           data-tag="mysql"
+           data-author="" >
+            <span class="post-title" title="mysql必知必会">mysql必知必会</span>
+            <span class="post-date" title="2024-02-05 01:00:28">2024/02/05</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/10%20%E6%9E%9A%E4%B8%BE%E5%92%8C%E6%B3%A8%E8%A7%A3/"
+           data-tag="java,枚举,注解"
+           data-author="" >
+            <span class="post-title" title="10 枚举和注解">10 枚举和注解</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/11%20%E5%BC%82%E5%B8%B8%EF%BC%88Exception%EF%BC%89/"
+           data-tag="java,异常"
+           data-author="" >
+            <span class="post-title" title="11 异常（Exception）">11 异常（Exception）</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/21%20%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/"
+           data-tag="java,反射"
+           data-author="" >
+            <span class="post-title" title="21 反射">21 反射</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/25%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"
+           data-tag="java,正则表达式"
+           data-author="" >
+            <span class="post-title" title="25 正则表达式">25 正则表达式</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/5%20%E6%95%B0%E7%BB%84/"
+           data-tag="java,数组,排序,查找"
+           data-author="" >
+            <span class="post-title" title="5 数组、排序和查找">5 数组、排序和查找</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3String/"
+           data-tag="java,字符串,jvm"
+           data-author="" >
+            <span class="post-title" title="String深入理解">String深入理解</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/17%20IO%E6%B5%81/"
+           data-tag="java,IO"
+           data-author="" >
+            <span class="post-title" title="17 IO流">17 IO流</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/19%20%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"
+           data-tag="java,网络"
+           data-author="" >
+            <span class="post-title" title="19 网络编程">19 网络编程</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/7%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B(%E4%B8%AD%E7%BA%A7)/"
+           data-tag="java,面向对象"
+           data-author="" >
+            <span class="post-title" title="7 面向对象编程（中级）">7 面向对象编程（中级）</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/9%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B(%E9%AB%98%E7%BA%A7)/"
+           data-tag="java,类"
+           data-author="" >
+            <span class="post-title" title="9.1 类变量和类方法">9.1 类变量和类方法</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/12%20%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%92%8C%E6%B3%9B%E5%9E%8B/"
+           data-tag="java"
+           data-author="" >
+            <span class="post-title" title="12 常用类">12 常用类</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/16%20%E5%A4%9A%E7%BA%BF%E7%A8%8B/"
+           data-tag="java,多线程"
+           data-author="" >
+            <span class="post-title" title="16 多线程">16 多线程</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/23%20JDBC/"
+           data-tag="java,jdbc,数据库"
+           data-author="" >
+            <span class="post-title" title="23 JDBC 和数据库连接池">23 JDBC 和数据库连接池</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/6%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B(%E5%9F%BA%E7%A1%80)/"
+           data-tag="java"
+           data-author="" >
+            <span class="post-title" title="6.面向对象编程（基础）">6.面向对象编程（基础）</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/15%20%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1/"
+           data-tag="java,GUI"
+           data-author="" >
+            <span class="post-title" title="15 图形界面设计">15 图形界面设计</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/13%20java%E9%9B%86%E5%90%88/"
+           data-tag="java,集合"
+           data-author="" >
+            <span class="post-title" title="13 Java 数据结构">13 Java 数据结构</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/24%20%E6%BB%A1%E6%B1%89%E6%A5%BC%E9%A1%B9%E7%9B%AE/"
+           data-tag="java,项目"
+           data-author="" >
+            <span class="post-title" title="24 项目：满汉楼">24 项目：满汉楼</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 数据库 "
+           href="/2024/02/04/mysql/mysql/"
+           data-tag="mysql"
+           data-author="" >
+            <span class="post-title" title="mysql">mysql</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-Java基础/24 满汉楼项目" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">24 项目：满汉楼</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="编程语言">编程语言</a> > 
+            
+            <a  data-rel="编程语言&lt;---&gt;java">java</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">java</a>
+            
+            <a class="color3">项目</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2024-02-05 01:24:47'>2024-02-04 16:17</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:11.8k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">24 项目：满汉楼</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">代码：万民堂</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">1. 数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">表</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link"><span class="toc-text">table（餐桌）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link"><span class="toc-text">dishes（菜单）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link"><span class="toc-text">customer（客人信息）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link"><span class="toc-text">login（登录验证）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link"><span class="toc-text">bill（订单）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link"><span class="toc-text">detail_bill（view，查询订单信息）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">Java 代码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">通用部分</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link"><span class="toc-text">com.melody.wmt.common</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link"><span class="toc-text">Message.java</span></a></li><li class="toc-item toc-level-6"><a class="toc-link"><span class="toc-text">MessageType.java</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link"><span class="toc-text">com.melody.wmt.sql</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link"><span class="toc-text">LoginData.java</span></a></li><li class="toc-item toc-level-6"><a class="toc-link"><span class="toc-text">TableData.java</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">服务端部分</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link"><span class="toc-text">com.melody.wmt.library</span></a></li><li class="toc-item toc-level-5"><a class="toc-link"><span class="toc-text">com.melody.wmt.server</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link"><span class="toc-text">Server.java</span></a></li><li class="toc-item toc-level-6"><a class="toc-link"><span class="toc-text">RunningServer.java</span></a></li><li class="toc-item toc-level-6"><a class="toc-link"><span class="toc-text">ServerUtils.java</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link"><span class="toc-text">com.melody.wmt.sql</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link"><span class="toc-text">WanMinSQL.properties</span></a></li><li class="toc-item toc-level-6"><a class="toc-link"><span class="toc-text">BasicDAO.java</span></a></li><li class="toc-item toc-level-6"><a class="toc-link"><span class="toc-text">JDBCUtil.java</span></a></li><li class="toc-item toc-level-6"><a class="toc-link"><span class="toc-text">TableDAO.java、TableData.java</span></a></li><li class="toc-item toc-level-6"><a class="toc-link"><span class="toc-text">LoginDAO.java、LoginData.java</span></a></li><li class="toc-item toc-level-6"><a class="toc-link"><span class="toc-text">DishesDAO.java、DishesData.java</span></a></li><li class="toc-item toc-level-6"><a class="toc-link"><span class="toc-text">CustomerDAO.java、CustomerData.java</span></a></li><li class="toc-item toc-level-6"><a class="toc-link"><span class="toc-text">BillDAO.java、BillData.java、DetailBillData.java</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">客户端（管理）部分</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link"><span class="toc-text">com.melody.wmt.client;</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link"><span class="toc-text">Clinet.java</span></a></li><li class="toc-item toc-level-6"><a class="toc-link"><span class="toc-text">Listening.java</span></a></li><li class="toc-item toc-level-6"><a class="toc-link"><span class="toc-text">MenuUtility.java</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1><span id="24-项目满汉楼">24 项目：满汉楼</span></h1><ul>
+<li>登录界面<ul>
+<li>登录（账号、密码）</li>
+<li>退出</li>
+</ul>
+</li>
+<li>菜单界面<ul>
+<li>餐桌状态（显示编号、状态）</li>
+<li>预定餐桌（编号[核对、二次确认]、预定人名字、电话）</li>
+<li>菜单（名称、价格、类别、编号）<ul>
+<li>全部、分类</li>
+</ul>
+</li>
+<li>点餐（桌号[核对]、菜品[核对]、数量）</li>
+<li>账单（按照桌号分组。菜品、数量、金额、桌号、日期、状态）</li>
+<li>结账（桌号、方式、二次确认）</li>
+<li>退出系统</li>
+</ul>
+</li>
+<li>数据库<ul>
+<li>登录用户：login（id、name、password[md5]）</li>
+<li>餐桌状态：table（id、order、seat、customer）</li>
+<li>顾客：customer（id、name、card_id、call）</li>
+<li>菜单：dishes（id、name、price、species、available）</li>
+<li>账单：bill（id、date、customer、num、table、clear、dishes）</li>
+</ul>
+</li>
+</ul>
+<h2><span id="代码万民堂">代码：万民堂</span></h2><p><del>说是满汉楼，其实是万民堂</del></p>
+<p><strong>没有优化过，所以健壮性不强。懒得做优化了，反正之前的项目做过了</strong></p>
+<h3><span id="1-数据库">1. 数据库</span></h3><blockquote>
+<pre><code class="sql">mysql://localhost:3306/wan_min
+AWK
+</code></pre>
+</blockquote>
+<h4><span id="表">表</span></h4><blockquote>
+<p>以下大部分是润色后的 <code>show create table xxx</code> 的返回语句</p>
+</blockquote>
+<h5><span id="table餐桌">table（餐桌）</span></h5><blockquote>
+<p>餐桌号 id（主键）、餐桌状态 order、座数 seat、订餐人 customer</p>
+</blockquote>
+<pre><code class="sql">CREATE TABLE `table` (
+      `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT ,
+      `order` enum(&#39;已预定&#39;,&#39;用餐&#39;,&#39;空&#39;,&#39;不可用&#39;) COLLATE utf8_bin NOT NULL DEFAULT &#39;空&#39;,
+      `seat` smallint(5) unsigned NOT NULL DEFAULT &#39;2&#39;,
+      `customer` smallint(5) unsigned DEFAULT NULL,
+      PRIMARY KEY (`id`),
+      KEY `customer` (`customer`),
+      CONSTRAINT `table_ibfk_1` FOREIGN KEY (`customer`) REFERENCES `customer` (`id`)
+    )MYSQL
+</code></pre>
+<h5><span id="dishes菜单">dishes（菜单）</span></h5><blockquote>
+<p>餐品号 id（主键）、餐品名 name（唯一）、价格 price、分类 species、是否可用 available</p>
+</blockquote>
+<pre><code class="sql">CREATE TABLE `dishes` (
+      `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+      `name` char(8) COLLATE utf8_bin NOT NULL,
+      `price` smallint(5) unsigned NOT NULL DEFAULT &#39;0&#39;,
+      `species` enum(&#39;主食&#39;,&#39;主菜&#39;,&#39;汤品&#39;,&#39;凉菜&#39;,&#39;甜点&#39;,&#39;饮料&#39;,&#39;&#39;) COLLATE utf8_bin NOT NULL DEFAULT &#39;&#39;,
+      `available` enum(&#39;y&#39;,&#39;n&#39;) COLLATE utf8_bin NOT NULL DEFAULT &#39;y&#39;,
+      PRIMARY KEY (`id`),
+      UNIQUE KEY `name` (`name`)
+)MYSQL
+</code></pre>
+<h5><span id="customer客人信息">customer（客人信息）</span></h5><blockquote>
+<p>顾客ID id（主键）、顾客名字 name、顾客证件号 card_id（可为空）、顾客电话 call</p>
+</blockquote>
+<pre><code class="sql">CREATE TABLE `customer` (
+      `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+      `name` varchar(12) COLLATE utf8_bin NOT NULL,
+      `card_id` char(18) COLLATE utf8_bin DEFAULT NULL,
+      `call` char(11) COLLATE utf8_bin NOT NULL,
+      PRIMARY KEY (`id`)
+)MYSQL
+</code></pre>
+<h5><span id="login登录验证">login（登录验证）</span></h5><blockquote>
+<p>系统登录ID id（主键）、系统登录名 name（唯一）、密码 password（md5 加密）</p>
+</blockquote>
+<pre><code class="sql">CREATE TABLE `login` (
+      `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+      `name` varchar(10) COLLATE utf8_bin NOT NULL,
+      `password` char(32) COLLATE utf8_bin NOT NULL,
+      PRIMARY KEY (`id`),
+      UNIQUE KEY `name` (`name`)
+)MYSQL
+</code></pre>
+<h5><span id="bill订单">bill（订单）</span></h5><blockquote>
+<p>订单ID id（主键）、日期 date、顾客 customer（外键）、菜品ID id（外键）、菜品数量 num、桌号 table（外键）、结算状态 clear（枚举，y现金、alipay支付宝、wcpay微信、n未付）</p>
+</blockquote>
+<pre><code class="sql">CREATE TABLE `bill` (
+      `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+      `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      `customer` smallint(5) unsigned NOT NULL,
+      `num` smallint(5) unsigned NOT NULL DEFAULT &#39;1&#39;,
+      `table` smallint(5) unsigned NOT NULL,
+      `clear` enum(&#39;y&#39;,&#39;n&#39;,&#39;alipay&#39;,&#39;wc_pay&#39;) COLLATE utf8_bin NOT NULL DEFAULT &#39;n&#39;,
+      `dishes` smallint(5) unsigned NOT NULL,
+      PRIMARY KEY (`id`),
+      KEY `customer` (`customer`),
+      KEY `table` (`table`),
+      KEY `dishes` (`dishes`),
+      CONSTRAINT `bill_ibfk_1` FOREIGN KEY (`customer`) REFERENCES `customer` (`id`),
+      CONSTRAINT `bill_ibfk_2` FOREIGN KEY (`table`) REFERENCES `table` (`id`),
+      CONSTRAINT `bill_ibfk_3` FOREIGN KEY (`dishes`) REFERENCES `dishes` (`id`)
+)MYSQL
+</code></pre>
+<h5><span id="detail_billview查询订单信息">detail_bill（view，查询订单信息）</span></h5><pre><code class="sql">CREATE VIEW `detail_bill` AS 
+    select `customer`.`name` AS `name`,
+       `customer`.`call` AS `call`,
+       `bill`.`table` AS `table`,
+       `dishes`.`name` AS `dishes`,
+       `bill`.`num` AS `num`,
+       `bill`.`date` AS `date`,
+       `bill`.`clear` AS `clear` 
+    from `bill` , `customer`, `dishes` 
+    where (`bill`.`customer` = `customer`.`id`) 
+        and (`bill`.`dishes` = `dishes`.`id`)MYSQL
+</code></pre>
+<h3><span id="java-代码">Java 代码</span></h3><h4><span id="通用部分">通用部分</span></h4><blockquote>
+<p>以下各包，客户端和服务端各自持有一份，存放在相同目录下。</p>
+</blockquote>
+<h5><span id="commelodywmtcommon">com.melody.wmt.common</span></h5><h6><span id="messagejava">Message.java</span></h6><blockquote>
+<p><em>com.melody.wmt.common.Message.java</em></p>
+<p>信息包。客户端、服务端的通讯依靠发送该包进行</p>
+</blockquote>
+<pre><code class="java">package com.melody.wmt.common;
+
+import java.io.Serializable;
+import java.time.Instant;
+
+/**
+ * @author Melody
+ * @version 1.0
+ */
+public class Message implements Serializable &#123;
+    private String sender;		//发送者IP
+    private String receiver;	//接收者IP
+    private String word;		//信息标识
+    private Object object;		//信息数据
+    private Instant timeStamp;	//信息时间戳
+
+    public Message(String sender, String receiver, String word, Object object) &#123;
+        this.sender = sender;
+        this.receiver = receiver;
+        this.word = word;
+        this.object = object;
+        timeStamp = Instant.now();
+    &#125;
+
+    public String getSender() &#123;
+        return sender;
+    &#125;
+
+    public void setSender(String sender) &#123;
+        this.sender = sender;
+    &#125;
+
+    public String getReceiver() &#123;
+        return receiver;
+    &#125;
+
+    public void setReceiver(String receiver) &#123;
+        this.receiver = receiver;
+    &#125;
+
+    public String getWord() &#123;
+        return word;
+    &#125;
+
+    public void setWord(String word) &#123;
+        this.word = word;
+    &#125;
+
+    public Object getObject() &#123;
+        return object;
+    &#125;
+
+    public void setObject(Object object) &#123;
+        this.object = object;
+    &#125;
+
+    public Instant getTimeStamp() &#123;
+        return timeStamp;
+    &#125;
+
+    public void setTimeStamp() &#123;
+        this.timeStamp = Instant.now();
+    &#125;
+&#125;JAVA
+</code></pre>
+<h6><span id="messagetypejava">MessageType.java</span></h6><blockquote>
+<p><em>com.melody.wmt.common.MessageType.java</em></p>
+<p>信息标识包。通过该包来分析信息包的种类。该包没有方法。</p>
+</blockquote>
+<pre><code class="java">package com.melody.wmt.common;
+
+/**
+ * @author Melody
+ * @version 1.0
+ */
+public interface MessageType &#123;
+    /*以下是服务端发送*/
+    String REJECT = &quot;0&quot;;					//拒绝请求
+    String ACCEPT = &quot;A&quot;;					//通过请求
+    String LOGIN_USER_NOT_EXIST = &quot;LUNE&quot;;	//登录失败：用户不存在
+    String LOGIN_WRONG_PW = &quot;LWP&quot;;			//登陆失败：密码错误
+    String WRONG_REQUEST = &quot;WR&quot;;			//请求无效
+    String TABLE_NOT_EXIST = &quot;TNE&quot;;			//餐桌不存在
+    String TABLE_OCCUPIED = &quot;TOP&quot;;			//餐桌被占用（未点餐）
+    String TABLE_DINNING = &quot;TOD&quot;;			//餐桌被占用（已点餐）
+    String TABLE_NOT_AVAILABLE = &quot;TNA&quot;;		//餐桌不可用
+    String TABLE_AVAILABLE = &quot;TIA&quot;;			//餐桌为空
+    String NOT_FOUND = &quot;NF&quot;;				//没有找到目标
+
+    /*以下是客户端发送*/
+    String LOGIN = &quot;LGI&quot;;					//请求登录
+    String SHOW_TABLES = &quot;RST&quot;;				//请求返回餐桌列表
+    String CHECK_TABLE = &quot;RCT&quot;;				//请求查询餐桌状态
+    String ORDER_TABLE = &quot;ROT&quot;;				//请求预定餐桌
+    String SHOW_DISHES = &quot;RSD&quot;;				//请求返回菜单列表
+    String CHECK_DISHES = &quot;RCD&quot;;			//请求查询菜单状态
+    String ORDER_DISHES = &quot;ROD&quot;;			//请求订餐
+    String SHOW_ALL_BILLS = &quot;RAB&quot;;			//请求返回账单列表
+    String CHECK_BILLS = &quot;RCB&quot;;				//请求查询账单状态
+    String FINISH_BILLS = &quot;RFB&quot;;			//请求完成账单
+    String LOGOUT = &quot;LGO&quot;;					//请求登出
+&#125;JAVA
+</code></pre>
+<h5><span id="commelodywmtsql">com.melody.wmt.sql</span></h5><h6><span id="logindatajava">LoginData.java</span></h6><blockquote>
+<p><em>com.melody.wmt.sql.LoginData.java</em></p>
+<p>登录信息包。该包对应表 <code>login</code> 的记录。</p>
+</blockquote>
+<pre><code class="java">package com.melody.wmt.sql;
+
+import java.io.Serializable;
+
+/**
+ * @author Melody
+ * @version 1.0
+ */
+public class LoginData implements Serializable &#123;
+    private int id;
+    private String name;
+    private String password;
+
+    public LoginData()&#123;&#125;
+
+    public LoginData(int id, String name, String password) &#123;
+        this.id = id;
+        this.name = name;
+        this.password = password;
+    &#125;
+
+    public int getId() &#123;
+        return id;
+    &#125;
+
+    public void setId(int id) &#123;
+        this.id = id;
+    &#125;
+
+    public String getName() &#123;
+        return name;
+    &#125;
+
+    public void setName(String name) &#123;
+        this.name = name;
+    &#125;
+
+    public String getPassword() &#123;
+        return password;
+    &#125;
+
+    public void setPassword(String password) &#123;
+        this.password = password;
+    &#125;
+&#125;JAVA
+</code></pre>
+<h6><span id="tabledatajava">TableData.java</span></h6><blockquote>
+<p><em>com.melody.wmt.sql.TableData.java</em></p>
+<p>餐桌信息包。该包对应表 <code>table</code> 的记录。</p>
+</blockquote>
+<pre><code class="java">package com.melody.wmt.sql;
+
+import java.io.Serializable;
+
+/**
+ * @author Melody
+ * @version 1.0
+ */
+public class TableData implements Serializable &#123;
+    private int id;
+    private String order;
+    private int customer;
+    private int seat;
+
+    public TableData() &#123;
+    &#125;
+
+    public TableData(int id, String order, int customer, int seat) &#123;
+        this.id = id;
+        this.order = order;
+        this.customer = customer;
+        this.seat = seat;
+    &#125;
+
+    public int getId() &#123;
+        return id;
+    &#125;
+
+    public void setId(int id) &#123;
+        this.id = id;
+    &#125;
+
+    public String getOrder() &#123;
+        return order;
+    &#125;
+
+    public void setOrder(String order) &#123;
+        this.order = order;
+    &#125;
+
+    public int getCustomer() &#123;
+        return customer;
+    &#125;
+
+    public void setCustomer(int customer) &#123;
+        this.customer = customer;
+    &#125;
+
+    public int getSeat() &#123;
+        return seat;
+    &#125;
+
+    public void setSeat(int seat) &#123;
+        this.seat = seat;
+    &#125;
+
+    @Override
+    public String toString() &#123;
+        return id + &quot;\t&quot; + seat + &quot;\t&quot; + order + &quot;\t&quot; + (customer == 0 ? &quot;-&quot; : customer);
+    &#125;
+&#125;JAVA
+</code></pre>
+<h4><span id="服务端部分">服务端部分</span></h4><h5><span id="commelodywmtlibrary">com.melody.wmt.library</span></h5><blockquote>
+<p>在目录 <em>com.melody.wmt.library</em> 下，配置以下 jar 包：</p>
+<ul>
+<li><code>druid-1.2.8.jar</code>：德鲁伊连接池</li>
+<li><code>mysql-connector-java-8.0.27.jar</code>：MySQL 数据库</li>
+<li><code>commons-dbutils-1.7.jar</code>：Apache-DBUtils</li>
+</ul>
+</blockquote>
+<h5><span id="commelodywmtserver">com.melody.wmt.server</span></h5><h6><span id="serverjava">Server.java</span></h6><blockquote>
+<p>服务端入口</p>
+</blockquote>
+<pre><code class="java">package com.melody.wmt.server;
+
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+/**
+ * @author Melody
+ * @version 1.0
+ */
+public class Server &#123;
+    public static final String serverIP;
+    
+    /* 多此一举地初始化服务端 IP 地址。其实直接写正确地址也行的 */
+    static &#123;
+        String tempIP = null;
+        try &#123;
+            tempIP = InetAddress.getLocalHost().getHostAddress();
+        &#125; catch (UnknownHostException e) &#123;
+            System.out.println(e);
+            tempIP = &quot;192.168.3.16&quot;;
+        &#125; finally &#123;
+            serverIP = tempIP;
+        &#125;
+    &#125;
+    
+    /* 主方法
+    持续监听端口，每当有接入时就丢给新的 RunningServer 线程 */
+    public static void main(String[] args) throws IOException &#123;
+        ServerSocket serverSocket = new ServerSocket(9000);
+        while (true) &#123;
+            Socket accept = serverSocket.accept();
+            new Thread(new RunningServer(accept)).start();
+        &#125;
+    &#125;
+&#125;JAVA
+</code></pre>
+<h6><span id="runningserverjava">RunningServer.java</span></h6><blockquote>
+<p>服务端进程主体。由 <em>Server.java</em> 创建。</p>
+<p>该进程能实现：用户登录验证、识别客户端请求</p>
+</blockquote>
+<pre><code class="java">package com.melody.wmt.server;
+
+import com.melody.wmt.common.Message;
+import com.melody.wmt.common.MessageType;
+import com.melody.wmt.sql.LoginData;
+
+import java.io.*;
+import java.net.Socket;
+import java.time.LocalDateTime;
+
+/**
+ * @author Melody
+ * @version 1.0
+ */
+public class RunningServer implements Runnable &#123;
+    private Socket socket;
+    private ObjectInputStream ois;		//通信的输入流
+    private ObjectOutputStream oos;		//通信的输出流
+    private String targetIP;			//通信对象的 IP
+    private LoginData loginData;		//通信对象声明的登录对象的信息。
+                                //这个信息来自数据库，不一定和通信对象声明的信息匹配
+    private boolean running = true;		//线程运行中。false 的场合线程停止
+    
+    /* 完成一些初始化 */
+    public RunningServer(Socket socket) &#123;
+        this.socket = socket;
+        try &#123;
+            ois = new ObjectInputStream(socket.getInputStream());
+            oos = new ObjectOutputStream(socket.getOutputStream());
+        &#125; catch (IOException e) &#123;
+            System.out.println(e);
+            closeAll();
+        &#125;
+        targetIP = socket.getLocalAddress().getHostAddress();
+    &#125;
+
+    @Override
+    public void run() &#123;
+        try &#123;
+            /* 接收通信对象的登录请求 */
+            Message message = ServerUtils.receiveMessage(ois);
+            /* 获得通信对象声明的登录对象信息。
+            这里返回 null 的场合，登录失败 */
+            loginData = ServerUtils.checkLogin(message);
+            System.out.println(targetIP + &quot; 请求登录 &lt;&quot; + message.getObject()+&quot;&gt;&quot;);
+            /* 登录失败的场合，发送拒绝信息，并关闭所有流 */
+            if (loginData == null) &#123;
+                ServerUtils.sendRejection(targetIP, oos);
+                closeAll();
+                return;
+            &#125; else &#123;
+            /* 登录成功，发送登录对象信息 */
+                ServerUtils.sendMessage(new Message(Server.serverIP, targetIP, MessageType.ACCEPT, loginData), oos);
+            &#125;
+            System.out.println(targetIP + &quot; 登录成功 &quot; + loginData.getName() + LocalDateTime.now());
+            
+            /* 直到这里，登录成功，正式开始监听客户端请求 */
+            while (running) &#123;
+                listeningRequest();
+            &#125;
+        /* 如果发生任何连接异常，我们中断连接，并关闭所有流 */
+        &#125; catch (Exception e) &#123;
+            System.out.println(targetIP + &quot; 连接中断 &quot; + loginData.getName() + LocalDateTime.now());
+            closeAll();
+        &#125;
+    &#125;
+    
+    /* 这个方法是关闭所有流的方法。在关闭连接时会被调用 */
+    private void closeAll() &#123;
+        try &#123;
+            if (ois != null) &#123;
+                ois.close();
+            &#125;
+            if (oos != null) &#123;
+                oos.close();
+            &#125;
+            if (socket != null) &#123;
+                socket.close();
+            &#125;
+        &#125; catch (IOException e) &#123;
+            System.out.println(e);
+        &#125;
+    &#125;
+    
+    /* 这个方法是监听客户端请求的方法。根据不同请求，做出不同反应 */
+    private void listeningRequest() &#123;
+        /* 监听请求 */
+        Message message = ServerUtils.receiveMessage(ois);
+        /* 检查收到的数据包的信息标识 */
+        String request = message.getWord();
+        /* 创建将要发送的数据包。此时，该包还是空的 */
+        Message toSend = new Message(Server.serverIP, targetIP, null, null);
+        /* 检查一下接收的数据包的用户信息。有任何问题的话我们就发送请求错误包 */
+        /* ……在这里解释一下：客户发送的数据包里，主要包含以下信息：
+        1. getWord() 返回数据包标识。客户端的任何请求会对应不同的标识
+        2. getObject() 一定包含一条 String 语句。该语句被转义字符 \t 分为几个部分。
+            第一部分一定是用户名、第二部分一定是用户密码。
+            根据请求需要，也会有更多其他部分 */
+        try &#123;
+            if (!ServerUtils.checkUser((String) message.getObject(), loginData)) &#123;
+                throw new RuntimeException();
+            &#125;
+        &#125; catch (Exception e) &#123;
+            System.out.println(e);
+            toSend.setWord(MessageType.WRONG_REQUEST);
+            ServerUtils.sendMessage(toSend, oos);
+            return;
+        &#125;
+        /* 下面，根据不同信息包标识，我们做出不同反应 */
+        /* 接收到返回餐桌列表的请求 */
+        if (request.equals(MessageType.SHOW_TABLES)) &#123;
+            ServerUtils.showTables(toSend, oos);
+        /* 接收到检查餐桌的请求 */
+        &#125; else if (request.equals(MessageType.CHECK_TABLE)) &#123;
+            ServerUtils.checkTable(message, toSend, oos);
+        /* 接收到预定餐桌的请求 */
+        &#125; else if (request.equals(MessageType.ORDER_TABLE)) &#123;
+            ServerUtils.orderTable(message, toSend, oos);
+        /* 接收到返回菜单列表的请求 */
+        &#125; else if (request.equals(MessageType.SHOW_DISHES)) &#123;
+            ServerUtils.showDishes(toSend, oos);
+        /* 接收到检查菜单的请求 */
+        &#125; else if (request.equals(MessageType.CHECK_DISHES)) &#123;
+            ServerUtils.checkDishes(message, toSend, oos);
+        /* 接收到点餐的请求 */
+        &#125; else if (request.equals(MessageType.ORDER_DISHES)) &#123;
+            ServerUtils.orderDishes(message, toSend, oos);
+        /* 接收到返回账单列表的请求 */
+        &#125; else if (request.equals(MessageType.SHOW_ALL_BILLS)) &#123;
+            ServerUtils.showBills(toSend, oos);
+        /* 接收到检查账单的请求 */
+        &#125; else if (request.equals(MessageType.CHECK_BILLS)) &#123;
+            ServerUtils.checkBills(message, toSend, oos);
+        /* 接收到结账的请求 */
+        &#125; else if (request.equals(MessageType.FINISH_BILLS)) &#123;
+            ServerUtils.finishBills(message, toSend, oos);
+        /* 接收到登出的请求 */
+        &#125; else if (request.equals(MessageType.LOGOUT)) &#123;
+            System.out.println(targetIP + &quot; 登出 &quot; + loginData.getName() + LocalDateTime.now());
+            running = false;
+            closeAll();
+        &#125;
+    &#125;
+&#125;JAVA
+</code></pre>
+<h6><span id="serverutilsjava">ServerUtils.java</span></h6><blockquote>
+<p>服务端进程方法包。由 <em>RunningServer.java</em> 调用</p>
+<p>该包实现：监听客户端数据包、发送数据包、处理（各种）客户端请求</p>
+</blockquote>
+<pre><code class="java">package com.melody.wmt.server;
+
+import com.melody.wmt.common.Message;
+import com.melody.wmt.common.MessageType;
+import com.melody.wmt.sql.*;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.List;
+
+/**
+ * @author Melody
+ * @version 1.0
+ */
+public class ServerUtils &#123;
+    /* 监听客户端发送的数据包 */
+    public static Message receiveMessage(ObjectInputStream ois) &#123;
+        try &#123;
+            Message message = (Message) ois.readObject();
+            return message;
+        &#125; catch (Exception e) &#123;
+            System.out.println(e);
+            return null;
+        &#125;
+    &#125;
+    
+    /* 发送登录失败回执。这个方法其实可以优化掉 */
+    public static boolean sendRejection(String target, ObjectOutputStream oos) &#123;
+        Message message = new Message(Server.serverIP, target, MessageType.REJECT, null);
+        try &#123;
+            oos.writeObject(message);
+            oos.flush();
+            return true;
+        &#125; catch (IOException e) &#123;
+            System.out.println(e);
+            return false;
+        &#125;
+    &#125;
+    
+    /* 检查用户信息。实际上就是检查用户名 */
+    public static boolean checkUser(String user, LoginData loginData) &#123;
+        if (user == null) &#123;
+            return false;
+        &#125;
+        String[] toCheck = user.split(&quot;\t&quot;);
+        if (toCheck[0].equals(loginData.getName())) &#123;
+            return new LoginDAO().checkLogin(toCheck[0], toCheck[1]) != null;
+        &#125; else &#123;
+            return false;
+        &#125;
+    &#125;
+    
+    /* 检查登录信息。登录成功则返回从数据库得到的登录信息包，否则返回 null */
+    public static LoginData checkLogin(Message message) &#123;
+        if (message == null) &#123;
+            return null;
+        &#125;
+        String word = message.getWord();
+        if (word == null || !word.equals(MessageType.LOGIN)) &#123;
+            return null;
+        &#125;
+        try &#123;
+            word = (String) message.getObject();
+        &#125; catch (Exception e) &#123;
+            System.out.println(e);
+            return null;
+        &#125;
+        String[] data = word.split(&quot;\t&quot;);
+        if (data.length != 2) &#123;
+            return null;
+        &#125;
+        return new LoginDAO().checkLogin(data[0], data[1]);
+    &#125;
+    
+    /* 发送数据包给客户端。很多方法会调用这个方法。这个方法也会刷新数据包时间戳 */
+    public static void sendMessage(Message toSend, ObjectOutputStream oos) &#123;
+        try &#123;
+            Thread.currentThread().sleep(300);	//人为加入 0.3 秒发送延迟
+            toSend.setTimeStamp();				//刷新数据包时间戳
+            oos.writeObject(toSend);
+            oos.flush();
+        &#125; catch (Exception e) &#123;
+            System.out.println(e);
+        &#125;
+    &#125;
+    
+    /* 返回餐桌列表 */
+    public static void showTables(Message toSend, ObjectOutputStream oos) &#123;
+        /* 调用方法得到餐桌列表 */
+        List&lt;TableData&gt; tableData = new TableDAO().queryAll();
+        /* 将餐桌列表转化成字符串。发送时只发送这个字符串 */
+        StringBuilder sb = new StringBuilder();
+        for (TableData data : tableData) &#123;
+            sb.append(data);
+            sb.append(&quot;\n&quot;);
+        &#125;
+        toSend.setObject(sb.toString());
+        /* 设置数据包标识为请求通过 */
+        toSend.setWord(MessageType.ACCEPT);
+        /* 发送数据包 */
+        sendMessage(toSend, oos);
+    &#125;
+    
+    /* 检查餐桌
+    ……这是因为：用户点餐、预定餐桌等场合，需要验证输入的餐桌信息 */
+    public static void checkTable(Message receive, Message toSend, ObjectOutputStream oos) &#123;
+        try &#123;
+            /* 检查用户请求的餐桌号 */
+            int table = Integer.parseInt(((String) receive.getObject()).split(&quot;\t&quot;)[2]);
+            TableData tableData = new TableDAO().queryTable(table);
+            /* 下面是根据返回结果，为数据包添加标识语句，并装入查到的餐桌数据 */
+            if (tableData == null) &#123;
+                toSend.setWord(MessageType.TABLE_NOT_EXIST);
+            &#125; else if (tableData.getOrder().equals(&quot;不可用&quot;)) &#123;
+                toSend.setObject(tableData);
+                toSend.setWord(MessageType.TABLE_NOT_AVAILABLE);
+            &#125; else if (tableData.getOrder().equals(&quot;已预定&quot;)) &#123;
+                toSend.setObject(tableData);
+                toSend.setWord(MessageType.TABLE_OCCUPIED);
+            &#125; else if (tableData.getOrder().equals(&quot;用餐&quot;)) &#123;
+                toSend.setObject(tableData);
+                toSend.setWord(MessageType.TABLE_DINNING);
+            &#125; else if (tableData.getOrder().equals(&quot;空&quot;)) &#123;
+                toSend.setObject(tableData);
+                toSend.setWord(MessageType.TABLE_AVAILABLE);
+            &#125; else &#123;
+                toSend.setWord(MessageType.REJECT);
+            &#125;
+        /* 发生任何异常的场合，设置拒绝请求的标识语句 */
+        &#125; catch (Exception e) &#123;
+            toSend.setWord(MessageType.REJECT);
+        /* 最终一定发送数据包 */
+        &#125; finally &#123;
+            sendMessage(toSend, oos);
+        &#125;
+    &#125;
+    
+    /* 预定餐桌 */
+    public static void orderTable(Message receive, Message toSend, ObjectOutputStream oos) &#123;
+        try &#123;
+            /* 前面说过。接收数据包含有一条被 \t 分隔为不同部分的语句。
+            这里：第三部分代表餐桌号，第四部分代表顾客名，第五部分代表顾客电话*/
+            String[] mess = ((String) receive.getObject()).split(&quot;\t&quot;);
+            int table = Integer.parseInt(mess[2]);
+            String customerName = mess[3];
+            String call = mess[4];
+            CustomerDAO customerDAO = new CustomerDAO();
+            /* 根据接收的顾客信息（姓名、电话）对数据库进行查询，看看有没有这个人
+            这里，customer &gt; 0 的场合代表有这个人 */
+            int customer = customerDAO.searchCustomer(customerName, call);
+            /* 没有这个信息的场合，创建这个顾客信息 */
+            if (customer &lt; 0) &#123;
+                customerDAO.createCustomer(customerName, call);
+                customer = customerDAO.searchCustomer(customerName, call);
+            &#125;
+            /* 通常到这里不会出现查无此人的情况。如果出现，说明创建信息失败 */
+            if (customer &lt; 0) &#123;
+                throw new RuntimeException();
+            &#125;
+            /* 到这里，我们进行预定餐桌操作。返回 true 表示成功 */
+            if (new TableDAO().orderTable(table, customer)) &#123;
+                toSend.setWord(MessageType.ACCEPT);
+            &#125; else &#123;
+                toSend.setWord(MessageType.REJECT);
+            &#125;
+        /* 出现任何问题，我们设置请求拒绝标识符 */
+        &#125; catch (Exception e) &#123;
+            toSend.setWord(MessageType.REJECT);
+        /* 最终一定发送数据包 */
+        &#125; finally &#123;
+            sendMessage(toSend, oos);
+        &#125;
+    &#125;
+    
+    /* 返回菜单列表 */
+    public static void showDishes(Message toSend, ObjectOutputStream oos) &#123;
+        try &#123;
+            /* 首先获取菜单列表 */
+            List&lt;DishesData&gt; dishes = new DishesDAO().getDishes();
+            /* 接下来，把菜单列表转化为字符串 */
+            StringBuilder staple = new StringBuilder();
+            StringBuilder mainDishes = new StringBuilder();
+            StringBuilder coldDishes = new StringBuilder();
+            StringBuilder beverage = new StringBuilder();
+            StringBuilder soup = new StringBuilder();
+            StringBuilder sweetmeats = new StringBuilder();
+            for (DishesData d : dishes) &#123;
+                if (d.getAvailable().equals(&quot;n&quot;)) &#123;
+                    continue;
+                &#125;
+                String spec = d.getSpecies();
+                if (spec.equals(&quot;主食&quot;)) &#123;
+                    staple.append(d);
+                    staple.append(&quot;\n&quot;);
+                &#125; else if (spec.equals(&quot;甜点&quot;)) &#123;
+                    sweetmeats.append(d);
+                    sweetmeats.append(&quot;\n&quot;);
+                &#125; else if (spec.equals(&quot;汤品&quot;)) &#123;
+                    soup.append(d);
+                    soup.append(&quot;\n&quot;);
+                &#125; else if (spec.equals(&quot;凉菜&quot;)) &#123;
+                    coldDishes.append(d);
+                    coldDishes.append(&quot;\n&quot;);
+                &#125; else if (spec.equals(&quot;饮料&quot;)) &#123;
+                    beverage.append(d);
+                    beverage.append(&quot;\n&quot;);
+                &#125; else if (spec.equals(&quot;主菜&quot;)) &#123;
+                    mainDishes.append(d);
+                    mainDishes.append(&quot;\n&quot;);
+                &#125;
+            &#125;
+            /* 合并字符串，以 ### 间隔不同种类 */
+            String allDishes = String.join(&quot;###&quot;, staple, mainDishes, coldDishes, soup, sweetmeats, beverage);
+            /* 装填数据包 */
+            toSend.setWord(MessageType.ACCEPT);
+            toSend.setObject(allDishes);
+        /* 出了问题就设置拒绝请求标识符 */
+        &#125; catch (Exception e) &#123;
+            toSend.setWord(MessageType.REJECT);
+        /* 最终一定发送数据包 */
+        &#125; finally &#123;
+            sendMessage(toSend, oos);
+        &#125;
+    &#125;
+    
+    /* 检查菜单。和检查餐桌是一个道理 */
+    public static void checkDishes(Message receive, Message toSend, ObjectOutputStream oos) &#123;
+        try &#123;
+            /* 前面说过。接收数据包含有一条被 \t 分隔为不同部分的语句。
+            这里：第三部分代表查询菜品的 ID */
+            String[] mess = ((String) receive.getObject()).split(&quot;\t&quot;);
+            int id = Integer.parseInt(mess[2]);
+            Object o = new DishesDAO().checkDishes(id);
+            if (o == null) &#123;
+                toSend.setWord(MessageType.NOT_FOUND);
+            &#125; else if (!(o instanceof DishesData)) &#123;
+                throw new RuntimeException();
+            &#125; else &#123;
+                toSend.setWord(MessageType.ACCEPT);
+                toSend.setObject(o.toString());
+            &#125;
+        /* 出现任何问题就设置请求拒绝标识符 */
+        &#125; catch (RuntimeException e) &#123;
+            toSend.setWord(MessageType.REJECT);
+        /* 最终一定发送数据包 */
+        &#125; finally &#123;
+            sendMessage(toSend, oos);
+        &#125;
+    &#125;
+    
+    /* 点餐 */
+    public static void orderDishes(Message receive, Message toSend, ObjectOutputStream oos) &#123;
+        try &#123;
+            /* 前面说过……反正前面说过这个 String 的事！
+            这里：第三部分是菜品 ID，第四部分是数量，
+                第五部分是桌号，第六部分是顾客号 */
+            String[] mess = ((String) receive.getObject()).split(&quot;\t&quot;);
+            int dishes = Integer.parseInt(mess[2]);
+            /* 检查一下菜品是不是正确 */
+            /* 这里有一处疏忽。应该一并检查是否菜品可用（available） */
+            Object o = new DishesDAO().checkDishes(dishes);
+            if (!(o instanceof DishesData)) &#123;
+                throw new RuntimeException();
+            &#125;
+            int num = Integer.parseInt(mess[3]);
+            int table = Integer.parseInt(mess[4]);
+            int customer = Integer.parseInt(mess[5]);
+            /* 尝试点餐 */
+            if (new BillDAO().order(dishes, num, table, customer)) &#123;
+                new TableDAO().updateTable(table, 2);
+                toSend.setWord(MessageType.ACCEPT);
+            &#125; else &#123;
+                toSend.setWord(MessageType.REJECT);
+            &#125;
+        /* 出现任何问题就设置请求拒绝标识符 */
+        &#125; catch (RuntimeException e) &#123;
+            toSend.setWord(MessageType.REJECT);
+        /* 最终一定发送数据包 */
+        &#125; finally &#123;
+            sendMessage(toSend, oos);
+        &#125;
+    &#125;
+    
+    /* 返回账单列表 */
+    public static void showBills(Message toSend, ObjectOutputStream oos) &#123;
+        try &#123;
+            /* 和之前的方法一样。这里我们发送的是拼接起来的字符串 */
+            List&lt;DetailBillData&gt; billData = new BillDAO().queryBills();
+            StringBuilder finished = new StringBuilder();
+            StringBuilder unfinished = new StringBuilder();
+            for (DetailBillData d : billData) &#123;
+                if (d.getClear().equals(&quot;n&quot;)) &#123;
+                    unfinished.append(d);
+                    unfinished.append(&quot;\n&quot;);
+                &#125; else &#123;
+                    finished.append(d);
+                    finished.append(&quot;\n&quot;);
+                &#125;
+            &#125;
+            toSend.setWord(MessageType.ACCEPT);
+            toSend.setObject(String.join(&quot;###&quot;, finished, unfinished));
+        /* 出现任何问题就设置请求拒绝标识符 */
+        &#125; catch (Exception e) &#123;
+            toSend.setWord(MessageType.REJECT);
+        /* 最终一定发送数据包 */
+        &#125; finally &#123;
+            sendMessage(toSend, oos);
+        &#125;
+    &#125;
+    
+    /* 检查订单 */
+    public static void checkBills(Message receive, Message toSend, ObjectOutputStream oos) &#123;
+        try &#123;
+            /* ……这里：第三部分是一个标识符。T 表示按桌号查找
+                    第四部分是序号。按桌号查找的话，就代表桌号
+                    第五部分是一个布尔值句子。true 表示查询已付订单，
+                        false 是未付订单。为空表示查询所有订单 */
+            String[] mess = ((String) receive.getObject()).split(&quot;\t&quot;);
+            List&lt;DetailBillData&gt; billData = null;
+            StringBuilder sb = new StringBuilder();
+            if (mess[2].equals(&quot;t&quot;) || mess[2].equals(&quot;T&quot;)) &#123;
+                Boolean clear;
+                if (mess.length &lt; 5) &#123;
+                    clear = null;
+                &#125; else if (mess[4].equals(&quot;true&quot;)) &#123;
+                    clear = true;
+                &#125; else if (mess[4].equals(&quot;false&quot;)) &#123;
+                    clear = false;
+                &#125; else &#123;
+                    clear = null;
+                &#125;
+                billData = new BillDAO().queryBillsByTable(Integer.parseInt(mess[3]), clear);
+            &#125;
+            /* 同样的，还是返回字符串 */
+            for (DetailBillData data : billData) &#123;
+                sb.append(billData);
+                sb.append(&quot;\n&quot;);
+            &#125;
+            toSend.setObject(sb.toString());
+            toSend.setWord(MessageType.ACCEPT);
+        /* 出现任何问题就设置请求拒绝标识符 */
+        &#125; catch (Exception e) &#123;
+            toSend.setWord(MessageType.REJECT);
+        /* 最终一定发送数据包 */
+        &#125; finally &#123;
+            sendMessage(toSend, oos);
+        &#125;
+    &#125;
+    
+    /* 结算订单 */
+    public static void finishBills(Message receive, Message toSend, ObjectOutputStream oos) &#123;
+        try &#123;
+            /* 第三位是桌号，第四位是结算方法 */ 
+            String[] mess = ((String) receive.getObject()).split(&quot;\t&quot;);
+            int table = Integer.parseInt(mess[2]);
+            int way = Integer.parseInt(mess[3]);
+            /* 不光更新订单信息，也要把指定餐桌重置为空 */
+            boolean finish = new BillDAO().finishBill(table, way) &gt; 0 &amp;&amp; new TableDAO().clearTable(table);
+            toSend.setWord(finish ? MessageType.ACCEPT : MessageType.REJECT);
+        /* 出现任何问题就设置请求拒绝标识符 */
+        &#125; catch (Exception e) &#123;
+            toSend.setWord(MessageType.REJECT);
+        /* 最终一定发送数据包 */
+        &#125; finally &#123;
+            sendMessage(toSend, oos);
+        &#125;
+    &#125;
+&#125;JAVA
+</code></pre>
+<h5><span id="commelodywmtsql">com.melody.wmt.sql</span></h5><h6><span id="wanminsqlproperties">WanMinSQL.properties</span></h6><blockquote>
+<p>数据库配置文件</p>
+<p>里面的密码填自己的。另外，其实上一篇笔记里故意漏的密码是假的。</p>
+</blockquote>
+<pre><code class="properties">driverClassName=com.mysql.cj.jdbc.Driver
+url=jdbc:mysql://localhost:3306/wan_min
+username=root
+password=******
+initialSize=10
+minIdle=5
+maxActive=50
+maxWait=5000JAVA
+</code></pre>
+<h6><span id="basicdaojava">BasicDAO.java</span></h6><blockquote>
+<p><em><strong>——详见 [[23.9 BasicDAO](<a target="_blank" rel="noopener" href="https://i-melody.github.io/2022/02/20/Java/%E5%85%A5%E9%97%A8%E9%98%B6%E6%AE%B5/23">https://i-melody.github.io/2022/02/20/Java/入门阶段/23</a> JDBC 和数据库连接池&#x2F;#23-9-BasicDAO)]</strong></em></p>
+<p>代码和上面说的是一样的……大概？</p>
+</blockquote>
+<pre><code class="java">package com.melody.wmt.sql;
+
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
+
+/**
+ * @author Melody
+ * @version 1.0
+ */
+public class BasicDAO&lt;T&gt; &#123;
+    private QueryRunner queryRunner = new QueryRunner();
+
+    public int update(String sql, Object... parameters)&#123;
+        Connection connection = null;
+        try &#123;
+            connection = JDBCUtil.connect();
+            return queryRunner.update(connection, sql, parameters);
+        &#125; catch (SQLException e) &#123;
+            throw new RuntimeException(e);
+        &#125; finally &#123;
+            JDBCUtil.close(connection, null, null);
+        &#125;
+    &#125;
+
+    public List&lt;T&gt; queryMulti(Class&lt;T&gt; tClass, String sql, Object... parameters) &#123;
+        Connection connection = null;
+        try &#123;
+            connection = JDBCUtil.connect();
+            return queryRunner.query(connection, sql, new BeanListHandler&lt;&gt;(tClass), parameters);
+        &#125; catch (SQLException e) &#123;
+            throw new RuntimeException(e);
+        &#125; finally &#123;
+            JDBCUtil.close(connection, null, null);
+        &#125;
+    &#125;
+
+    public T querySingle(Class&lt;T&gt; tClass, String sql, Object... parameters) &#123;
+        Connection connection = null;
+        try &#123;
+            connection = JDBCUtil.connect();
+            return queryRunner.query(connection, sql, new BeanHandler&lt;&gt;(tClass), parameters);
+        &#125; catch (SQLException e) &#123;
+            throw new RuntimeException(e);
+        &#125; finally &#123;
+            JDBCUtil.close(connection, null, null);
+        &#125;
+    &#125;
+
+    public Object queryScalar(String sql, Object... parameters) &#123;
+        Connection connection = null;
+        try &#123;
+            connection = JDBCUtil.connect();
+            return queryRunner.query(connection, sql, new ScalarHandler&lt;&gt;(), parameters);
+        &#125; catch (SQLException e) &#123;
+            throw new RuntimeException(e);
+        &#125; finally &#123;
+            JDBCUtil.close(connection, null, null);
+        &#125;
+    &#125;
+&#125;JAVA
+</code></pre>
+<h6><span id="jdbcutiljava">JDBCUtil.java</span></h6><blockquote>
+<p><em><strong>——见 [[23.7.2 Druid（德鲁伊）连接池](<a target="_blank" rel="noopener" href="https://i-melody.github.io/2022/02/20/Java/%E5%85%A5%E9%97%A8%E9%98%B6%E6%AE%B5/23">https://i-melody.github.io/2022/02/20/Java/入门阶段/23</a> JDBC 和数据库连接池&#x2F;#23-7-2-Druid（德鲁伊）连接池) ]</strong></em></p>
+</blockquote>
+<pre><code class="java">package com.melody.wmt.sql;
+
+import com.alibaba.druid.pool.DruidDataSourceFactory;
+
+import javax.sql.DataSource;
+import java.io.FileReader;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Properties;
+
+/**
+ * @author Melody
+ * @version 1.0
+ */
+public class JDBCUtil &#123;
+    private static DataSource dataSource = null;
+
+    static &#123;
+        Properties properties = new Properties();
+        try &#123;
+            properties.load(new FileReader(&quot;src\\com\\melody\\wmt\\sql\\WanMinSQL.properties&quot;));
+            dataSource = DruidDataSourceFactory.createDataSource(properties);
+        &#125; catch (Exception e) &#123;
+            new RuntimeException(e);
+        &#125;
+    &#125;
+
+    public static Connection connect() throws SQLException &#123;
+        return dataSource.getConnection();
+    &#125;
+
+    public static void close(Connection c, Statement s, ResultSet r) &#123;
+        try &#123;
+            if (c != null) &#123;
+                c.close();
+            &#125;
+            if (r != null) &#123;
+                r.close();
+            &#125;
+            if (s != null) &#123;
+                s.close();
+            &#125;
+        &#125; catch (SQLException e) &#123;
+            throw new RuntimeException(e);
+        &#125;
+    &#125;
+&#125;JAVA
+</code></pre>
+<h6><span id="tabledaojava-tabledatajava">TableDAO.java、TableData.java</span></h6><blockquote>
+<p>对应数据库的 <em>table</em> 表</p>
+</blockquote>
+<pre><code class="java">package com.melody.wmt.sql;
+
+import java.util.List;
+
+/**
+ * @author Melody
+ * @version 1.0
+ */
+public class TableDAO extends BasicDAO&#123;
+    /* 返回全部的餐桌对象 */
+    public List&lt;TableData&gt; queryAll()&#123;
+        String sql = &quot;select * from `table`&quot;;
+        List&lt;TableData&gt; list = queryMulti(TableData.class, sql);
+        return list;
+    &#125;
+    
+    /* 返回 ID 指定的餐桌对象。没找到的场合返回 null */
+    public TableData queryTable(int id) &#123;
+        String sql = &quot;select * from `table` where `id` = ?&quot;;
+        TableData tableData = null;
+        try &#123;
+            tableData = (TableData) querySingle(TableData.class, sql, id);
+        &#125; catch (Exception e) &#123;
+            return null;
+        &#125;
+        return tableData;
+    &#125;
+    
+    /* 设置指定 ID 的餐桌对象的 order 和 customer */
+    public boolean orderTable(int id, int customer) &#123;
+        TableData tableData = queryTable(id);
+        if (!tableData.getOrder().equals(&quot;空&quot;))&#123;
+            return false;
+        &#125;
+        String sql = &quot;update `table` set `order` = &#39;已预定&#39;, `customer` = ? where `id` = ?&quot;;
+        int update = update(sql, customer, id);
+        return update &gt; 0;
+    &#125;
+    
+    /* 更新指定 ID 餐桌对象的 order 状态。一般是把 已预定 状态改为 用餐 */
+    public boolean updateTable(int id, int n) &#123;
+        String sql = &quot;update `table` set `order` = ? where `id` = ?&quot;;
+        String order = null;
+        switch (n)&#123;
+            case 1:
+                order = &quot;已预定&quot;;
+                break;
+            case 2:
+                order = &quot;用餐&quot;;
+                break;
+            case 3:
+                order = &quot;空&quot;;
+                break;
+            case 4:
+                order = &quot;不可用&quot;;
+                break;
+            default:
+                return false;
+        &#125;
+        return update(sql, order, id) &gt; 0;
+    &#125;
+    
+    /* 清理指定 ID 的餐桌。通常是结账后调用这个方法 */
+    public boolean clearTable(int table) &#123;
+        String sql = &quot;update `table` set `order` = &#39;空&#39;, `customer` = null where `id` = ?&quot;;
+        return update(sql, table) &gt; 0;
+    &#125;
+&#125;JAVA
+package com.melody.wmt.sql;
+
+import java.io.Serializable;
+
+/**
+ * @author Melody
+ * @version 1.0
+ */
+public class TableData implements Serializable &#123;
+    private int id;
+    private String order;
+    private int customer;
+    private int seat;
+
+    public TableData() &#123;
+    &#125;
+
+    public TableData(int id, String order, int customer, int seat) &#123;
+        this.id = id;
+        this.order = order;
+        this.customer = customer;
+        this.seat = seat;
+    &#125;
+    
+    /* 省略了 getter 和 setter。实际代码里是有的 */
+
+    @Override
+    public String toString() &#123;
+        return id + &quot;\t&quot; + seat + &quot;\t&quot; + order + &quot;\t&quot; + (customer == 0 ? &quot;-&quot; : customer);
+    &#125;
+&#125;JAVA
+</code></pre>
+<h6><span id="logindaojava-logindatajava">LoginDAO.java、LoginData.java</span></h6><blockquote>
+<p>对应数据库的 <em>Login</em> 表</p>
+</blockquote>
+<pre><code class="java">package com.melody.wmt.sql;
+
+/**
+ * @author Melody
+ * @version 1.0
+ */
+public class LoginDAO extends BasicDAO&#123;
+    /* 返回指定 name 和 password 的对象。没有匹配项则返回 null */
+    public LoginData checkLogin(String name, String password)&#123;
+        try &#123;
+            /* 这里体现出，密码是由 md5 方法加密的 */
+            String sql = &quot;select * from login where name = ? and password = md5(?)&quot;;
+            LoginData loginData = (LoginData) querySingle(LoginData.class, sql, name, password);
+            return loginData;
+        &#125; catch (Exception e) &#123;
+            return null;
+        &#125;
+    &#125;
+&#125;JAVA
+public class LoginData implements Serializable &#123;
+    private int id;
+    private String name;
+    private String password;
+
+    public LoginData()&#123;&#125;
+
+    public LoginData(int id, String name, String password) &#123;
+        this.id = id;
+        this.name = name;
+        this.password = password;
+    &#125;
+    
+    /* 省略了 getter 和 setter。实际代码里是有的 */
+
+&#125;JAVA
+</code></pre>
+<h6><span id="dishesdaojava-dishesdatajava">DishesDAO.java、DishesData.java</span></h6><blockquote>
+<p>对应数据库的 <em>Dishes</em> 表</p>
+</blockquote>
+<pre><code class="java">package com.melody.wmt.sql;
+
+import java.util.List;
+
+/**
+ * @author Melody
+ * @version 1.0
+ */
+public class DishesDAO extends BasicDAO&#123;
+    /* 返回所有菜单 */
+    public List&lt;DishesData&gt; getDishes() &#123;
+        String sql = &quot;select * from `dishes`&quot;;
+        return queryMulti(DishesData.class, sql);
+    &#125;	
+    
+    /* 返回 ID 指定的菜单。没有则返回 null */
+    public Object checkDishes(int id) &#123;
+        String sql = &quot;select * from `dishes` where `id` = ?&quot;;
+        return querySingle(DishesData.class, sql, id);
+    &#125;
+&#125;JAVA
+public class DishesData &#123;
+    private int id;
+    private String name;
+    private int price;
+    private String species;
+    private String available;
+
+    public DishesData()&#123;&#125;
+
+    public DishesData(int id, String name, int price, String species, String available) &#123;
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.species = species;
+        this.available = available;
+    &#125;
+    
+    /* 省略了 getter 和 setter。实际代码里是有的 */
+
+    @Override
+    public String toString() &#123;
+        return id + &quot;\t&quot; + name + &quot;\t&quot; + price;
+    &#125;
+&#125;JAVA
+</code></pre>
+<h6><span id="customerdaojava-customerdatajava">CustomerDAO.java、CustomerData.java</span></h6><blockquote>
+<p>对应数据库的 <em>Customer</em> 表</p>
+</blockquote>
+<pre><code class="java">package com.melody.wmt.sql;
+
+/**
+ * @author Melody
+ * @version 1.0
+ */
+public class CustomerDAO extends BasicDAO &#123;
+    /* 返回 name 和 call 指定的顾客信息。没有则返回 null */
+    public int searchCustomer(String name, String call) &#123;
+        String sql = &quot;select * from customer where `name` = ? and `call` = ?&quot;;
+        Object o = querySingle(CustomerData.class, sql, name, call);
+        return o == null ? -1 : ((CustomerData) o).getId();
+    &#125;
+    
+    /* 创建顾客信息，信息包含 name 和 call */
+    public boolean createCustomer(String name, String call) &#123;
+        String sql = &quot;insert into customer (`name`, `call`) values(?, ?)&quot;;
+        int update = update(sql, name, call);
+        return update &gt; 0;
+    &#125;
+&#125;JAVA
+package com.melody.wmt.sql;
+
+/**
+ * @author Melody
+ * @version 1.0
+ */
+public class CustomerData &#123;
+    private int id;
+    private String name;
+    private String card_id;
+    private String call;
+
+    public CustomerData()&#123;&#125;
+
+    public CustomerData(int id, String name, String card_id, String call) &#123;
+        this.id = id;
+        this.name = name;
+        this.card_id = card_id;
+        this.call = call;
+    &#125;
+    
+    /* 省略了 getter 和 setter。实际代码里是有的 */
+
+&#125;JAVA
+</code></pre>
+<h6><span id="billdaojava-billdatajava-detailbilldatajava">BillDAO.java、BillData.java、DetailBillData.java</span></h6><blockquote>
+<p>对应数据库的 <em>Bill</em> 表，<em>Detail_Bill</em> 视图</p>
+</blockquote>
+<pre><code class="java">package com.melody.wmt.sql;
+
+import java.util.List;
+
+/**
+ * @author Melody
+ * @version 1.0
+ */
+public class BillDAO extends BasicDAO &#123;
+    /* 订餐。形参是 餐品号、数量、桌号、顾客号。成功的场合返回 true */
+    public boolean order(int dishes, int num, int table, int customer) &#123;
+        String sql = &quot;insert into `bill` (`dishes`, `num`, `table`, `customer`) values(?, ?, ?, ?)&quot;;
+        int update = update(sql, dishes, num, table, customer);
+        return update &gt; 0;
+    &#125;
+    
+    /* 返回账单列表 */
+    public List&lt;DetailBillData&gt; queryBills() &#123;
+        String sql = &quot;select * from detail_bill&quot;;
+        return (List&lt;DetailBillData&gt;) queryMulti(DetailBillData.class, sql);
+    &#125;
+    
+    /* 返回特定桌号的帐单列表
+    Boolean 为 true 则返回未付账单；false 返回已结账单；null 返回全部 */
+    public List&lt;DetailBillData&gt; queryBillsByTable(int table, Boolean clear) &#123;
+        String sql;
+        if (clear == null) &#123;
+            sql = &quot;select * from detail_bill where `table` = ?&quot;;
+        &#125; else &#123;
+            sql = &quot;select * from detail_bill where `table` = ? and &quot; + (clear ? &quot;&quot; : &quot;not&quot;) + &quot; `clear` = &#39;n&#39;&quot;;
+        &#125;
+        return (List&lt;DetailBillData&gt;) queryMulti(DetailBillData.class, sql, table);
+    &#125;
+    
+    /* 将指定桌号的所有未付账单结算，其结算方式为 way 指定的方式 */
+    public int finishBill(int table, int way) &#123;
+        String clear;
+        if (way == 1) &#123;
+            clear = &quot;y&quot;;
+        &#125; else if (way == 2) &#123;
+            clear = &quot;alipay&quot;;
+        &#125; else if (way == 3) &#123;
+            clear = &quot;wc_pay&quot;;
+        &#125; else &#123;
+            throw new RuntimeException();
+        &#125;
+        String sql = &quot;update bill set `clear` = ? where `table` = ? and `clear` = &#39;n&#39;&quot;;
+        return update(sql, clear, table);
+    &#125;
+&#125;JAVA
+public class BillData &#123;
+    private int id;
+    private Date date;
+    private int customer;
+    private int table;
+    private int num;
+    private String clear;
+    private int dishes;
+
+    public BillData() &#123;
+    &#125;
+
+    public BillData(int id, Date date, int customer, int table, int num, String clear, int dishes) &#123;
+        this.id = id;
+        this.date = date;
+        this.customer = customer;
+        this.table = table;
+        this.num = num;
+        this.clear = clear;
+        this.dishes = dishes;
+    &#125;
+
+    /* 省略了 getter 和 setter。实际代码里是有的 */
+
+    @Override
+    public String toString() &#123;
+        return id + &quot;\t&quot; + customer + &quot;\t&quot; + table + &quot;\t&quot; + num + &quot;\t&quot; + clear + &quot;\t&quot; + dishes + &quot;\t&quot; + date;
+    &#125;
+&#125;JAVA
+public class DetailBillData &#123;
+    private String name;
+    private String call;
+    private int table;
+    private String dishes;
+    private int num;
+    private Date date;
+    private String clear;
+
+    public DetailBillData() &#123;
+    &#125;
+
+    public DetailBillData(String name, String call, int table, String dishes, int num, Date date, String clear) &#123;
+        this.name = name;
+        this.call = call;
+        this.table = table;
+        this.dishes = dishes;
+        this.num = num;
+        this.date = date;
+        this.clear = clear;
+    &#125;
+
+    /* 省略了 getter 和 setter。实际代码里是有的 */
+
+    @Override
+    public String toString() &#123;
+        return name + &quot;\t&quot; + call + &quot;\t&quot; + table + &quot;\t&quot; + dishes + &quot;\t&quot; + num + &quot;\t&quot; + date + &quot;\t&quot; + clear;
+    &#125;
+&#125;JAVA
+</code></pre>
+<h4><span id="客户端管理部分">客户端（管理）部分</span></h4><h5><span id="commelodywmtclient">com.melody.wmt.client;</span></h5><h6><span id="clinetjava">Clinet.java</span></h6><blockquote>
+<p>客户端程序主体</p>
+<p>该包实现：登录界面、菜单界面、选择菜单</p>
+</blockquote>
+<pre><code class="java">package com.melody.wmt.client;
+
+import com.melody.wmt.sql.LoginData;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.Scanner;
+
+/**
+ * @author Melody
+ * @version 1.0
+ */
+public class Client &#123;
+    public static String IP;						//自己的 IP
+    public static String ServerIP = &quot;192.168.3.16&quot;;	//服务端 IP
+    private static Scanner scanner = new Scanner(System.in);
+    private Socket socket;
+    private ObjectInputStream ois;					//输入流
+    private ObjectOutputStream oos;					//输出流
+                                //以上三个属性会在 connect() 方法中被赋值
+    public final MenuUtility menuUtility = new MenuUtility(this);
+                                //方法类对象，传入形参 this，形成了互相持有的结构
+    public final Listening listening = new Listening(this);
+                                //监听类对象，传入形参 this，形成了互相持有的结构
+    public LoginData loginData = null;				
+                                //用户数据。登陆后服务端会发送一个该类对象过来
+    public boolean skipMenu = false;
+                                //跳过菜单显示。该属性没有投入使用
+    
+    /* 多此一举地初始化自己的 IP 地址。其实可以直接写。 */
+    static &#123;
+        try &#123;
+            IP = InetAddress.getLocalHost().getHostAddress();
+        &#125; catch (UnknownHostException e) &#123;
+            System.out.println(e);
+            IP = &quot;192.168.3.16&quot;;
+        &#125;
+    &#125;
+
+    /* 展示主菜单 */
+    public void mainMenu() &#123;
+        char read;
+        while (true) &#123;
+            System.out.println(&quot;====================================&quot;);
+            System.out.println(&quot;\t\t1. 登 录 系 统&quot;);
+            System.out.println(&quot;\t\t9. 退 出 系 统&quot;);
+            System.out.print(&quot;请选择：&quot;);
+            read = scanner.next().charAt(0);
+            System.out.println();
+            System.out.println(&quot;------------------------------------&quot;);
+            switch (read) &#123;
+                case &#39;1&#39;:
+                    /* 这里会先建立连接 connect()，然后调用登录方法 login() */
+                    if (connect() &amp;&amp; menuUtility.login()) &#123;
+                        try &#123;
+                            menu_1();
+                        &#125; catch (Exception e) &#123;
+                            System.out.println(e);
+                            /* 有任何问题会执行 closeAll()，即关闭一切流 */
+                            closeAll();
+                        &#125;
+                    &#125;
+                    closeAll();
+                    break;
+                case &#39;9&#39;:
+                    if (menuUtility.out()) &#123;
+                        return;
+                    &#125;
+                    break;
+                default:
+                    System.out.println(&quot;输入错误。&quot;);
+                    break;
+            &#125;
+        &#125;
+    &#125;
+    
+    /* 建立连接 */
+    public boolean connect() &#123;
+        try &#123;
+            socket = new Socket(ServerIP, 9000);
+            oos = new ObjectOutputStream(socket.getOutputStream());
+            ois = new ObjectInputStream(socket.getInputStream());
+            new Thread(listening).start();
+            return true;
+        &#125; catch (IOException e) &#123;
+            System.out.println(e);
+            closeAll();
+            return false;
+        &#125;
+    &#125;
+    
+    /* 关闭所有流。通常是登出、断线或报错后执行这个方法 */
+    public void closeAll() &#123;
+        try &#123;
+            if (ois != null) &#123;
+                ois.close();
+            &#125;
+            if (oos != null) &#123;
+                oos.close();
+            &#125;
+            if (socket != null) &#123;
+                socket.close();
+            &#125;
+            listening.listening = false;
+        &#125; catch (IOException e) &#123;
+            System.out.println(e);
+        &#125;
+    &#125;
+    
+    /* 显示（登录）菜单。这个类只是在屏幕上输出字符 */
+    public void showMenu_1() &#123;
+        /* 设置了跳过菜单显示的场合，仅一次菜单不显示 */
+        if (skipMenu)&#123;
+            skipMenu = false;
+            return;
+        &#125;
+        System.out.println(&quot;================&quot; + loginData.getName() + &quot;================&quot;);
+        System.out.println(&quot;\t\t1. 餐 桌 状 态&quot;);
+        System.out.println(&quot;\t\t2. 预 定 餐 桌&quot;);
+        System.out.println(&quot;\t\t3. 菜 单&quot;);
+        System.out.println(&quot;\t\t4. 点 餐&quot;);
+        System.out.println(&quot;\t\t5. 账 单&quot;);
+        System.out.println(&quot;\t\t6. 结 账&quot;);
+        System.out.println(&quot;\t\t9. 登 出 系 统&quot;);
+    &#125;
+    
+    /* 根据菜单选择执行的功能 */
+    public void menu_1() &#123;
+        char read;
+        while (true) &#123;
+            /* 显示菜单。设置跳过的场合仅一次菜单不显示 */
+            showMenu_1();
+            System.out.print(&quot;请选择：&quot;);
+            read = scanner.next().charAt(0);
+            System.out.println(&quot;------------------------------------&quot;);
+            switch (read) &#123;
+                case &#39;1&#39;:
+                    menuUtility.showTables();	//展示餐桌列表
+                    break;
+                case &#39;2&#39;:
+                    menuUtility.orderTable();	//预定餐桌
+                    break;
+                case &#39;3&#39;:
+                    menuUtility.showList();		//展示菜单列表
+                    break;
+                case &#39;4&#39;:
+                    menuUtility.orderDishes();	//订餐
+                    break;
+                case &#39;5&#39;:
+                    menuUtility.showBill();		//展示账单列表
+                    break;
+                case &#39;6&#39;:
+                    menuUtility.payBill();		//结账
+                    break;
+                case &#39;9&#39;:
+                    if (menuUtility.logout()) &#123;	//登出
+                        return;
+                    &#125;
+                    break;
+                default:
+                    System.out.println(&quot;输入错误。&quot;);
+                    break;
+            &#125;
+        &#125;
+    &#125;
+
+    public Socket getSocket() &#123;
+        return socket;
+    &#125;
+
+    public ObjectInputStream getOis() &#123;
+        return ois;
+    &#125;
+
+    public ObjectOutputStream getOos() &#123;
+        return oos;
+    &#125;
+    
+    /* 抛出一个异常。这个方法用于抛出异常（听君一席话……） */
+    public void throwException(String s) &#123;
+        throw new RuntimeException(s);
+    &#125;
+&#125;JAVA
+</code></pre>
+<h6><span id="listeningjava">Listening.java</span></h6><blockquote>
+<p>监听服务端发送数据包的线程</p>
+</blockquote>
+<pre><code class="java">package com.melody.wmt.client;
+
+import com.melody.wmt.common.Message;
+
+
+/**
+ * @author Melody
+ * @version 1.0
+ */
+public class Listening implements Runnable&#123;
+    private Client client;				//和主程序相互持有，便于调用
+    public Message message;				//接收的数据包
+    public boolean listening = true;	//监听中。false 会停止线程
+    public boolean received = false;	//收到文件。
+                            //这是实现某个方法的过渡办法，似乎已经可以弃用
+
+    public Listening(Client client) &#123;
+        this.client = client;
+    &#125;
+
+    @Override
+    public void run() &#123;
+        listening = true;
+        while (listening)&#123;
+            try &#123;
+                Object o = client.getOis().readObject();
+                if (o == null)&#123;
+                    continue;
+                &#125;
+                message = (Message) o;
+                received = true;
+            &#125;catch (Exception e) &#123;
+                client.throwException(&quot;监听异常&quot; + e);
+            &#125;
+        &#125;
+        System.out.println(&quot;监听停止&quot;);
+    &#125;
+&#125;JAVA
+</code></pre>
+<h6><span id="menuutilityjava">MenuUtility.java</span></h6><blockquote>
+<p>客户端程序的方法包</p>
+<p>该包实现：……大部分功能</p>
+</blockquote>
+<pre><code class="java">package com.melody.wmt.client;
+
+import com.melody.wmt.common.Message;
+import com.melody.wmt.common.MessageType;
+import com.melody.wmt.sql.LoginData;
+import com.melody.wmt.sql.TableData;
+
+import java.io.IOException;
+import java.util.Scanner;
+
+/**
+ * @author Melody
+ * @version 1.0
+ */
+public class MenuUtility &#123;
+    private Scanner scanner = new Scanner(System.in);
+    private Client client;				//和主程序互相持有，方便调用
+    private String userData = null;		//内容是：&quot;用户名\t密码&quot;。
+                            //每个发送的数据包的 Object 开头都是这个
+
+    public MenuUtility(Client client) &#123;
+        this.client = client;
+    &#125;
+    
+    /* 发送数据包，并返回接收的数据包 */
+    /* 通常会返回接收到的数据包。也可能返回 null 代表失败 */
+    public Message sendAndReceive(Message message) &#123;
+        /* 发送包不能为 null。基本上不会出现这种情况 */
+        if (message == null) &#123;
+            System.out.println(&quot;错误：传递空包&quot;);
+            return null;
+        &#125;
+        /* 刷新数据包时间戳 */
+        message.setTimeStamp();
+        /* 清空监听进程里已有的数据 */
+        client.listening.received = false;
+        client.listening.message = null;
+        /* 接收数据包对象 */
+        Message receive = null;
+        try &#123;
+            /* 发送数据包 */
+            client.getOos().writeObject(message);
+            /* 标记此时的时间 */
+            long time = System.currentTimeMillis();
+            int n = 0;
+            /* 在指定时间内持续试图接收服务端数据包 */
+            /* 经测试，在 while(true) 中如果只有单一的 if 语句，
+                那么该 if 语句条件（或主体）只会执行一次。
+                这会造成客户端接收不到服务端数据包。
+                因此，加入了无关紧要的小动画，确保 if 语句总会重复执行。*/
+            while (true) &#123;
+                n++;
+                System.out.print(&quot;\r&quot;);
+                /* if 语句中的才是主体
+                    接收到数据包或者等待 5 秒以上后，拿取数据包并跳出该循环 */
+                if (System.currentTimeMillis() - time &gt;= 5000 | client.listening.received) &#123;
+                    receive = client.listening.message;
+                    break;
+                &#125;
+                /* 下面是一个旋转线条的小动画。
+                    由于上面的 \r 存在，该动画在程序继续后会被其他字符覆盖 */
+                switch (n % 4) &#123;
+                    case 1:
+                        System.out.print(&quot;|&quot;);
+                        break;
+                    case 2:
+                        System.out.print(&quot;/&quot;);
+                        break;
+                    case 3:
+                        System.out.print(&quot;-&quot;);
+                        break;
+                    default:
+                        System.out.print(&quot;\\&quot;);
+                        break;
+                &#125;
+            &#125;
+            return receive;
+        /* 有任何异常则返回 null */
+        &#125; catch (IOException e) &#123;
+            System.out.println(e);
+            return null;
+        &#125;
+    &#125;
+
+    /* 实现登录验证 */
+    public boolean login() &#123;
+        System.out.print(&quot;请输入用户名：&quot;);
+        String user = scanner.next();
+        System.out.print(&quot;请输入密码：&quot;);
+        String pw = scanner.next();
+        System.out.println();
+        /* 这句字符串会被重复使用 */
+        userData = (user + &quot;\t&quot; + pw);
+        /* 发送数据包。这里写得比较挤，后面我都分开写了 */
+        Message receive = sendAndReceive(new Message(Client.IP, Client.ServerIP, MessageType.LOGIN, userData));
+        /* 根据返回包做出相应提示 */
+        if (receive == null) &#123;
+            System.out.println(&quot;错误：服务器无响应&quot;);
+            return false;
+        &#125;
+        String reply = receive.getWord();
+        if (reply.equals(MessageType.LOGIN_USER_NOT_EXIST)) &#123;
+            System.out.println(&quot;错误：用户名不存在&quot;);
+        &#125; else if (reply.equals(MessageType.LOGIN_WRONG_PW)) &#123;
+            System.out.println(&quot;错误：密码错误&quot;);
+        &#125; else if (reply.equals(MessageType.ACCEPT)) &#123;
+            try &#123;
+                client.loginData = (LoginData) receive.getObject();
+            &#125; catch (Exception e) &#123;
+                System.out.println(&quot;未知错误&quot;);
+                return false;
+            &#125;
+            System.out.println(&quot;登录成功&quot;);
+        &#125;
+        /* 返回值。true 表示登陆成功 */
+        return receive.getWord().equals(MessageType.ACCEPT);
+    &#125;
+    
+    /* 退出确认。这是未登录时（即，登陆界面）的退出方法 */
+    public boolean out() &#123;
+        System.out.print(&quot;确定退出吗？（Y/N）&quot;);
+        char answer = scanner.next().charAt(0);
+        return answer == &#39;Y&#39; || answer == &#39;y&#39;;
+    &#125;
+    
+    /* 展示餐桌列表 */
+    public boolean showTables() &#123;
+        /* 发送请求，接收服务端返回的数据包 */
+        Message message = new Message(Client.IP, Client.ServerIP, MessageType.SHOW_TABLES, userData);
+        Message receive = sendAndReceive(message);
+        /* 根据返回包的不同作出反应 */
+        if (receive == null) &#123;
+            System.out.println(&quot;错误：服务器无响应&quot;);
+            return false;
+        &#125;
+        String r = receive.getWord();
+        if (r.equals(MessageType.REJECT)) &#123;
+            System.out.println(&quot;错误：服务器拒绝了请求&quot;);
+            return false;
+        &#125; else if (r.equals(MessageType.ACCEPT)) &#123;
+            System.out.println(&quot;ID\t座数\t状态\t顾客&quot;);
+            System.out.println(receive.getObject());
+            return true;
+        &#125; else &#123;
+            System.out.println(&quot;错误：未知的回执&quot; + r);
+            return false;
+        &#125;
+    &#125;
+    
+    /* 检查餐桌状态 */
+    /* need：1不可用；2不存在；3占用未点餐；4占用已点餐；5未占用；6占用
+        根据需要的餐桌状态 need 的不同，有不同的返回方法*/
+    public TableData checkTable(int tableID, int need) &#123;
+        /* 发送验证餐桌请求，接收返回包 */
+        Message message = new Message(client.IP, client.ServerIP, MessageType.CHECK_TABLE, userData + &quot;\t&quot; + tableID);
+        Message receive = sendAndReceive(message);
+        /* 根据返回包做出不同反应 */
+        if (receive == null) &#123;
+            System.out.println(&quot;错误：服务器无响应&quot;);
+            return null;
+        &#125;
+        /* 如果 need 和返回结果匹配，give 值会为 true */
+        boolean give = false;
+        if (receive.getWord().equals(MessageType.REJECT)) &#123;
+            System.out.println(&quot;错误：请求被拒绝&quot;);
+        &#125; else if (receive.getWord().equals(MessageType.TABLE_NOT_AVAILABLE)) &#123;
+            give = need == 1;
+            System.out.print(give ? &quot;&quot; : &quot;餐桌不可用\n&quot;);
+        &#125; else if (receive.getWord().equals(MessageType.TABLE_NOT_EXIST)) &#123;
+            give = need == 2;
+            System.out.print(give ? &quot;&quot; : &quot;餐桌不存在\n&quot;);
+        &#125; else if (receive.getWord().equals(MessageType.TABLE_OCCUPIED)) &#123;
+            give = need == 3 || need == 6;
+            System.out.print(give ? &quot;&quot; : &quot;餐桌被占用（未点餐）\n&quot;);
+        &#125; else if (receive.getWord().equals(MessageType.TABLE_DINNING)) &#123;
+            give = need == 4 || need == 6;
+            System.out.print(give ? &quot;&quot; : &quot;餐桌被占用（已点餐）\n&quot;);
+        &#125; else if (receive.getWord().equals(MessageType.TABLE_AVAILABLE)) &#123;
+            give = need == 5;
+            System.out.print(give ? &quot;&quot; : &quot;餐桌为空\n&quot;);
+        &#125; else &#123;
+            System.out.println(&quot;错误：未知错误&quot;);
+        &#125;
+        try &#123;
+            /* 只有匹配的结果才会返回餐桌数据 */
+            return give ? (TableData) receive.getObject() : null;
+        &#125; catch (Exception e) &#123;
+            return null;
+        &#125;
+    &#125;
+    
+    /* 预定餐桌 */
+    public void orderTable() &#123;
+        /* 首先会调用一次展示餐桌的方法 */
+        showTables();
+        /* 输入餐桌号 */
+        System.out.println(&quot;------------------------------------&quot;);
+        System.out.print(&quot;请输入预定的餐桌号码（-1取消）：&quot;);
+        int tableID = 0;
+        try &#123;
+            tableID = Integer.parseInt(scanner.next());
+            if (tableID == -1) &#123;
+                return;
+            &#125; else if (tableID &lt;= 0) &#123;
+                throw new RuntimeException();
+            &#125;
+        &#125; catch (Exception e) &#123;
+            System.out.println(&quot;输入错误。&quot;);
+            return;
+        &#125;
+        /* 检查一下上面输入的餐桌是否正确。这时的正确指的是餐桌为空 */
+        TableData tableData = checkTable(tableID, 5);
+        if (tableData == null) &#123;
+            return;
+        &#125;
+        System.out.print(&quot;请输入预定人名字：&quot;);
+        String name = scanner.next();
+        System.out.println(&quot;请输入预定人电话：&quot;);
+        String call = scanner.next();
+        System.out.println(&quot;请确认预定信息：&quot;);
+        System.out.println(&quot;桌号：&quot; + tableData.getId() + &quot;\t座数：&quot; + tableData.getSeat() + &quot;\t预定人：&quot; + name + &quot;\t电话：&quot; + call);
+        System.out.print(&quot;确定吗？（Y/N）：&quot;);
+        char confirm = scanner.next().charAt(0);
+        if (confirm != &#39;Y&#39; &amp;&amp; confirm != &#39;y&#39;) &#123;
+            return;
+        &#125;
+        /* 发送请求预定餐桌。前面的顾客对象不存在的话，服务端会自动创建新的对象 */
+        Message message = new Message(client.IP, client.ServerIP, MessageType.ORDER_TABLE, userData + &quot;\t&quot; + tableID + &quot;\t&quot; + name + &quot;\t&quot; + call);
+        Message receive = sendAndReceive(message);
+        if (receive.getWord().equals(MessageType.ACCEPT)) &#123;
+            System.out.println(&quot;预定成功！&quot;);
+        &#125; else &#123;
+            System.out.println(&quot;预定失败&quot;);
+        &#125;
+    &#125;
+    
+    /* 展示菜单 */
+    public void showList() &#123;
+        /* 发送展示菜单的请求 */
+        Message message = new Message(Client.IP, Client.ServerIP, MessageType.SHOW_DISHES, userData);
+        Message receive = sendAndReceive(message);
+        if (receive == null) &#123;
+            System.out.println(&quot;错误：服务器无响应&quot;);
+            return;
+        &#125; else if (!receive.getWord().equals(MessageType.ACCEPT)) &#123;
+            System.out.println(&quot;错误：请求被拒绝&quot;);
+            return;
+        &#125;
+        /* 此时拿到了菜单。该菜单的不同类别是由 ### 分割的。我们再将其分开 */
+        String[] dishes;
+        try &#123;
+            dishes = ((String) receive.getObject()).split(&quot;###&quot;);
+        &#125; catch (Exception e) &#123;
+            System.out.println(&quot;未知错误&quot;);
+            return;
+        &#125;
+        char in;
+        /* 这其实又是一级菜单了。直到选择 9 前，该菜单会一直循环 */
+        while (true) &#123;
+            System.out.println(&quot;---------------------------------------&quot;);
+            System.out.println(&quot;\t\t请选择要查看的类别&quot;);
+            System.out.println(&quot;\t\t1. 主  食&quot;);
+            System.out.println(&quot;\t\t2. 主  菜&quot;);
+            System.out.println(&quot;\t\t3. 凉  菜&quot;);
+            System.out.println(&quot;\t\t4. 汤  品&quot;);
+            System.out.println(&quot;\t\t5. 甜  点&quot;);
+            System.out.println(&quot;\t\t6. 饮  料&quot;);
+            System.out.println(&quot;\t\t7. 点  餐&quot;);
+            System.out.println(&quot;\t\t9. 返  回&quot;);
+            System.out.print(&quot;请输入：&quot;);
+            in = scanner.next().charAt(0);
+            System.out.println(&quot;---------------------------------------&quot;);
+            switch (in) &#123;
+                case &#39;1&#39;:
+                    System.out.println(&quot;------------主  食------------&quot;);
+                    System.out.println(&quot;ID\t名称  \t价格&quot;);
+                    System.out.println(dishes[0]);
+                    break;
+                case &#39;2&#39;:
+                    System.out.println(&quot;------------主  菜------------&quot;);
+                    System.out.println(&quot;ID\t名称  \t价格&quot;);
+                    System.out.println(dishes[1]);
+                    break;
+                case &#39;3&#39;:
+                    System.out.println(&quot;------------凉  菜------------&quot;);
+                    System.out.println(&quot;ID\t名称  \t价格&quot;);
+                    System.out.println(dishes[2]);
+                    break;
+                case &#39;4&#39;:
+                    System.out.println(&quot;------------汤  品------------&quot;);
+                    System.out.println(&quot;ID\t名称  \t价格&quot;);
+                    System.out.println(dishes[3]);
+                    break;
+                case &#39;5&#39;:
+                    System.out.println(&quot;------------甜  点------------&quot;);
+                    System.out.println(&quot;ID\t名称  \t价格&quot;);
+                    System.out.println(dishes[4]);
+                    break;
+                case &#39;6&#39;:
+                    System.out.println(&quot;------------饮  料------------&quot;);
+                    System.out.println(&quot;ID\t名称  \t价格&quot;);
+                    System.out.println(dishes[5]);
+                    break;
+                case &#39;7&#39;:
+                    /* 这时调用订餐的方法 */
+                    orderDishes();
+                    break;
+                case &#39;9&#39;:
+                    return;
+                default:
+                    System.out.println(&quot;输入错误&quot;);
+                    break;
+            &#125;
+        &#125;
+    &#125;
+    
+    /* 订餐 */
+    public void orderDishes() &#123;
+        System.out.println(&quot;请输入菜品编号（数字，-1返回）：&quot;);
+        int dish;
+        try &#123;
+            dish = Integer.parseInt(scanner.next());
+        &#125; catch (Exception e) &#123;
+            System.out.println(&quot;输入错误&quot;);
+            return;
+        &#125;
+        if (dish &lt; 0) &#123;
+            return;
+        &#125;
+        /* 检查输入的餐品信息。这里把一部分代码封装成了一个新方法
+            ……这是因为测试发现，不这样做会导致内存数据不更新，接收到的返回包总是不变 */
+        String dishDetail = orderDishesPart1(dish);
+        if (dishDetail == null) &#123;
+            return;
+        &#125;
+        System.out.println(&quot;请输入数量（数字，-1返回）：&quot;);
+        int num;
+        try &#123;
+            num = Integer.parseInt(scanner.next());
+        &#125; catch (Exception e) &#123;
+            System.out.println(&quot;输入错误&quot;);
+            return;
+        &#125;
+        if (num &lt; 0) &#123;
+            return;
+        &#125;
+        System.out.println(&quot;请输入订餐桌号（数字，-1返回）：&quot;);
+        int table;
+        try &#123;
+            table = Integer.parseInt(scanner.next());
+        &#125; catch (Exception e) &#123;
+            System.out.println(&quot;输入错误&quot;);
+            return;
+        &#125;
+        if (table &lt; 0) &#123;
+            return;
+        &#125;
+        /* 检查一下餐桌信息。这里，正确的状态是&#39;已占用&#39; */
+        TableData tableData = checkTable(table, 6);
+        if (tableData == null) &#123;
+            return;
+        &#125;
+        /* 展示一下信息 */
+        System.out.println(&quot;ID\t名称  \t价格 \t数量\t桌号&quot;);
+        System.out.println(dishDetail + &quot;\t&quot; + num + &quot;\t&quot; + tableData.getId());
+        System.out.print(&quot;确定吗？（Y/N）：&quot;);
+        char confirm = scanner.next().charAt(0);
+        if (confirm != &#39;Y&#39; &amp;&amp; confirm != &#39;y&#39;) &#123;
+            return;
+        &#125;
+        /* 发送订餐请求 */
+        Message message = new Message(Client.IP, Client.ServerIP, MessageType.ORDER_DISHES, null);
+        message.setObject(userData + &quot;\t&quot; + dish + &quot;\t&quot; + num + &quot;\t&quot; + table + &quot;\t&quot; + tableData.getCustomer());
+        Message receive = sendAndReceive(message);
+        if (receive == null) &#123;
+            System.out.println(&quot;错误：服务器无响应&quot;);
+        &#125; else if (receive.getWord().equals(MessageType.REJECT)) &#123;
+            System.out.println(&quot;错误：请求被拒绝&quot;);
+        &#125; else if (receive.getWord().equals(MessageType.ACCEPT)) &#123;
+            System.out.println(&quot;预定成功&quot;);
+        &#125;
+    &#125;
+    
+    /* 订餐方法中，小部分代码封装成了这个方法 */
+    /* 如此做是因为测试发现，不这样做会导致内存数据不更新，
+        接收到的服务端返回包内容总是和方法中第一次接收的返回包内容一样。
+        测试过很多次，问题就是出在这里。解决方法就是这样。
+        这样，这个方法执行完毕后，似乎会刷新内存。可能这就是垃圾处理机制吧 */
+    public String orderDishesPart1(int dish) &#123;
+        Message message = new Message(Client.IP, Client.ServerIP, MessageType.CHECK_DISHES, userData + &quot;\t&quot; + dish);
+        Message receive1 = sendAndReceive(message);
+        if (receive1 == null) &#123;
+            System.out.println(&quot;错误：服务器无响应&quot;);
+            return null;
+        &#125; else if (!receive1.getWord().equals(MessageType.ACCEPT)) &#123;
+            System.out.println(&quot;错误：请求被拒绝&quot;);
+            return null;
+        &#125;
+        System.out.println(&quot;ID\t名称  \t价格&quot;);
+        String dishDetail = receive1.getObject().toString();
+        System.out.println(dishDetail);
+        return dishDetail;
+    &#125;
+
+    /* 展示账单列表 */
+    public void showBill() &#123;
+        /* 发送请求 */
+        Message message = new Message(Client.IP, Client.ServerIP, MessageType.SHOW_ALL_BILLS, userData);
+        Message receive = sendAndReceive(message);
+        if (receive == null) &#123;
+            System.out.println(&quot;错误：服务器无响应&quot;);
+            return;
+        &#125; else if (receive.getWord().equals(MessageType.REJECT)) &#123;
+            System.out.println(&quot;错误：请求被拒绝&quot;);
+            return;
+        &#125;
+        /* 同样的，账单列表也是以 ### 分隔的 */
+        String[] bills;
+        try &#123;
+            bills = ((String) receive.getObject()).split(&quot;###&quot;);
+        &#125; catch (Exception e) &#123;
+            System.out.println(&quot;错误：未知错误&quot;);
+            return;
+        &#125;
+        /* 另一个小菜单。选择 9 前会一直循环 */
+        while (true) &#123;
+            System.out.println(&quot;---------------------------------------&quot;);
+            System.out.println(&quot;\t\t请选择要查看的类别&quot;);
+            System.out.println(&quot;\t\t1. 已完成账单&quot;);
+            System.out.println(&quot;\t\t2. 未完成账单&quot;);
+            System.out.println(&quot;\t\t9. 返  回&quot;);
+            System.out.print(&quot;请输入：&quot;);
+            char in = scanner.next().charAt(0);
+            System.out.println(&quot;---------------------------------------&quot;);
+//            System.out.println(&quot;姓名 \t电话  \t桌号\t菜名   \t数量\t日期          \t结算状态&quot;);
+            switch (in) &#123;
+                case &#39;1&#39;:
+                    System.out.println(bills[0].length() == 0 ? &quot;---无---&quot; : bills[0]);
+                    break;
+                case &#39;2&#39;:
+                    System.out.println((bills.length &lt; 2 || bills[1].length() == 0) ? &quot;---无---&quot; : bills[1]);
+                    break;
+                case &#39;9&#39;:
+                    return;
+                default:
+                    System.out.println(&quot;输入错误&quot;);
+                    break;
+            &#125;
+        &#125;
+    &#125;
+    
+    /* 按桌号检查账单 */
+    public String checkBillByTable(int table) &#123;
+        /* 发送请求
+            特别一提：后面的 &quot;\t&quot; + &#39;t&#39; + &quot;\t&quot; + table + &quot;\t&quot; + &quot;true&quot; 
+            代表 按桌号查询(t)，号码是 table，展示未结账账单(true) */
+        Message message = new Message(Client.IP, Client.ServerIP, MessageType.CHECK_BILLS, userData + &quot;\t&quot; + &#39;t&#39; + &quot;\t&quot; + table + &quot;\t&quot; + &quot;true&quot;);
+        Message receive = sendAndReceive(message);
+        if (receive == null) &#123;
+            System.out.println(&quot;错误：服务器无响应&quot;);
+            return null;
+        &#125; else if (receive.getWord().equals(MessageType.ACCEPT)) &#123;
+            return receive.getObject().toString();
+        &#125; else if (receive.getWord().equals(MessageType.REJECT)) &#123;
+            System.out.println(&quot;错误：请求被拒绝&quot;);
+            return null;
+        &#125; else &#123;
+            System.out.println(&quot;错误：未知错误&quot;);
+            return null;
+        &#125;
+    &#125;
+    
+    /* 结账 */
+    public void payBill() &#123;
+        showTables();
+        System.out.print(&quot;请输入结账的桌号（-1返回）：&quot;);
+        int table = 0;
+        try &#123;
+            table = Integer.parseInt(scanner.next());
+        &#125; catch (Exception e) &#123;
+            System.out.println(&quot;输入错误&quot;);
+        &#125;
+        if (table &lt; 0) &#123;
+            return;
+        &#125;
+        /* 检查一下桌号 */
+        TableData tableData = checkTable(table, 4);
+        if (tableData == null) &#123;
+            return;
+        &#125;
+        /* 检查并展示那个桌号的未结账单 */
+        String s = checkBillByTable(table);
+        if (s == null) &#123;
+            return;
+        &#125;
+        System.out.println(s);
+        System.out.println(&quot;请确认以上信息（Y/N）：&quot;);
+        char confirm = scanner.next().charAt(0);
+        if (confirm != &#39;Y&#39; &amp;&amp; confirm != &#39;y&#39;)&#123;
+            return;
+        &#125;
+        System.out.println(&quot;请输入结算方式（1现金；2支付宝；3微信；-1返回）：&quot;);
+        int way = -1;
+        try &#123;
+            way = Integer.parseInt(scanner.next());
+            if (way &lt; -1 || way &gt; 3)&#123;
+                throw new RuntimeException();
+            &#125;
+        &#125; catch (Exception e) &#123;
+            System.out.println(&quot;输入错误&quot;);
+        &#125;
+        if (way == -1) &#123;
+            return;
+        &#125;
+        /* 发送结账请求 */
+        Message message = new Message(Client.IP, Client.ServerIP, MessageType.FINISH_BILLS, userData + &quot;\t&quot; +  table + &quot;\t&quot; + way);
+        Message receive = sendAndReceive(message);
+        if (receive == null) &#123;
+            System.out.println(&quot;错误：服务器无响应&quot;);
+        &#125; else if (receive.getWord().equals(MessageType.REJECT)) &#123;
+            System.out.println(&quot;错误：请求被拒绝&quot;);
+        &#125; else if (receive.getWord().equals(MessageType.ACCEPT)) &#123;
+            System.out.println(&quot;结算成功&quot;);
+        &#125;
+    &#125;
+    
+    /* 登出 */
+    public boolean logout() &#123;
+        System.out.print(&quot;确定登出吗？（Y/N）：&quot;);
+        char confirm;
+        try &#123;
+            confirm = scanner.next().charAt(0);
+            if (confirm != &#39;y&#39; &amp;&amp; confirm != &#39;Y&#39;)&#123;
+                return false;
+            &#125;
+            Message message = new Message(Client.IP, Client.ServerIP, MessageType.LOGOUT, userData);
+            client.getOos().writeObject(message);
+            return true;
+        &#125; catch (IOException e) &#123;
+            System.out.println(&quot;传输异常&quot;);
+            return true;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 Yelog
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().trim().split('\n').length, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 18px 3px 15px 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: ;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<div class="aplayer"
+
+    data-id="9126522781"
+
+    data-server="netease"
+
+    data-type="playlist"
+
+    data-fixed="true"
+
+    data-autoplay="false"
+
+    data-loop="all"
+
+    data-order="random"
+
+    data-preload="auto"
+
+    data-volume="0.7"
+
+    data-mutex="true"
+
+>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+
+<script>
+(function() {
+
+  var arr = new Array();
+  var $tags = $('.post-tags').children('a');
+  $tags.each(function() {
+    arr.push($(this).html())
+  })
+  if (arr.indexOf("图集") !== -1) {
+
+    $('.hj_img').each(function() {
+      $(this).wrap('<a class="fancybox" data-fancybox="gallery" href="' + $(this).prop("src") + '"></a>'); 
+    })
+    //初始化fancybox，padding设为0，loop设为false
+    $('.fancybox').fancybox({
+      padding: 0,
+      loop: false
+    });
+  }
+})();
+</script>
+
+<!-- // 文字 -->
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/shehuizhuyi.js"></script>
+<!-- // 爱心 -->
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/love.js"></script>
+<!-- // 按键屏蔽 需要jQuery -->
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn@latest/js/noSomeKey.js"></script>
+
+
+</html>

@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>HatidaBlog</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="HatidaBlog">
+  <title>21 反射 | HatidaBlog</title>
+  <meta name="keywords" content=" java , 反射 ">
+  <meta name="description" content="21 反射 | HatidaBlog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="第4章 检索数据4.5 检索不同的行DISTINCT关键字：此关键字指示MySQL只返回不同的值。  不能部分使用DISTINCT DISTINCT关键字应用于所有列而不仅是前置它的列。如果给出SELECT DISTINCT vend_id,prod_price，除非指定的两个列都不同，否则所有行都将被检索出来。 相当于将distinct后面的列放在一起作为条件  4.6 限制结果-limit关键">
 <meta property="og:type" content="article">
@@ -59,7 +59,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -500,12 +500,64 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-Java基础/21 反射机制" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-Blog"><span class="toc-text">Why Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-text">对博客的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%8F%B6%E8%90%BD%E9%98%81"><span class="toc-text">关于叶落阁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0"><span class="toc-text">博客平台</span></a></li></ol></li></ol>
+        <h1 class="article-title">21 反射</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="编程语言">编程语言</a> > 
+            
+            <a  data-rel="编程语言&lt;---&gt;java">java</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">java</a>
+            
+            <a class="color3">反射</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2024-02-05 01:23:07'>2024-02-04 16:17</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:3.2k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">21 反射</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">21.1 反射相关的常用类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">21.2 Class 类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">21.2.1 Class 类的常用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">21.2.2 获取 Class 对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">21.2.3 哪些类有 Class 对象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">&#x3D;&#x3D;21.3 类的加载&#x3D;&#x3D;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">21.3.1 类加载的五个阶段</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">21.4 通过反射获取类的结构信息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">java.lang.Class 类（与前面的的重复）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">java.lang.reflect.Field 类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">java.lang.reflect.Method 类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">java.lang.reflect.Constructer 类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">21.5 通过反射创建对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">21.6 通过反射访问成员</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -518,33 +570,402 @@
     }
 </style>
 </div>
-            <h1 id="Why-Blog"><a href="#Why-Blog" class="headerlink" title="Why Blog"></a>Why Blog</h1><h2 id="对博客的理解"><a href="#对博客的理解" class="headerlink" title="对博客的理解"></a>对博客的理解</h2><p>喜欢写Blog的人，会经历三个阶段。</p>
-<blockquote>
-<p>第一阶段，刚接触Blog，觉得很新鲜，试着选择一个免费空间来写。</p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://gitee.com/kilomi/pic-bed/raw/master/img/202311020905457.png" alt="image-20231102090548360"></p>
+<p>从带代码&#x2F;编译阶段到类加载阶段是jvm底层实现的，而类加载到运行阶段是程序员应用阶段完成的。</p>
+<p>&#x3D;&#x3D;class.forName( )方法中一定要填写完整类名（即包名+类名），即便该类与调用forName方法的类在同一包下，也需填写完整类名！&#x3D;&#x3D;</p>
+<h1><span id="21-反射">21 反射</span></h1><blockquote>
+<ol>
+<li>反射机制（Reflection）允许程序在执行期借助于 Reflection API 取得任何类的内部信息（如成员变量、成员方法等），并能操作对象的属性及方法。反射在设计模式和框架底层都会用到。</li>
+<li>加载完类之后，在堆中就产生了一个 <code>Class</code> 类型的对象（一个类只有一个 <code>Class</code> 对象），这个对象包含了类的完整结构信息。通过这个对象得到类的结构。这个对象就像一面镜子，透过这个镜子看到类的结构。所以，形象地称之为：反射</li>
+</ol>
+<p>ocp 原则（开闭原则）：<strong>不修改源码来扩展功能</strong></p>
 </blockquote>
+<p><strong>计算机的三个阶段</strong></p>
+<ol>
+<li><p>代码阶段 &#x2F; 编译阶段</p>
 <blockquote>
-<p>第二阶段，发现免费空间限制太多，就自己购买域名和空间，搭建独立博客。</p>
+<p>编写代码 ——（Javac 编译）——&gt; .class 字节码文件</p>
 </blockquote>
+</li>
+<li><p>Class 类阶段 &#x2F; 加载阶段</p>
 <blockquote>
-<p>第三阶段，觉得独立博客的管理太麻烦，最好在保留控制权的前提下，让别人来管，自己只负责写文章。</p>
+<p>字节码文件 ——（ClassLoader 类加载器）——&gt; <code>Class</code> 类对象（堆中）· 字节码二进制数据 &#x2F; 元数据（方法区）</p>
+<p><code>Class</code> 类对象包含：成员变量 <code>Field[] fields</code>、构造器 <code>Constructor[] cons</code>、成员方法 <code>Methord[] ms</code></p>
 </blockquote>
-<p>我们每个人的在网络上产生的数据越来越多，这些信息是我们在互联网上存在过的痕迹，值得我们认真对待。但是它们被分散分布在各个网站上。很多时候我们很难将它们聚合在一起，而且各个网站的信息排布方式也没有办法自由控制，所以我们需要一个可以由自己主宰的空间——博客。</p>
-<p>通过博客，我们可以记录自己的生活和成长的轨迹。它不像 Twitter 那样碎片化，也不像 Facebook 那样关系化，它是私人的空间。</p>
-<h2 id="关于叶落阁"><a href="#关于叶落阁" class="headerlink" title="关于叶落阁"></a>关于叶落阁</h2><p><strong>叶落阁</strong> 是阁主（杨玉杰）的个人站。</p>
-<p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
-<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 生成，部署在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主题 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a> 已经在github上开源</p>
-<p><code>3-hexo</code> 主题使用交流可以加 Q群: <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=e8cf083cc097141eaf323396f1766809b8e90ff00c67bb441898f672892f6904"><img data-ignore border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="3-hexo使用交流" title="3-hexo使用交流"></a></p>
-<p>主要功能：</p>
+</li>
+<li><p>Runtime 运行阶段</p>
+<blockquote>
+<p>创建对象，该对象知道其属于哪个 <code>Class</code> 对象</p>
+</blockquote>
+</li>
+</ol>
+<p><strong>反射机制可以完成</strong></p>
+<ol>
+<li>在运行时判断任意一个对象所属的类</li>
+<li>在运行时构造任意一个类的对象</li>
+<li>在运行时得到任意一个类所具有的成员变量和方法</li>
+<li>在运行时调用任意一个对象的成员变量和方法</li>
+<li>生成<a target="_blank" rel="noopener" href="https://juejin.cn/post/6974018412158664734">动态代理</a></li>
+</ol>
+<h2><span id="211-反射相关的常用类">21.1 反射相关的常用类</span></h2><ol>
+<li><p><code>java.lang.Class</code>：代表一个类。<code>Class</code> 对象表示某个类加载后在堆中的对象</p>
+<blockquote>
+<pre><code class="java">Class cls = Class.forName(classFullPath);			//[1]
+Object o = cls.newInstance();						//[2]
+</code></pre>
+<ol>
+<li>通过完整类名得到一个类的 Class 对象</li>
+<li>通过该 Class 对象创建一个该类的 对象实例</li>
+</ol>
+</blockquote>
+</li>
+<li><p><code>java.lang.reflect.Method</code>：代表类的方法。<code>Method</code> 对象表示某个类的某个方法</p>
+<blockquote>
+<pre><code class="java">Method method = cls.getMethod(methodName);			//[1]
+method.invoke(o);									//[2]
+</code></pre>
+<ol>
+<li>通过该 Class 对象得到一个 方法对象</li>
+<li>方法对象.invoke：调用该方法</li>
+</ol>
+</blockquote>
+</li>
+<li><p><code>java.lang.reflect.Field</code>：代表类的成员变量</p>
+<blockquote>
+<pre><code class="java">Field field = cls.getField(fieldName);				//[1]
+</code></pre>
+<ol>
+<li>该方法只能得到非私有对象</li>
+</ol>
+</blockquote>
+</li>
+<li><p><code>java.lang.reflect.Constructor</code>：代表类的构造方法</p>
+<blockquote>
+<pre><code class="java">Constructor constructor = cls.getConstructor();		//[1]
+Constructor constructor2 = cls.getConstructor(String.class)
+                                                        //[2]
+</code></pre>
+<ol>
+<li>得到一个无参构造器</li>
+<li>得到一个形参是 <code>(String str)</code> 的构造器</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+<p><strong>反射的优点和缺点</strong></p>
 <ul>
-<li>搜索支持文章标题、标签(#标签)、作者(@作者)</li>
-<li>pad&#x2F;手机等移动端适配</li>
-<li>页面全局快捷键 <a target="_blank" rel="noopener" href='http://yelog.org/2017/03/24/3-hexo-shortcuts/'>3-hexo快捷键说明</a></li>
+<li>优点：可以动态地创建和使用对象（也是框架底层核心），使用灵活。没有反射机制，框架技术就失去底层支撑</li>
+<li>缺点：使用反射基本是解释执行。这对执行速度有影响。</li>
 </ul>
+<p><strong>反射调用优化 - 关闭访问检查</strong></p>
+<ol>
+<li><p><code>Method</code> 和 <code>Field</code>、<code>Constructor</code> 对象都有 <code>setAccessible()</code> 方法</p>
+</li>
+<li><p>&#x3D;&#x3D;<code>setAccessible()</code> 作用是启动和禁用访问安全检查的开关，在需要访问私有域(会破坏封装性)时，传一个true。&#x3D;&#x3D;</p>
+</li>
+<li><p>参数值为 true，表示反射对象在使用时取消访问检查，这样能提高反射效率。</p>
+<p> 为 false 表示执行访问检查</p>
+</li>
+</ol>
+<h2><span id="212-class-类">21.2 <code>Class</code> 类</span></h2><ol>
+<li><code>Class</code> 也是类，因此也继承 <code>Object</code> 类</li>
+<li><code>Class</code> 类不是 new 出来的，而是系统创建的</li>
+<li>对于某个类的 <code>Class</code> 类对象，在内存中只有一份，因为类只加载一次</li>
+<li>每个类的实例都会记得自己是由哪个 <code>Class</code> 实例生成</li>
+<li>通过 <code>Class</code> 可以完整地得到一个类的完整结构，通过一系列 API</li>
+<li><code>Class</code> 对象是存放在堆的</li>
+<li>类的字节码二进制数据，是放在方法区的。有的地方称为类的元数据（包括 方法代码、变量名、方法名、访问权限 等）</li>
+</ol>
+<h3><span id="2121-class-类的常用方法">21.2.1 <code>Class</code> 类的常用方法</span></h3><ul>
+<li><p><code>Class.forName(String)</code>：返回指定类名的 <code>Class</code> 对象</p>
+</li>
+<li><p><code>newInstance()</code>：返回一个无参构造器创建的实例</p>
+</li>
+<li><p><code>getName()</code>：返回该 <code>Class</code> 对象表示的实体的全类名</p>
+</li>
+<li><p><code>getClass()</code>：返回该 <code>Class</code> 对象的运行类型 <code>java.lang.Class</code></p>
+</li>
+<li><p><code>getPackage()</code>：返回该 <code>Class</code> 对象所在的包</p>
+</li>
+<li><p><code>getSuperClass()</code>：返回该 <code>Class</code> 对象的父类 <code>Class</code> 对象</p>
+</li>
+<li><p><code>getInterface()</code>：返回该 <code>Class</code> 对象的接口（数组）</p>
+</li>
+<li><p><code>getAnnotations()</code>：返回注解信息（<code>Annotation[]</code>）</p>
+</li>
+<li><p><code>getClassLoader()</code>：返回该 <code>Class</code> 对象的加载器（<code>ClassLoader</code> 类型）</p>
+</li>
+<li><p><code>getSuperclass()</code>：返回该 <code>Class</code> 对象实体的超类的 <code>Class</code></p>
+</li>
+<li><p><code>getConstructors()</code>：返回本类所有包含 <code>public</code> 修饰的构造器的 <code>Constructor</code> 对象数组</p>
+<p>  该方法返回的构造器不含父类构造器！</p>
+</li>
+<li><p><code>getDeclaredConstructer()</code>：返回本类所有构造器的 <code>Constructor</code> 对象数组</p>
+</li>
+<li><p><code>getFileds()</code>：返回一个包含 <code>public</code> 修饰的属性的 <code>Field</code> 对象的数组</p>
+<p>  <code>getFiled(String name)</code>：返回指定的 <code>Field</code></p>
+</li>
+<li><p><code>getDeclaredFields()</code>：获取本类中所有属性</p>
+</li>
+<li><p><code>field.get(instance)</code>：返回指定实例的指定属性</p>
+</li>
+<li><p>&#x3D;&#x3D;<code>field.set(instance, ..)</code>：给指定实例的指定属性赋值&#x3D;&#x3D;</p>
+</li>
+<li><p><code>getMethod()</code>：获得所有 <code>public</code> 修饰的方法的 <code>Method</code> 对象</p>
+</li>
+<li><p>&#x3D;&#x3D;<code>getMethod(String name, Class paramTypes, ...)</code>：&#x3D;&#x3D;返回一个 <code>Method</code> 对象，其形参类型为 paramType</p>
+</li>
+<li><p>&#x3D;&#x3D;<code>getDeclaredMethod()</code>：获取本类中所有方法&#x3D;&#x3D;</p>
+</li>
+<li><p>&#x3D;&#x3D;isAssignableFrom();在其中传入一个类对象，用来判断调用这个方法的类对象是否为传入类对象的类型，根instanceof的作用相似。&#x3D;&#x3D;</p>
+</li>
+</ul>
+<h3><span id="2122-获取-class-对象">21.2.2 获取 <code>Class</code> 对象</span></h3><pre><code class="java">package com.melody.note;
+class Test &#123;&#125;
+</code></pre>
+<ol>
+<li><p>（编译阶段）已知一个类的全类名，且该类在类路径下：</p>
+<blockquote>
+<pre><code class="java">Class cls1 = Class.forName(&quot;com.melody.note.Test&quot;);//会调用类的静态方法，相较于classloader是重量级的，classloader返回的是部分信息，而这个是返回类的所有信息
+</code></pre>
+<p>应用场景：配置文件，读取类全路径，加载类。</p>
+<p>可能抛出 <code>ClassNotFoundExcption</code></p>
+</blockquote>
+</li>
+<li><p>（加载阶段）已知具体的类：</p>
+<blockquote>
+<pre><code class="java">Class cls2 = Test.class;
+</code></pre>
+<p>应用场景：参数传递。</p>
+<p>该方法最为安全</p>
+</blockquote>
+</li>
+<li><p>（运行阶段）已知某个类的实例：</p>
+<blockquote>
+<pre><code class="java">Class cls3 = new Test().getClass();
+</code></pre>
+<p>应用场景：通过创建好的对象获取 <code>Class</code> 对象</p>
+</blockquote>
+</li>
+<li><p>&#x3D;&#x3D;通过类加载器：&#x3D;&#x3D;</p>
+<blockquote>
+<pre><code class="java">ClassLoader cll = new Test().getClass().getClassLoader();
+Class cls4 = cll.loadClass(&quot;com.melody.note.Test&quot;);//不会调用类的静态方法，轻量级的，适用于对一个类进行判断的场景(比如是否包含注解)
+</code></pre>
+</blockquote>
+</li>
+<li><p>基本数据类型：</p>
+<blockquote>
+<pre><code class="java">Class clsB1 = int.class;
+Class&lt;Boolean&gt; clsB2 = boolean.class;
+</code></pre>
+</blockquote>
+</li>
+<li><p>基本数据类型包装类：</p>
+<blockquote>
+<pre><code class="java">Class clsB3 = Character.TYPE;
+Class&lt;Long&gt; clsB4 = Long.TYPE;
+</code></pre>
+</blockquote>
+</li>
+</ol>
+<h3><span id="2123-哪些类有-class-对象">21.2.3 哪些类有 <code>Class</code> 对象</span></h3><ol>
+<li>外部类、成员内部类、静态内部类、局部内部类、匿名内部类</li>
+<li>接口（interface）</li>
+<li>数组</li>
+<li>枚举（enum）</li>
+<li>注解</li>
+<li>基本数据类型</li>
+<li>void</li>
+</ol>
+<h2><span id="x3dx3d213-类的加载x3dx3d">&#x3D;&#x3D;21.3 类的加载&#x3D;&#x3D;</span></h2><p><strong>基本说明</strong></p>
+<blockquote>
+<p>反射机制是 Java 实现动态语言的关键，也就是通过反射实现类动态加载</p>
+</blockquote>
+<ol>
+<li>静态加载：编译时加载相关的类（不管有没有执行到代码块），如果没有则报错。依赖性强</li>
+<li>动态加载：运行时加载需要的类（执行到相关的代码块时），如果运行时不用该类，则不报错。降低了依赖性</li>
+</ol>
+<p><strong>类加载时机</strong></p>
+<ol>
+<li>创建对象时（new） [静态加载]</li>
+<li>子类被加载时，父类也被加载 [静态加载]</li>
+<li>调用类中的静态成员 [静态加载]</li>
+<li>通过反射 [动态加载]</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://i-melody.github.io/img/Java_InputImage/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%9B%BE_21.3.webp"><img src="https://i-melody.github.io/img/Java_InputImage/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%9B%BE_21.3.webp" alt="img"></a></p>
+<p><em>（类加载图_21.3）</em></p>
+<ul>
+<li><p>加载（Loading）：</p>
+<p>  将类的 .class 文件读入内存，并为之创建一个 java.lang.Class 对象。此过程由类加载器完成</p>
+</li>
+<li><p>连接（Linking）：</p>
+<p>  将类的二进制数据合并进 JRE 中</p>
+</li>
+<li><p>初始化（initialization）：</p>
+<p>  JVM 负责对类进行初始化。这里主要是静态成员</p>
+</li>
+</ul>
+<h3><span id="2131-类加载的五个阶段">21.3.1 类加载的五个阶段</span></h3><ul>
+<li><p><strong>加载阶段</strong></p>
+<p>  JVM 在该阶段的主要目的是将字节码从不同数据源（.class 文件、jar 包、网络等）转化为二进制字节流加载到内存中，并生成一个代表该类的 <code>java.lang.Class</code> 对象</p>
+</li>
+<li><p><strong>连接阶段 - 验证</strong></p>
+<p>  目的是确保 <code>Class</code> 文件的字节流中包含的信息符合当前虚拟机的要求，并且不会危害虚拟机自身的安全。</p>
+<p>  包括：文件格式验证（是否以魔数 0xcafebabe 开头）、元数据验证、字节码验证、符号引用验证</p>
+<p>  可以考虑使用 <code>-Xverify:none</code> 参数来关闭大部分的类验证措施，以缩短虚拟机加载的时间</p>
+</li>
+<li><p><strong>连接阶段 - 准备</strong></p>
+<p>  JVM 会在该阶段对 静态变量 分配内存并执行默认初始化。这些变量使用的内存都将在方法区中进行分配</p>
+<pre><code class="java">public int n1 = 1;					//实例属性，非静态变量，此阶段不分配内存
+public static int n2 = 2;			//静态变量，默认初始化为 0，后面初始化的时候才会真正赋为2.
+public static final int n3 = 3;		//static final 常量，静态初始化为 3（一开始就是3，后面就不变了）
+</code></pre>
+</li>
+<li><p><strong>连接阶段 - 解析</strong></p>
+<p>  JVM 将常量池内符号引用替换为直接引用的过程</p>
+</li>
+<li><p><strong>初始化</strong></p>
+<p>  到初始化阶段，才真正开始执行类中定义的 Java 程序代码。此阶段是执行 <code>&lt;clinit&gt;()</code> 方法的过程</p>
+<p>  <code>&lt;clinit&gt;()</code> 方法是由编译器按语句在文件中出现的顺序，依次自动收集类中所有静态变量的赋值动作和静态代码块中的语句，并进行合并</p>
+<p>  JVM 会保证一个类的 <code>&lt;clinit&gt;()</code> 方法在多线程环境中被正确地加锁、同步。如果多个线程去初始化一个类，那么&#x3D;&#x3D;只会有一个线程去执行这个类的 <code>&lt;clinit&gt;()</code> 方法&#x3D;&#x3D;，其他线程都需要阻塞等待，直到活动线程执行 <code>&lt;clinit&gt;()</code> 方法完毕</p>
+</li>
+</ul>
+<h2><span id="214-通过反射获取类的结构信息">21.4 通过反射获取类的结构信息</span></h2><h3><span id="javalangclass-类与前面的的重复"><strong><code>java.lang.Class</code> 类（与前面的的重复）</strong></span></h3><blockquote>
+<ul>
+<li><p><code>getSuperClass()</code>：返回该 <code>Class</code> 对象的父类 <code>Class</code> 对象</p>
+</li>
+<li><p><code>getInterface()</code>：返回该 <code>Class</code> 对象的接口（数组）</p>
+</li>
+<li><p><code>getAnnotations()</code>：返回注解信息（<code>Annotation[]</code>）</p>
+</li>
+<li><p><code>getClassLoader()</code>：返回该 <code>Class</code> 对象的加载器（<code>ClassLoader</code> 类型）</p>
+</li>
+<li><p><code>getSuperclass()</code>：返回该 <code>Class</code> 对象实体的超类的 <code>Class</code></p>
+</li>
+<li><p><code>getConstructors()</code>：返回本类所有包含 <code>public</code> 修饰的构造器的 <code>Constructor</code> 对象数组</p>
+<p>  &#x3D;&#x3D;该方法返回的构造器不含父类构造器！&#x3D;&#x3D;</p>
+</li>
+<li><p><code>getDeclaredConstructer()</code>：返回本类&#x3D;&#x3D;所有构造器的 <code>Constructor</code> 对象数组&#x3D;&#x3D;</p>
+</li>
+<li><p><code>getFileds()</code>：返回一个包含 <code>public</code> 修饰的属性的 <code>Field</code> 对象的数组</p>
+<p>  <code>getFiled(String name)</code>：返回指定的 <code>Field</code></p>
+</li>
+<li><p><code>getDeclaredFields()</code>：获取本类中所有属性</p>
+</li>
+<li><p><code>field.get(instance)</code>：返回指定实例的指定属性</p>
+</li>
+<li><p><code>field.set(instance, ..)</code>：给指定实例的指定属性赋值</p>
+</li>
+<li><p><code>getMethod()</code>：获得所有 <code>public</code> 修饰的方法的 <code>Method</code> 对象</p>
+</li>
+<li><p><code>getMethod(String name, Class paramTypes, ...)</code>：返回一个 <code>Method</code> 对象，其形参类型为 paramType</p>
+</li>
+<li><p><code>getDeclaredMethod()</code>：获取本类中所有方法</p>
+</li>
+</ul>
+</blockquote>
+<h3><span id="javalangreflectfield-类"><strong><code>java.lang.reflect.Field</code> 类</strong></span></h3><blockquote>
+<ul>
+<li><p><code>getModifiers()</code>：以 int 形式返回修饰符</p>
+<p>  默认修饰符 [0]、public [1]、private [2]、protected [4]、static [8]、final [16]</p>
+<p>  示例：</p>
+<blockquote>
+<pre><code class="java">public static final int n = 0;
+</code></pre>
+<p>这个变量的修饰符的 int 表示 &#x3D; 1 + 8 + 16 &#x3D; 25</p>
+</blockquote>
+</li>
+<li><p><code>getType()</code>：以 <code>Class</code> 形式返回类型</p>
+<blockquote>
+<p>上例变量的 <code>getType()</code> 等同于 <code>Integer.getClass()</code></p>
+</blockquote>
+</li>
+<li><p><code>getName()</code>：返回属性名</p>
+</li>
+</ul>
+</blockquote>
+<h3><span id="javalangreflectmethod-类"><strong><code>java.lang.reflect.Method</code> 类</strong></span></h3><blockquote>
+<ul>
+<li><code>getModifiers()</code>：以 int 形式返回修饰符（同上）</li>
+<li><code>getName()</code>：返回方法名</li>
+<li><code>getReturnType()</code>：以 <code>Class</code> 形式返回返回类型</li>
+<li><code>getParameterTypes()</code>：以 <code>Class[]</code> 形式返回形参类型数组</li>
+</ul>
+</blockquote>
+<h3><span id="javalangreflectconstructer-类"><strong><code>java.lang.reflect.Constructer</code> 类</strong></span></h3><blockquote>
+<ul>
+<li><code>getModifiers()</code>：以 int 形式返回修饰符</li>
+<li><code>getName()</code>：返回构造器名（和全类名相等）</li>
+<li><code>getParameterTypes()</code>：以 <code>Class[]</code> 形式返回形参类型数组</li>
+</ul>
+</blockquote>
+<h2><span id="215-通过反射创建对象">21.5 通过反射创建对象</span></h2><ol>
+<li><p>调用类中的 public 修饰的无参构造器</p>
+<blockquote>
+<pre><code class="java">Object obj1 = cls.newInstance();
+</code></pre>
+</blockquote>
+</li>
+<li><p>调用类中指定的构造器</p>
+<blockquote>
+<pre><code class="java">Constructer cons = cls.getConstructer(int.class, String.class, ...);
+Object obj2 = cons.newInstance(1, &quot;nnn&quot;, ...);
+</code></pre>
+</blockquote>
+</li>
+<li><p>&#x3D;&#x3D;<code>setAccessible(true)</code>：爆破（暴力破解）。使用反射可以访问 private 构造器&#x3D;&#x3D;，这样做会破坏封装性。</p>
+<blockquote>
+<pre><code class="java">Constructer cons2 = cls.getDeclaredConstructer(boolean.class ...);
+cons2.setAccessible(true);//下面就可以调用私有构造器创建对象了
+Object obj3 = cons.newInstance(false, ...);
+</code></pre>
+</blockquote>
+</li>
+</ol>
+<h2><span id="216-通过反射访问成员">21.6 通过反射访问成员</span></h2><blockquote>
+<pre><code class="java">Field field = cla.getDeclaredField(&quot;name&quot;);
+field.setAccessible(true);
+field.set(o, &quot;111&quot;);								//[1]
+</code></pre>
+<ol>
+<li><p>o 表示一个类的实例</p>
+<p> &#x3D;&#x3D;如果该属性是静态属性（属于类的），则对象 o 可以是 null&#x3D;&#x3D;</p>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<pre><code class="java">Method method = cls.getDeclaredMethod(&quot;m1&quot;);
+method.setAccessible(true);
+Object returnObj = method.invoke(o, &#39;c&#39;, ...);		//[1]
+</code></pre>
+<ol>
+<li><p>o 表示一个类的实例，后面是实参列表</p>
+<p> 同理，静态方法的场合，对象 o 可以是 null。</p>
+</li>
+</ol>
+</blockquote>
+<p>&#x3D;&#x3D;在反射中调用方法时，如果方法有返回值，例如String，调用会返回Object类型(编译类型),但是实际运行类型还是String。&#x3D;&#x3D;</p>
 
-        </article>
-        
-        
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -553,11 +974,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 </body>

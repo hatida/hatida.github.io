@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>7 面向对象编程（中级） | HatidaBlog</title>
+  <meta name="keywords" content=" java , 面向对象 ">
+  <meta name="description" content="7 面向对象编程（中级） | HatidaBlog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="第4章 检索数据4.5 检索不同的行DISTINCT关键字：此关键字指示MySQL只返回不同的值。  不能部分使用DISTINCT DISTINCT关键字应用于所有列而不仅是前置它的列。如果给出SELECT DISTINCT vend_id,prod_price，除非指定的两个列都不同，否则所有行都将被检索出来。 相当于将distinct后面的列放在一起作为条件  4.6 限制结果-limit关键">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql必知必会">
+<meta property="og:url" content="http://example.com/2024/02/05/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/index.html">
+<meta property="og:site_name" content="HatidaBlog">
+<meta property="og:description" content="第4章 检索数据4.5 检索不同的行DISTINCT关键字：此关键字指示MySQL只返回不同的值。  不能部分使用DISTINCT DISTINCT关键字应用于所有列而不仅是前置它的列。如果给出SELECT DISTINCT vend_id,prod_price，除非指定的两个列都不同，否则所有行都将被检索出来。 相当于将distinct后面的列放在一起作为条件  4.6 限制结果-limit关键">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gitee.com/kilomi/pic-bed/raw/master/img/202402050101323.png">
+<meta property="article:published_time" content="2024-02-04T17:00:28.000Z">
+<meta property="article:modified_time" content="2024-02-04T17:01:13.136Z">
+<meta property="article:author" content="hatida">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/kilomi/pic-bed/raw/master/img/202402050101323.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/darcula.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>hatida</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/hatida"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(19)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据库">
+            
+            数据库
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="编程语言">
+            <i class="fold iconfont icon-right"></i>
+            编程语言
+            <small>(17)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;java">
+            
+            java
+            <small>(17)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="19">
+<input type="hidden" id="yelog_site_word_count" value="137.6k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>查找</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>多线程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>反射</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>集合</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>类</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>枚举</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>面向对象</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>排序</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据库</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数组</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>网络</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>项目</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>异常</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>正则表达式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>注解</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>字符串</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GUI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>IO</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>java</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>jdbc</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>jvm</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>mysql</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All 数据库 "
+           href="/2024/02/05/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/"
+           data-tag="mysql"
+           data-author="" >
+            <span class="post-title" title="mysql必知必会">mysql必知必会</span>
+            <span class="post-date" title="2024-02-05 01:00:28">2024/02/05</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/10%20%E6%9E%9A%E4%B8%BE%E5%92%8C%E6%B3%A8%E8%A7%A3/"
+           data-tag="java,枚举,注解"
+           data-author="" >
+            <span class="post-title" title="10 枚举和注解">10 枚举和注解</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/11%20%E5%BC%82%E5%B8%B8%EF%BC%88Exception%EF%BC%89/"
+           data-tag="java,异常"
+           data-author="" >
+            <span class="post-title" title="11 异常（Exception）">11 异常（Exception）</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/21%20%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/"
+           data-tag="java,反射"
+           data-author="" >
+            <span class="post-title" title="21 反射">21 反射</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/25%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"
+           data-tag="java,正则表达式"
+           data-author="" >
+            <span class="post-title" title="25 正则表达式">25 正则表达式</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/5%20%E6%95%B0%E7%BB%84/"
+           data-tag="java,数组,排序,查找"
+           data-author="" >
+            <span class="post-title" title="5 数组、排序和查找">5 数组、排序和查找</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3String/"
+           data-tag="java,字符串,jvm"
+           data-author="" >
+            <span class="post-title" title="String深入理解">String深入理解</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/17%20IO%E6%B5%81/"
+           data-tag="java,IO"
+           data-author="" >
+            <span class="post-title" title="17 IO流">17 IO流</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/19%20%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"
+           data-tag="java,网络"
+           data-author="" >
+            <span class="post-title" title="19 网络编程">19 网络编程</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/7%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B(%E4%B8%AD%E7%BA%A7)/"
+           data-tag="java,面向对象"
+           data-author="" >
+            <span class="post-title" title="7 面向对象编程（中级）">7 面向对象编程（中级）</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/9%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B(%E9%AB%98%E7%BA%A7)/"
+           data-tag="java,类"
+           data-author="" >
+            <span class="post-title" title="9.1 类变量和类方法">9.1 类变量和类方法</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/12%20%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%92%8C%E6%B3%9B%E5%9E%8B/"
+           data-tag="java"
+           data-author="" >
+            <span class="post-title" title="12 常用类">12 常用类</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/16%20%E5%A4%9A%E7%BA%BF%E7%A8%8B/"
+           data-tag="java,多线程"
+           data-author="" >
+            <span class="post-title" title="16 多线程">16 多线程</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/23%20JDBC/"
+           data-tag="java,jdbc,数据库"
+           data-author="" >
+            <span class="post-title" title="23 JDBC 和数据库连接池">23 JDBC 和数据库连接池</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/6%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B(%E5%9F%BA%E7%A1%80)/"
+           data-tag="java"
+           data-author="" >
+            <span class="post-title" title="6.面向对象编程（基础）">6.面向对象编程（基础）</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/15%20%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1/"
+           data-tag="java,GUI"
+           data-author="" >
+            <span class="post-title" title="15 图形界面设计">15 图形界面设计</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/13%20java%E9%9B%86%E5%90%88/"
+           data-tag="java,集合"
+           data-author="" >
+            <span class="post-title" title="13 Java 数据结构">13 Java 数据结构</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/24%20%E6%BB%A1%E6%B1%89%E6%A5%BC%E9%A1%B9%E7%9B%AE/"
+           data-tag="java,项目"
+           data-author="" >
+            <span class="post-title" title="24 项目：满汉楼">24 项目：满汉楼</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 数据库 "
+           href="/2024/02/04/mysql/mysql/"
+           data-tag="mysql"
+           data-author="" >
+            <span class="post-title" title="mysql">mysql</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-Java基础/7 面向对象编程(中级)" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">7 面向对象编程（中级）</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="编程语言">编程语言</a> > 
+            
+            <a  data-rel="编程语言&lt;---&gt;java">java</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">java</a>
+            
+            <a class="color5">面向对象</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2024-02-05 01:16:57'>2024-02-04 16:17</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:6.2k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">7 面向对象编程（中级）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">7.2 包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">7.3 访问修饰符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">7.3.1 访问权限特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">7.3.2 使用说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">7.4 封装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">&#x3D;&#x3D;7.4.1 静态导入&#x3D;&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">&#x3D;&#x3D;7.4.2 JAR 文件&#x3D;&#x3D;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">7.5 继承</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">7.5.1 使用细节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">&#x3D;&#x3D;7.5.2 继承的本质&#x3D;&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">&#x3D;&#x3D;7.5.3 super 关键字&#x3D;&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">7.5.4 方法重写 &#x2F; 覆盖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">阻止继承：final类、方法和域</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">&#x3D;&#x3D;7.6 多态&#x3D;&#x3D;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">&#x3D;&#x3D;7.6.1 多态的体现&#x3D;&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">&#x3D;&#x3D;7.6.2 使用细节&#x3D;&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">&#x3D;&#x3D;7.6.3 理解方法调用&#x3D;&#x3D;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">7.7 Object 类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">&#x3D;&#x3D;equals 方法&#x3D;&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">&#x3D;&#x3D;hashCode 方法&#x3D;&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">&#x3D;&#x3D;toString 方法&#x3D;&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">finalize 方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">7.8 断点调试（Debug）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">附录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">零钱通程序</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1><span id="7-面向对象编程中级">7 面向对象编程（中级）</span></h1><h2><span id="72-包">7.2 包</span></h2><blockquote>
+<p>包的作用：1. 区分相同名字的类 2. 当类很多时，便于管理 3. 控制访问范围</p>
+<p>语法：<code>package com.name</code> 其中 <code>com</code> <code>name</code> 分别是 一级 和 二级目录，用 <code>.</code> 分隔</p>
+<p>包的本质：就是创建不同 文件夹&#x2F;目录 来保存 类 文件</p>
+</blockquote>
+<p><strong>命名规则：</strong></p>
+<ul>
+<li>只能包含 数字 <code>1 2 3</code>、字母 <code>a b A b</code>、下划线 <code>_</code>、小圆点 <code>.</code></li>
+<li>不能用 数字 开头。每级目录都不能。</li>
+</ul>
+<p><strong>命名规范：</strong></p>
+<ul>
+<li>全小写字母 + 小圆点</li>
+<li><code>com.公司名.项目名.业务模块名</code></li>
+</ul>
+<p><strong>常用的包：</strong></p>
+<p><code>java.lang</code>：基本包，默认引入，不需要再引入</p>
+<p><code>java.util</code>：系统提供的工具包。工具类。</p>
+<p><code>java.net</code>：网络包，网络开发。</p>
+<p><code>java.awt</code>：Java 的界面开发，GUI。</p>
+<p><strong>引入包：</strong></p>
+<ul>
+<li>只引入该包下的一个类：<code>import java.util.Scanner</code></li>
+<li>引入该包的所有内容（不建议）：<code>import java.util.*</code></li>
+</ul>
+<p><strong>使用细节：</strong></p>
+<ol>
+<li><p><code>package</code> 的作用是声明当前类所在的包，要放在 类 的 最上面。一个 类 中最多有一句 <code>package</code></p>
+</li>
+<li><p><code>import</code> 放在 <code>package</code> 下面，类定义 前面。可以有多条语句，且没有顺序要求</p>
+</li>
+<li><p>&#x3D;&#x3D;编译器编译时 <strong>不会</strong> 检查目录结构。&#x3D;&#x3D;</p>
+<p> &#x3D;&#x3D;即使一个包处于错误的目录下（只要其不依赖其他包）也可能通过编译。&#x3D;&#x3D;</p>
+<p> &#x3D;&#x3D;但是，虚拟机会找不到该包，最终程序无法运行。&#x3D;&#x3D;</p>
+</li>
+<li><p>&#x3D;&#x3D;从 1.2 版本开始，用户不能再把包放在 java. 开头的目录下了。若如此做，这些包会被禁止加载&#x3D;&#x3D;</p>
+</li>
+</ol>
+<h2><span id="73-访问修饰符">7.3 访问修饰符</span></h2><h3><span id="731-访问权限特点">7.3.1 访问权限特点</span></h3><p>Java 提供 4 种 访问控制修饰符号，用于控制方法和属性（成员变量）的访问权限（范围）</p>
+<ul>
+<li><p>公开级别：<code>public</code>，对外公开。</p>
+</li>
+<li><p>受保护级别：<code>protected</code>，对 子类 和 同一个包中的类 公开。</p>
+<p>  <em><strong>——什么是 子类？详见 [[ 7.5 继承 ]](<a target="_blank" rel="noopener" href="https://i-melody.github.io/2021/12/05/Java/%E5%85%A5%E9%97%A8%E9%98%B6%E6%AE%B5/7">https://i-melody.github.io/2021/12/05/Java/入门阶段/7</a> 面向对象编程（中级）&#x2F;#7-5-继承（重点）)</strong></em></p>
+</li>
+<li><p>默认级别：没有修饰符号，向 同一个包的类 公开。</p>
+</li>
+<li><p>私有级别：<code>private</code>，只有 同类 可以访问，不对外公开。</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>(⌐■_■)</th>
+<th align="center">默认（无修饰符）</th>
+<th align="center">private</th>
+<th align="center">protected</th>
+<th align="center">public</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>本类</td>
+<td align="center">可</td>
+<td align="center">可</td>
+<td align="center">可</td>
+<td align="center">可</td>
+</tr>
+<tr>
+<td>同包中的子类</td>
+<td align="center">可</td>
+<td align="center">不可以</td>
+<td align="center">可</td>
+<td align="center">可</td>
+</tr>
+<tr>
+<td>同包的非子类</td>
+<td align="center">可</td>
+<td align="center">不可以</td>
+<td align="center">可</td>
+<td align="center">可</td>
+</tr>
+<tr>
+<td>其他包的子类</td>
+<td align="center">不可以</td>
+<td align="center">不可以</td>
+<td align="center">可</td>
+<td align="center">可</td>
+</tr>
+<tr>
+<td>其他包的非子类</td>
+<td align="center">不可以</td>
+<td align="center">不可以</td>
+<td align="center">不可以</td>
+<td align="center">可</td>
+</tr>
+</tbody></table>
+<h3><span id="732-使用说明">7.3.2 使用说明</span></h3><ol>
+<li>修饰符可以修饰类中的 属性、成员方法 及 类</li>
+<li>&#x3D;&#x3D;只有 默认 和 <code>public</code> 才能修饰 类，并遵循上述访问权限特点&#x3D;&#x3D;</li>
+<li>成员方法 的访问规则和 属性 相同</li>
+<li>private 修饰的变量可以被 任意本对象同类的对象访问</li>
+</ol>
+<h2><span id="74-封装">7.4 封装</span></h2><blockquote>
+<p>封装（encapsulation）就是把抽象出的 数据[属性] 和对数据的 操作[方法] 封装在一起。数据 被保护在内部，程序的其他部分只有通过被授权的 操作[方法]，才能对数据进行操作。</p>
+</blockquote>
+<p>封装的好处：</p>
+<ul>
+<li>隐藏实现细节</li>
+<li>可以对数据进行验证，保证安全合理</li>
+</ul>
+<p><strong>实现步骤：</strong></p>
+<ol>
+<li>将属性私有化 <code>private</code></li>
+<li>提供一个公共的 <code>set</code> 方法，用于对属性判断并赋值</li>
+<li>提供一个公共的 <code>get</code> 方法，用于获取属性的值</li>
+</ol>
+<p><strong>编译多个源文件：</strong></p>
+<pre><code class="cmd">javac MyClass.java
+</code></pre>
+<p>该文件中使用了其他类时，Java 编译器会查找对应名称的 .class 文件。没有找到的场合，转而寻找 .java 文件，并对其编译。倘若 .java 文件相较原有 .class 文件更新，编译器也会自动重新编译该文件。</p>
+<h3><span id="x3dx3d741-静态导入x3dx3d">&#x3D;&#x3D;7.4.1 静态导入&#x3D;&#x3D;</span></h3><blockquote>
+<p>有一种 import 语句允许导入静态方法和字段，而不只是类</p>
+</blockquote>
+<p>比如：</p>
+<pre><code>import static java.lang.Math.*;
+</code></pre>
+<p>这个场合，使用 Math 包内的静态方法、字段时，不需要再添加类名前缀。</p>
+<pre><code>double n = pow(10, 5);					// &lt;———— 本来是 double n = Math.pow(10, 5);
+double pi = PI;							// &lt;———— 本来是 double pi = Math.PI;JAVA
+</code></pre>
+<p><em><strong>—— 上述方法、字段见 [12.5 Math 类]</strong></em></p>
+<h3><span id="x3dx3d742-jar-文件x3dx3d">&#x3D;&#x3D;7.4.2 JAR 文件&#x3D;&#x3D;</span></h3><blockquote>
+<p>为了避免向用户提供包含大量类文件的复杂目录结构，可以将 Java 程序打包成 JAR （Java 归档）文件。</p>
+<p>一个 JAR 文件既可以包含类文件，也可以包含诸如图像和声音等其他类型的文件。</p>
+<p>JAR 文件是压缩的。其使用了 ZIP压缩格式。</p>
+</blockquote>
+<p><strong>创建 JAR：</strong></p>
+<p>使用 jar 工具以制作 JAR 文件。该工具在 jdk&#x2F;bin 目录下</p>
+<pre><code class="java">jar cvf 包名 文件名1 文件名2 ...
+</code></pre>
+<p>关于 jar 工具的各种指令，还是自己去百度一下吧</p>
+<h2><span id="75-继承">7.5 继承</span></h2><blockquote>
+<p>继承：<u>能解决代码复用，让我们的编程更接近人类思维</u>。当多个类存在相同的 属性（变量）和 方法 时，可以从这些类中抽象出 父类（基类&#x2F;超类）。在 父类 中定义这些属性·方法，所有的子类不需要重新定义这些属性和方法，只需要通过 <code>extends</code> 来声明继承父类即可。</p>
+<p>&#x3D;&#x3D;通过继承的方法，代码的复用性提高了，代码的维护性和拓展性也提高了。&#x3D;&#x3D;</p>
+</blockquote>
+<pre><code class="java">public class Son extends Father &#123;&#125;;				// Son 类继承了 Father 类
+</code></pre>
+<p>定义类时可以指明其父类，也能不指明。不指明的场合，默认继承 Object 类。</p>
+<p>所有类有且只有一个父类。Object 是所有类的直接或间接父类。只有 Object 本身没有父类。</p>
+<h3><span id="751-使用细节">7.5.1 使用细节</span></h3><ol>
+<li>子类 继承了所有属性和方法，<u>但私有（<code>private</code>）的 属性·方法 不能在 子类 直接访问。要调用父类提供的 公共（<code>public</code>）等方法 访问。</u></li>
+<li>&#x3D;&#x3D;子类 必须调用 父类 的 构造器，完成 父类 的 初始化。&#x3D;&#x3D;</li>
+<li>&#x3D;&#x3D;当创建 子类对象 时，<font color="red">不管使用 子类的哪个构造器，默认情况下总会调用 父类的无参构造器</font>。如果 父类 没有提供 无参构造器，则必须在 子类的构造器 中用 <code>super</code> 去指定使用 父类的哪个构造器 完成 对父类的初始化。否则编译不能通过。&#x3D;&#x3D;</li>
+<li>如果希望指定调用 父类的某构造器，则显式地调用一下：<code>super(形参列表);</code></li>
+<li><code>super</code> 在使用时，必须放在构造器第一行。</li>
+<li>由于 <code>super</code> 与 <code>this</code> 都要求放在第一行，所以此两个方法不能同时存在于同一构造器。</li>
+<li>Java 所有的类都是 <code>Object</code> 的子类。换言之，<code>Object</code> 是所有类的父类。</li>
+<li>&#x3D;&#x3D;父类构造器的调用不限于直接父类，将持续向上直至追溯到顶级父类 <code>Object</code>&#x3D;&#x3D;</li>
+<li>子类 最多只能直接继承 一个 父类。即，Java 中是 单继承机制。</li>
+<li>&#x3D;&#x3D;不能滥用继承。子类 和 父类 之间必须满足 is - a 的逻辑关系。&#x3D;&#x3D;</li>
+</ol>
+<blockquote>
+<p>is-A继承关系：“表示类与类之间的继承关系、接口与接口之间的继承的关系以及类对接口实现的关系”。<br>has-A合成关系：“是关联关系的一种，是整体和部分（通常为一个私有的变量）之间的关系，并且代表的整体对象负责构建和销毁代表部分对象，代表部分的对象不能共享”</p>
+<p>is_a是继承关系.<br>has_a是组合关系（描述一个类中有另一个类型的实例）</p>
+</blockquote>
+<h3><span id="x3dx3d752-继承的本质x3dx3d">&#x3D;&#x3D;7.5.2 继承的本质&#x3D;&#x3D;</span></h3><ul>
+<li>内存布局：<ol>
+<li>在 <strong>方法区</strong>，<u>自顶级父类起，依次加载 类信息。</u></li>
+<li>在 堆 中开辟一个空间，自顶级父类起，依次创建并初始化各个类包含的所有属性信息。</li>
+<li>在 栈 中存放该空间的 地址。</li>
+</ol>
+</li>
+<li>如何查找信息？<ol>
+<li>查看该子类是否有该属性。如果该子类有这个属性且可以访问，则返回信息。</li>
+<li>子类没有该属性的场合，查看父类是否有该属性。如有且可访问，则返回信息。如不可访问，则报错。</li>
+<li>父类也没有该属性的场合，继续查找上级父类，直到顶级父类（Object）。</li>
+<li>如需调用某个特定类包含的特定信息，可以调用该类提供的方法。</li>
+</ol>
+</li>
+</ul>
+<h3><span id="x3dx3d753-super-关键字x3dx3d">&#x3D;&#x3D;7.5.3 <code>super</code> 关键字&#x3D;&#x3D;</span></h3><blockquote>
+<p><code>super</code> 代表父类的引用。用于访问父类的 属性、方法、构造器。</p>
+</blockquote>
+<p><strong>super 的使用：</strong></p>
+<ul>
+<li><code>super.属性名</code>：访问父类的属性。<u>不能访问父类的私有（private）属性。</u></li>
+<li><code>super.方法名(形参列表)</code>：访问父类的方法。<u>不能访问父类的私有（private）方法。</u></li>
+<li><code>super(参数列表);</code>：访问父类的构造器。此时，super 语句必须放在第一句。</li>
+</ul>
+<p><strong>使用细节：</strong></p>
+<ol>
+<li>&#x3D;&#x3D;调用父类构造器，好处是分工明确。父类属性由父类初始化，子类由子类初始化。&#x3D;&#x3D;</li>
+<li>&#x3D;&#x3D;子类中由和父类中成员（属性和方法）重名时，要调用父类成员必须用 <code>super</code>。没有重名的场合，<code>super</code>、<code>this</code> 及直接调用的效果相同。&#x3D;&#x3D;</li>
+<li>&#x3D;&#x3D;<code>super</code> 的访问不限于直接父类。&#x3D;&#x3D;如果爷爷类和本类中都有同名成员也能使用。如果多个基类中都有同名成员，则遵循就近原则。</li>
+</ol>
+<h3><span id="754-方法重写-x2f-覆盖">7.5.4 方法重写 &#x2F; 覆盖</span></h3><blockquote>
+<p>方法重写&#x2F;覆盖（Override）：如若子类有一个方法，和父类的某方法的 名称、返回类型、参数 一样，那么我们就说该子类方法 覆盖 了那个父类方法。</p>
+</blockquote>
+<p><strong>使用细节：</strong></p>
+<ol>
+<li>子类方法的参数，方法名称，要和父类方法完全一致。</li>
+<li>&#x3D;&#x3D;子类方法的返回类型需和父类方法 一致，或者是父类返回类型的子类。&#x3D;&#x3D;，向下兼容。</li>
+<li>子类方法 <strong>不能缩小</strong> 父类方法的访问范围（访问修饰符）</li>
+</ol>
+<h3><span id="阻止继承final类-方法和域">阻止继承：final类、方法和域</span></h3><p>经过final修饰的类不可拓展，除了域，它的方法也为final的。</p>
+<h2><span id="x3dx3d76-多态x3dx3d">&#x3D;&#x3D;7.6 多态&#x3D;&#x3D;</span></h2><blockquote>
+<p>多态：方法 或 对象 有多种形态。多态 是面向对象的第三大特征，是建立在 封装 和 继承 的基础之上的</p>
+</blockquote>
+<h3><span id="x3dx3d761-多态的体现x3dx3d">&#x3D;&#x3D;7.6.1 多态的体现&#x3D;&#x3D;</span></h3><ol>
+<li><p>方法的多态：重写 和 重载 体现了 方法的多态。</p>
+</li>
+<li><p><strong>对象的多态：</strong></p>
+<ul>
+<li><p>一个对象的 编译类型 和 运行类型 可以不一致。</p>
+<p>  <code>Animal animal = new Dog();</code></p>
+<p>  上例，编译类型是 <code>Animal</code>，运行类型是子类 <code>Dog</code>。要理解这句话，请回想 [[6.1.4 类与对象的内存访问机制]](<a target="_blank" rel="noopener" href="https://i-melody.github.io/2021/11/29/Java/%E5%85%A5%E9%97%A8%E9%98%B6%E6%AE%B5/6">https://i-melody.github.io/2021/11/29/Java/入门阶段/6</a> 面向对象编程（基础）&#x2F;#6-1-4-类与对象的内存访问机制)：<code>animal</code> 是对象的<strong>引用</strong>。</p>
+</li>
+<li><p>编译类型在定义对象时就确定了，不能改变。</p>
+</li>
+<li><p>运行类型是可以变化的。</p>
+<p>  上例中，再让 <code>animal = new Cat();</code>，这样，运行类型变为了 <code>Cat</code></p>
+</li>
+<li><p>编译类型看定义时 <code>=</code> 的左边，运行类型看 <code>=</code> 的右边。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3><span id="x3dx3d762-使用细节x3dx3d">&#x3D;&#x3D;7.6.2 使用细节&#x3D;&#x3D;</span></h3><ol>
+<li><p>&#x3D;&#x3D;多态的前提：两个对象 &#x2F; 类存在继承关系。&#x3D;&#x3D;</p>
+</li>
+<li><p>多态的向上转型：</p>
+</li>
+</ol>
+<ul>
+<li>本质：父类的引用指向了子类的对象。（如 [ 7.6.1.2 ]）</li>
+<li>语法：<code>父类类型 引用名 = new 子类类型(参数列表);</code></li>
+<li>编译类型看左边，运行类型看右边。</li>
+<li>&#x3D;&#x3D;可以调用父类中的所有成员，但不能调用子类特有的成员，而且需要遵守访问权限。因为在编译阶段，能调用哪些成员是由编译类型决定的。&#x3D;&#x3D;</li>
+<li>最终的运行结果要看子类的具体实现。即从子类起向上查找方法调用（与 [ 7.5.2 ] 规则相同）。</li>
+</ul>
+<blockquote>
+<p>向上转型的好处：</p>
+<ol>
+<li><p>提高代码的灵活性：通过向上转型，可以将不同的子类对象转换为其父类对象，从而可以使用统一的接口来操作这些对象，减少了代码的复杂性和冗余性。</p>
+</li>
+<li><p>提高代码的扩展性：当需要增加新的子类对象时，只需要在父类对象的基础上进行扩展即可，而不需要对原有的代码进行重构，从而降低了代码的维护成本。</p>
+</li>
+<li><p>提高代码的可维护性：在向上转型的情况下<strong>，只需要关注父类对象的行为，而不需要关注子类对象的具体实现细节</strong>，从而提高了代码的可维护性。</p>
+<p> 例如:</p>
+<pre><code class="java">class A&#123;
+    public void play()&#123;...&#125;
+&#125;
+class B extend A&#123;
+    @Override
+    public void play()&#123;...&#125;
+&#125;
+class C extend A&#123;
+    @Override
+    public void play()&#123;...&#125;
+&#125;
+//如果我们想要调用某个类的paly方法，无需像这样实现：
+public void show(B b)&#123;
+    b.paly();
+&#125;
+public void show(C c)&#123;
+    c.paly();
+&#125;
+//而是这样：
+public void show(A a)&#123;	
+    a.paly();
+&#125;
+</code></pre>
+<p> <a target="_blank" rel="noopener" href="https://juejin.cn/post/6993341672755036173">聊聊java的向上转型和向下转型</a></p>
+<p> &#x3D;&#x3D;如果是访问成员变量，编译的话就是看父类，运行同样是看父类。&#x3D;&#x3D;<br> 如果访问的方法，编译就看父类，运行则看子类。<br> <u>如果是静态方法，编译和运行都是看父类。</u></p>
+<p> 总结：只有方法才有多态的特性</p>
+</li>
+</ol>
+</blockquote>
+<ol start="3">
+<li>多态的向下转型：</li>
+</ol>
+<ul>
+<li><p>语法：<code>子类类型 引用名 = (子类类型)父类引用;</code></p>
+<p>  [7.6.2.2] 的例子里，向下转型。这个语法其实和 [2.8.2 强制类型转换] 很像。</p>
+<p>  <code>Dog dog = (Dog)animal;</code></p>
+</li>
+<li><p>只能强转父类的引用，不能强转父类的对象。只有引用子类对象的父类引用才能被向下转型为子类对象。</p>
+<p>  也就是说，&#x3D;&#x3D;向下转型之前，必须先向上转型。&#x3D;&#x3D;</p>
+</li>
+<li><p>要求父类的引用必须指向的是当前目标类型的对象。即上例中的 <code>animal</code> 运行类型需是 <code>Dog</code></p>
+</li>
+<li><p>&#x3D;&#x3D;向下转型后，可以调用子类类型中的所有成员。&#x3D;&#x3D;</p>
+</li>
+</ul>
+<ol start="4">
+<li><p>&#x3D;&#x3D;属性没有重写一说。<strong>和 方法 不同，属性的值 看编译类型。</strong>&#x3D;&#x3D;</p>
+</li>
+<li><p>&#x3D;&#x3D;<code>instanceof</code> 比较操作符。用于判断对象类型是否是某类型或其子类型。此时判断的是 <strong>运行类型</strong>。&#x3D;&#x3D;</p>
+<pre><code class="java">//向下转型的时候比较常见,可以防止意外的类型转换异常。
+A a = new B();
+if(B instanceof A)&#123;
+    B b = (B)a;
+&#125;
+</code></pre>
+</li>
+</ol>
+<h3><span id="x3dx3d763-理解方法调用x3dx3d">&#x3D;&#x3D;7.6.3 理解方法调用&#x3D;&#x3D;</span></h3><p>在对象上调用方法的过程如下：</p>
+<ol>
+<li><p>编译器查看对象的声明类型和方法名。该类和其父类中，所有同名方法（包括参数不同的方法）都被列举。</p>
+<p> 至此，编译器已经知道所有可能被调用的方法。</p>
+</li>
+<li><p>编译器确认方法调用中提供的参数类型。</p>
+<p> 那些列举方法中存在参数类型完全匹配的方法时，即调用该方法。</p>
+<p> &#x3D;&#x3D;没有发现匹配方法，抑或是发现经过类型转换产生了多个匹配方法时，就会报错&#x3D;&#x3D;</p>
+<p> 至此，编译器已经知道要调用方法的名字和参数类型</p>
+</li>
+<li><p>如若是 private 方法、static 方法、final 方法、构造器，那么编译器将能准确知道要调用哪个方法。这称为 <strong>静态绑定</strong></p>
+<p> 与之相对的，&#x3D;&#x3D;如果调用方法依赖于隐式参数类型，那么必须在运行时 <strong>动态绑定</strong>&#x3D;&#x3D;</p>
+</li>
+<li><p>程序运行并采取动态绑定方法时，JVM 将调用那个 <strong>实际类型</strong> 对应的方法。</p>
+</li>
+</ol>
+<p>倘若每次调用方法都进行以上搜索，会造成庞大的时间开销。为此，JVM 预先为每个类计算了 <strong>方法表</strong>。</p>
+<p>方法表中列举了所有方法的签名与实际调用的方法。如此，每次调用方法时，只需查找该表即可。</p>
+<p>特别地，使用 super 关键字时，JVM 会查找其父类的方法表。</p>
+<p><strong>&#x3D;&#x3D;动态绑定机制&#x3D;&#x3D;：</strong></p>
+<blockquote>
+<p>在运行时能够自动选择调用的方法的现象称为动态绑定</p>
+</blockquote>
+<ul>
+<li>当调用对象方法的时候，该方法和该对象（隐式参数）的内存地址&#x2F;运行类型绑定。</li>
+<li>当调用对象属性时，没有动态绑定机制。于是哪里声明，哪里调用。</li>
+</ul>
+<h2><span id="77-object-类">7.7 Object 类</span></h2><blockquote>
+<p>Object 类是所有类的超类。Java 中所有类默认继承该类。</p>
+</blockquote>
+<h3><span id="x3dx3dequals-方法x3dx3d">&#x3D;&#x3D;equals 方法&#x3D;&#x3D;</span></h3><pre><code class="java">boolean equals(Object obj)
+</code></pre>
+<p><u>用于检测一个对象是否等于另一对象</u>。</p>
+<p>在 Object 中，该方法的实现是比较 形参 与 隐式参数 的对象引用是否一致。</p>
+<p><strong>与 <code>==</code> 的区别：</strong></p>
+<ul>
+<li><p><code>==</code>：既可以判断基本类型，也可以判断引用类型。如果判断基本类型，判断的是值是否相等。如果判断引用类型，判断的是地址是否相等。</p>
+</li>
+<li><p>equals 方法：&#x3D;&#x3D;是 Object 中的方法，只能判断引用类型。这个场合下，和<code>==</code>一样&#x3D;&#x3D;，默认判断地址是否相等，但子类中往往重写该代码，以判断内容是否相等。</p>
+<p>  &#x3D;&#x3D;在子类中定义 equals 方法时，首先调用超类的 equals 方法。那个一致时，再比较子类中的字段。&#x3D;&#x3D;</p>
+</li>
+</ul>
+<p><strong>Java 语言规范要求 equals 方法具有如下特性：</strong></p>
+<ul>
+<li><p><em>自反性</em>：对于任何非空引用 x，<code>x.equals(x)</code> 应返回 true</p>
+</li>
+<li><p><em>对称性</em>：对于任何引用 x 和 y，当且仅当 <code>x.equals(y)</code> 为 true 时，<code>y.equals(x)</code> 为 true</p>
+<p>  &#x3D;&#x3D;如果所有的子类具有相同的相等性语义（判断相等的条件具有泛用性），可以使用 <code>instanceof</code> 检测其类型。否则，最好使用 <code>getClass</code> 方法比较类型。&#x3D;&#x3D;</p>
+</li>
+<li><p><em>传递性</em>：对于任何引用 x、y、z，如果 <code>x.equals(y)</code> 为 true ，<code>y.equals(z)</code> 为 true，那么 <code>x.equals(z)</code> 也应该为 true</p>
+</li>
+<li><p><em>一致性</em>：如果 x 和 y 的引用没有发生变化，反复调用 <code>x.equals(y)</code> 应该返回相同的结果</p>
+</li>
+<li><p>对于任何非空引用 x，<code>x.equals(null)</code> 应该返回 false</p>
+</li>
+</ul>
+<h3><span id="x3dx3dhashcode-方法x3dx3d">&#x3D;&#x3D;hashCode 方法&#x3D;&#x3D;</span></h3><pre><code class="java">int hashCode()
+</code></pre>
+<p>返回对象的 散列码值。</p>
+<p>散列码值是由对象导出的一个整型值。散列码是无规律的。如果 x 与 y 是不同对象，两者的散列码基本上不会相同。</p>
+<p><u><strong>字符串</strong>的散列码是由其内容导出的，而<strong>其他引用对象</strong>的散列码是根据存储地址得出的。</u></p>
+<p><strong>散列码的作用：</strong></p>
+<ol>
+<li>提高哈希结构的容器的效率。</li>
+<li>&#x3D;&#x3D;两个引用，若是指向同一对象，则哈希值一般不同。&#x3D;&#x3D;</li>
+<li><u>哈希值是根据地址生成的，因而，哈希值不能等同于地址</u></li>
+</ol>
+<p><strong>相关方法：</strong></p>
+<ul>
+<li><p><code>Objects.hashCode(Object obj)</code></p>
+<p>  这是一个 null 安全的返回散列值的方法。传入 null 时会返回 0</p>
+</li>
+<li><p>&#x3D;&#x3D;<code>Objects.hash(Object... values)</code>&#x3D;&#x3D;</p>
+<p>  组合所有传入参数的散列值</p>
+</li>
+<li><p><code>Integer.hashCode(int value)</code></p>
+<p>  返回给定基本数据类型的散列值。所有包装类都有该静态方法</p>
+</li>
+<li><p><code>Arrays.hashCode(xxx[] a)</code></p>
+<p>  计算数组的散列码。数组类型可以是 Object 或基本数据类型</p>
+</li>
+</ul>
+<p>空对象调用 hashCode 方法会抛出异常。</p>
+<p>&#x3D;&#x3D;hashCode 与 equals 的定义必须相符。如果 <code>x.equals(y)</code> 返回 true，那么 <code>x.hashCode()</code> 与 <code>y.hashCode()</code> 应该返回相同的值。&#x3D;&#x3D;</p>
+<h3><span id="x3dx3dtostring-方法x3dx3d">&#x3D;&#x3D;toString 方法&#x3D;&#x3D;</span></h3><pre><code class="java">String toString()
+</code></pre>
+<p>返回表示对象的一个字符串。Object 的默认实现如下</p>
+<pre><code class="java">public String toString() &#123;
+    return getClass().getName() + &quot;@&quot; + Integer.toHexString(hashCode());
+&#125;
+</code></pre>
+<ul>
+<li><p><code>Class getClass()</code></p>
+<p>  返回包含对象信息的 Class 对象。</p>
+</li>
+<li><p><code>String getName()</code></p>
+<p>  由 Class 类实例调用。返回这个类的全类名</p>
+<p>  全类名：即包名 + 类名。比如 <code>com.prictice.codes.Person</code></p>
+</li>
+<li><p><code>Class getSuperClass()</code></p>
+<p>  由 Class 类实例调用。以 Class 形式返回其父类</p>
+<p>  Object 使用时返回 null</p>
+</li>
+<li><p><code>Integer.toHexString(int val)</code></p>
+<p>  返回一个数字的十六进制表示的字符串</p>
+</li>
+</ul>
+<p>toString 方法非常实用。Java 标准类库中的很多类重写了该方法，以便用户能获得一些有关对象状态的信息。</p>
+<p>&#x3D;&#x3D;打印对象 或 使用 <code>+</code>操作符拼接对象 时，都会自动调用该对象的 toString 方法。&#x3D;&#x3D;</p>
+<p>&#x3D;&#x3D;当直接调用对象时，也会默认调用该方法。&#x3D;&#x3D;</p>
+<h3><span id="finalize-方法">finalize 方法</span></h3><ol>
+<li>当对象被回收时，系统会自动调用该对象的 <code>finalize</code> 方法。子类可以重写该方法，做一些释放资源的操作。</li>
+<li>何时被回收：当某对象没有任何引用时，JVM 就认为该对象是一个垃圾对象，就会（在算法决定的某个时刻）使用垃圾回收机制来销毁该对象。在销毁该对象前，会调用 <code>finalize</code> 方法。</li>
+<li>垃圾回收机制的调用，是由系统决定。也可以通过 <code>System.gc();</code> 主动触发垃圾回收机制。这个方法一经调用就会继续执行余下代码，而不会等待回收完毕。</li>
+<li>实际开发中，几乎不会运用该方法。</li>
+</ol>
+<h2><span id="78-断点调试debug">7.8 断点调试（Debug）</span></h2><blockquote>
+<p>断点调试：在程序某一行设置一个断点，调试时，代码运行至此就会停住，然后可以一步一步往下调试。调试过程中可以看各个变量当前的值。如若出错，则测试到该出错代码行即显示错误并停下。进行分析从而找到这个 Bug。</p>
+<p>调试过程中是运行状态，所以，是以对象的 运行类型 执行。</p>
+<p>断点调试是程序员必须掌握的技能，能帮助我们查看 Java 底层源代码的执行过程，提高程序员 Java 水平。</p>
+</blockquote>
+<p>快捷键如下</p>
+<ul>
+<li>跳入：<code>F7</code></li>
+<li>跳过：<code>F8</code></li>
+<li>跳出：<code>shift + F8</code></li>
+<li>resume，执行到下一个断点：<code>F9</code></li>
+</ul>
+<h2><span id="附录">附录</span></h2><h3><span id="零钱通程序">零钱通程序</span></h3><ul>
+<li><p><strong>Wallet.java</strong></p>
+<pre><code class="java">package com.the_wallet;
+
+public class Wallet &#123;
+    public static void main(String[] args) &#123;
+        Data p1 = new Data(&quot;Melody&quot;);
+        p1.menu();
+        System.out.println(&quot;再见~&quot;);
+    &#125;
+&#125;
+</code></pre>
+</li>
+<li><p>Data.java</p>
+</li>
+</ul>
+<pre><code class="java">package com.the_wallet;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+public class Data &#123;
+    private String name = &quot;user&quot;;
+    private double balance = 0;
+    private String[][] detail = new String[1][5];
+
+    private Data() &#123;
+        detail[0][0] = &quot;项目\t&quot;;
+        detail[0][1] = &quot;\t\t&quot;;
+        detail[0][2] = &quot;时间&quot;;
+        detail[0][3] = &quot; &quot;;
+        detail[0][4] = &quot; &quot;;
+    &#125;
+
+    public Data(String name) &#123;
+        this();
+        this.name = name;
+    &#125;
+
+    public String getName() &#123;
+        return name;
+    &#125;
+
+    public void setName(String name) &#123;
+        this.name = name;
+    &#125;
+
+    public void menu() &#123;
+        char inp = &#39;a&#39;;
+        double inpD;
+        Scanner scanner = new Scanner(System.in);
+        while (inp != &#39;y&#39; &amp;&amp; inp != &#39;Y&#39;) &#123;
+            System.out.print(&quot;\n===============零钱通菜单===============&quot;
+                    + &quot;\n\t\t\t1.零钱通明细&quot;
+                    + &quot;\n\t\t\t2.收益入帐&quot;
+                    + &quot;\n\t\t\t3.消费入账&quot;
+                    + &quot;\n\t\t\t4.退   出&quot;
+                    + &quot;\n请选择（1-4）：&quot;);
+            inp = scanner.next().charAt(0);
+            System.out.println(&quot;======================================&quot;);
+            switch (inp) &#123;
+                case &#39;4&#39;:
+                    System.out.println(&quot;确定要退出吗？（y/n）：&quot;);
+                    inp = scanner.next().charAt(0);
+                    while (inp != &#39;y&#39; &amp;&amp; inp != &#39;n&#39; &amp;&amp; inp != &#39;Y&#39; &amp;&amp; inp != &#39;N&#39;) &#123;
+                        System.out.println(&quot;请输入“y”或者“n”！听话！&quot;);
+                        inp = scanner.next().charAt(0);
+                    &#125;
+                    break;
+                case &#39;1&#39;:
+                    showDetail();
+                    break;
+                case &#39;2&#39;:
+                    System.out.println(&quot;请输入收益数额：&quot;);
+                    inpD = scanner.nextDouble();
+                    if (inpD &lt;= 0) &#123;
+                        System.out.print(&quot;收益需要为正，记录消费请选择“消费入账”&quot;);
+                        break;
+                    &#125;
+                    earning(inpD);
+                    break;
+                case &#39;3&#39;:
+                    System.out.println(&quot;请输入支出数额：&quot;);
+                    inpD = scanner.nextDouble();
+                    if (inpD &lt; 0) &#123;
+                        inpD = -inpD;
+                    &#125;
+                    if (balance &lt; inpD) &#123;
+                        System.out.println(&quot;您的余额不足！&quot;);
+                        break;
+                    &#125;
+                    System.out.println(&quot;请输入支出项目：&quot;);
+                    spending(inpD, scanner.next());
+                    break;
+                case &#39;g&#39;:
+                    break;
+                default:
+                    System.out.print(&quot;错误。请输入数字（1-4）&quot;);
+            &#125;
+        &#125;
+    &#125;
+
+    private void earning(double earn) &#123;
+        String[][] temp = new String[this.detail.length + 1][5];
+        record(detail, temp);
+        this.balance += earn;
+        tidy(&quot;收益入账&quot;, earn, true, temp);
+        showDetail();
+        System.out.println(&quot;\n收益记录完成&quot;);
+    &#125;
+
+
+    private void spending(double spend, String title) &#123;
+        String[][] temp = new String[this.detail.length + 1][5];
+        record(detail, temp);
+        this.balance -= spend;
+        tidy(title, spend, false, temp);
+        showDetail();
+        System.out.println(&quot;\n消费记录完成&quot;);
+
+    &#125;
+
+    private void record(String[][] detail, String[][] temp) &#123;
+        for (int i = 0; i &lt; detail.length; i++) &#123;
+            for (int j = 0; j &lt; 5; j++) &#123;
+                temp[i][j] = detail[i][j];
+            &#125;
+        &#125;
+    &#125;
+
+    private void tidy(String title, double num, boolean isPos, String[][] temp) &#123;
+        Date date = new Date();
+        SimpleDateFormat sDate = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);
+        if (title.length() &lt;= 2) &#123;
+            temp[temp.length - 1][0] = title + &quot;\t\t&quot;;
+        &#125; else &#123;
+            temp[temp.length - 1][0] = title + &quot;\t&quot;;
+        &#125;
+        String sign = isPos ? &quot;+&quot; : &quot;-&quot;;
+        temp[temp.length - 1][1] = sign + num + &quot;&quot;;
+        temp[temp.length - 1][2] = sDate.format(date);
+        temp[temp.length - 1][3] = &quot;余额：&quot;;
+        temp[temp.length - 1][4] = balance + &quot;&quot;;
+        detail = temp;
+    &#125;
+
+    private void showDetail() &#123;
+        System.out.println(&quot;--------------------------------------&quot;);
+        for (int i = 0; i &lt; detail.length; i++) &#123;
+            System.out.println(detail[i][0] + detail[i][1] + &quot;\t&quot; + detail[i][2] + &quot;\t\t&quot; + detail[i][3] + detail[i][4]);
+        &#125;
+        System.out.println(&quot;--------------------------------------&quot;);
+    &#125;
+&#125;
+</code></pre>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 Yelog
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().trim().split('\n').length, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 18px 3px 15px 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: ;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<div class="aplayer"
+
+    data-id="9126522781"
+
+    data-server="netease"
+
+    data-type="playlist"
+
+    data-fixed="true"
+
+    data-autoplay="false"
+
+    data-loop="all"
+
+    data-order="random"
+
+    data-preload="auto"
+
+    data-volume="0.7"
+
+    data-mutex="true"
+
+>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+
+<script>
+(function() {
+
+  var arr = new Array();
+  var $tags = $('.post-tags').children('a');
+  $tags.each(function() {
+    arr.push($(this).html())
+  })
+  if (arr.indexOf("图集") !== -1) {
+
+    $('.hj_img').each(function() {
+      $(this).wrap('<a class="fancybox" data-fancybox="gallery" href="' + $(this).prop("src") + '"></a>'); 
+    })
+    //初始化fancybox，padding设为0，loop设为false
+    $('.fancybox').fancybox({
+      padding: 0,
+      loop: false
+    });
+  }
+})();
+</script>
+
+<!-- // 文字 -->
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/shehuizhuyi.js"></script>
+<!-- // 爱心 -->
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/love.js"></script>
+<!-- // 按键屏蔽 需要jQuery -->
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn@latest/js/noSomeKey.js"></script>
+
+
+</html>

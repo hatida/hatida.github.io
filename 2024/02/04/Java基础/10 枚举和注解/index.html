@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>HatidaBlog</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="HatidaBlog">
+  <title>10 枚举和注解 | HatidaBlog</title>
+  <meta name="keywords" content=" java , 枚举 , 注解 ">
+  <meta name="description" content="10 枚举和注解 | HatidaBlog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="第4章 检索数据4.5 检索不同的行DISTINCT关键字：此关键字指示MySQL只返回不同的值。  不能部分使用DISTINCT DISTINCT关键字应用于所有列而不仅是前置它的列。如果给出SELECT DISTINCT vend_id,prod_price，除非指定的两个列都不同，否则所有行都将被检索出来。 相当于将distinct后面的列放在一起作为条件  4.6 限制结果-limit关键">
 <meta property="og:type" content="article">
@@ -59,7 +59,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -500,12 +500,66 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-Java基础/10 枚举和注解" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-Blog"><span class="toc-text">Why Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-text">对博客的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%8F%B6%E8%90%BD%E9%98%81"><span class="toc-text">关于叶落阁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0"><span class="toc-text">博客平台</span></a></li></ol></li></ol>
+        <h1 class="article-title">10 枚举和注解</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="编程语言">编程语言</a> > 
+            
+            <a  data-rel="编程语言&lt;---&gt;java">java</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">java</a>
+            
+            <a class="color3">枚举</a>
+            
+            <a class="color3">注解</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2024-02-05 01:16:31'>2024-02-04 16:17</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:1.9k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">10 枚举和注解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">10.1 枚举</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">10.1.1 自定义枚举</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">10.1.2 enum 关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">#10.1.2.1 使用细节</span></a></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">#10.1.2.2 Enum 类中的常用方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">10.1.3 Enumeration接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">实例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">10.2 注解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">10.2.1 @Override</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">10.2.2 @Deprecated</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">10.2.3 @SuppressWarnings()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">10.2.4 JDK 的元注解（了解即可）</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -518,33 +572,267 @@
     }
 </style>
 </div>
-            <h1 id="Why-Blog"><a href="#Why-Blog" class="headerlink" title="Why Blog"></a>Why Blog</h1><h2 id="对博客的理解"><a href="#对博客的理解" class="headerlink" title="对博客的理解"></a>对博客的理解</h2><p>喜欢写Blog的人，会经历三个阶段。</p>
-<blockquote>
-<p>第一阶段，刚接触Blog，觉得很新鲜，试着选择一个免费空间来写。</p>
-</blockquote>
-<blockquote>
-<p>第二阶段，发现免费空间限制太多，就自己购买域名和空间，搭建独立博客。</p>
-</blockquote>
-<blockquote>
-<p>第三阶段，觉得独立博客的管理太麻烦，最好在保留控制权的前提下，让别人来管，自己只负责写文章。</p>
-</blockquote>
-<p>我们每个人的在网络上产生的数据越来越多，这些信息是我们在互联网上存在过的痕迹，值得我们认真对待。但是它们被分散分布在各个网站上。很多时候我们很难将它们聚合在一起，而且各个网站的信息排布方式也没有办法自由控制，所以我们需要一个可以由自己主宰的空间——博客。</p>
-<p>通过博客，我们可以记录自己的生活和成长的轨迹。它不像 Twitter 那样碎片化，也不像 Facebook 那样关系化，它是私人的空间。</p>
-<h2 id="关于叶落阁"><a href="#关于叶落阁" class="headerlink" title="关于叶落阁"></a>关于叶落阁</h2><p><strong>叶落阁</strong> 是阁主（杨玉杰）的个人站。</p>
-<p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
-<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 生成，部署在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主题 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a> 已经在github上开源</p>
-<p><code>3-hexo</code> 主题使用交流可以加 Q群: <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=e8cf083cc097141eaf323396f1766809b8e90ff00c67bb441898f672892f6904"><img data-ignore border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="3-hexo使用交流" title="3-hexo使用交流"></a></p>
-<p>主要功能：</p>
-<ul>
-<li>搜索支持文章标题、标签(#标签)、作者(@作者)</li>
-<li>pad&#x2F;手机等移动端适配</li>
-<li>页面全局快捷键 <a target="_blank" rel="noopener" href='http://yelog.org/2017/03/24/3-hexo-shortcuts/'>3-hexo快捷键说明</a></li>
-</ul>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1><span id="10-枚举和注解">10 枚举和注解</span></h1><h2><span id="101-枚举">10.1 枚举</span></h2><p>把具体的对象一一列举出来的类，就称为 枚举类（enumeration）</p>
+<p>实现方法：</p>
+<ol>
+<li>自定义枚举</li>
+<li><code>enum</code> 关键字枚举</li>
+</ol>
+<h3><span id="1011-自定义枚举">10.1.1 自定义枚举</span></h3><ol>
+<li>构造器私有化</li>
+<li>去掉 set 方法（可保留 get），防止属性被修改。因为枚举对象值通常为只读</li>
+<li>在类内部直接创建固定对象。使用 <code>final</code> + <code>static</code> 共同修饰，对象名通常全部大写。</li>
+<li>枚举对象按照需要可以有多个属性</li>
+</ol>
+<h3><span id="1012-enum-关键字">10.1.2 <code>enum</code> 关键字</span></h3><pre><code class="java">enum Example &#123;
+ RED(&quot;小红&quot;, 10), BLUE(&quot;小蓝&quot;, 11), YELLOW; //这句话要放在前面，第三个是无参
+ private String name;
+ private int age;
 
-        </article>
-        
-        
+ private Example(String name, int age) &#123;
+     this.name = name;
+     this.age = age;
+ &#125;
+
+&#125;
+</code></pre>
+<ol>
+<li>用关键字 <code>enum</code> 替代 <code>class</code></li>
+<li>用 <code>常量名.(形参列表);</code> 代替创建对象（放在前面）。多个对象的场合，用 <code>,</code> 间隔。</li>
+<li>如果使用 <code>enum</code> 枚举，要求将常量对象写在前面</li>
+</ol>
+<h4><span id="10121-使用细节">#10.1.2.1 使用细节</span></h4><ol>
+<li><p>当我们用 <code>enum</code> 关键字开发一个枚举类时，默认会继承 java.lang.Enum 类，而且是一个 <code>final</code> 类。</p>
+<p> 这样，我们就能使用 Enum 中的相关方法。</p>
+<p> <strong>也正因为如此，&#x3D;&#x3D;<code>enum</code> 类不能继承其他类，亦不能被其它类继承&#x3D;&#x3D;</strong></p>
+<p> 不过，&#x3D;&#x3D;<code>enum</code> 类和其他类一样，可以实现接口&#x3D;&#x3D;。</p>
+</li>
+<li><p>传统的 <code>public ststic final RED(&quot;小红&quot;, 10);</code> 简化为 <code>RED(&quot;小红&quot;, 10);</code></p>
+</li>
+<li><p>如果使用无参构造器创建枚举对象，则 实参列表 和 <code>( )</code> 都能省略</p>
+</li>
+</ol>
+<h4><span id="10122-enum-类中的常用方法">#10.1.2.2 <code>Enum</code> 类中的常用方法</span></h4><ul>
+<li><code>valueOf</code>：将字符串转换成枚举对象。要求字符串必须是已有的常量名，否则报异常。</li>
+<li><code>values</code>：返回一个数组 <code>Example[]</code>，其中包含定义的所有枚举对象</li>
+<li><code>getDeclaringClass</code>：得到枚举常量所属的 <code>class</code></li>
+<li><code>name</code>：得到当前枚举常量的名称。建议优先用 <code>toString</code></li>
+<li><code>ordinal</code>：输出该枚举对象的次序&#x2F;编号（从 0 开始编号。如上例 <code>BLUE.ordinal = 1</code>）</li>
+<li><code>compareTo</code>：比较两个枚举常量的编号（调用常量编号 减去 传入常量编号）</li>
+<li><code>clone</code>：&#x3D;&#x3D;枚举类不能 <code>clone</code>，所以，这是一个只会抛出异常的方法&#x3D;&#x3D;</li>
+</ul>
+<h3><span id="1013-enumeration接口">10.1.3 Enumeration接口</span></h3><blockquote>
+<p>Enumeration接口中定义了一些方法，通过这些方法可以枚举（一次获得一个）对象集合中的元素。这种传统接口已被迭代器取代，虽然Enumeration 还未被遗弃，但在现代代码中已经被很少使用了。尽管如此，它还是使用在诸如Vector和Properties这些传统类所定义的方法中，除此之外，还用在一些API类，并且在应用程序中也广泛被使用。 下表总结了一些Enumeration声明的方法：</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>1</th>
+<th><strong>boolean hasMoreElements( )</strong>  测试此枚举是否包含更多的元素。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2</td>
+<td><strong>Object nextElement( )</strong> 如果此枚举对象至少还有一个可提供的元素，则返回此枚举的下一个元素。</td>
+</tr>
+</tbody></table>
+<h4><span id="实例">实例</span></h4><p>以下实例演示了Enumeration的使用：</p>
+<pre><code class="java">import java.util.Vector;
+import java.util.Enumeration;
+ 
+public class EnumerationTester &#123;
+ 
+   public static void main(String args[]) &#123;
+      Enumeration&lt;String&gt; days;
+      Vector&lt;String&gt; dayNames = new Vector&lt;String&gt;();
+      dayNames.add(&quot;Sunday&quot;);
+      dayNames.add(&quot;Monday&quot;);
+      dayNames.add(&quot;Tuesday&quot;);
+      dayNames.add(&quot;Wednesday&quot;);
+      dayNames.add(&quot;Thursday&quot;);
+      dayNames.add(&quot;Friday&quot;);
+      dayNames.add(&quot;Saturday&quot;);
+      days = dayNames.elements();
+      while (days.hasMoreElements())&#123;
+         System.out.println(days.nextElement()); 
+      &#125;
+   &#125;
+&#125;
+</code></pre>
+<pre><code>Sunday
+Monday
+Tuesday
+Wednesday
+Thursday
+Friday
+Saturday
+</code></pre>
+<h2><span id="102-注解">10.2 注解</span></h2><p>注解（Annotation）也被称为元数据（Metadata）。用于修饰 包、类、方法、属性、构造器、局部变量 等数据信息</p>
+<p>和注释一样，注解不影响程序逻辑，但注解可以被编译或运行，相当于嵌入在代码中的补充信息</p>
+<p>在 JavaSE 中，注解的使用目的比较简单，例如 标记过时的功能，忽略警告 等。在 JavaEE 中注解占据了更重要的角色，例如用于配置应用程序的任何切面，代替 JavaEE 旧版中所遗留的繁冗代码和 XML 配置等。</p>
+<ol>
+<li><p>使用 <code>@Annotation</code> 时要在前面增加 <code>@</code> 符号，并把该注解当成一个修饰符使用。用于修饰它支持的程序元素。</p>
+</li>
+<li><p>三个基本的 <code>@Annotation</code>：</p>
+<ul>
+<li><code>@Override</code>：限定某个方法，是 重写 父类方法。该注解只能用于方法。如果你写了该注解，编译器会替你校验，看看是不是真的 重写 了父类方法。</li>
+<li><code>@Deprecated</code>：用于表示某个程序元素（类、方法等）已经过时</li>
+<li><code>@SuppressWarnings()</code>：抑制编辑器警告</li>
+</ul>
+</li>
+<li><p>如果发现 <code>public @interface XXX&#123;&#125;</code> 这种东西，说明是定义了一个注解类 <code>XXX</code>。这里的 <code>@interface</code> 不代表接口（<code>interface</code>）。</p>
+</li>
+</ol>
+<h3><span id="1021-override">10.2.1 <code>@Override</code></span></h3><ol>
+<li><code>@Override</code> 表示指定重写父类的方法（从编译器层面验证），如果父类没有该方法，就报错</li>
+<li>不写该注解，重写依然构成重写</li>
+<li><code>@Override</code> 只能修饰方法，不能修饰其他 类、包、属性等</li>
+<li>查看 <code>@Override</code> 注解源码为 <code>@Target(ElementType.METHOD)</code> 说明只能修饰方法</li>
+<li><code>@Target</code> 是修饰注解的注解，称为 元注解</li>
+</ol>
+<h3><span id="1022-deprecated">10.2.2 <code>@Deprecated</code></span></h3><ol>
+<li><p><code>@Deprecated</code> 表示指定的某个程序元素（类、方法等）已过时</p>
+</li>
+<li><p>不推荐使用，但仍能使用</p>
+</li>
+<li><p>可以修饰方法、类、字段、包、参数</p>
+<p> <code>@Target(value=&#123;CONSTRUCTOR, FIELD, LOCAL_VARIABLE, METHOD, PACKAGE, PARAMETER, TYPE&#125;)</code></p>
+</li>
+<li><p><code>@Deprecated</code> 可以做到新旧版本的兼容和过度</p>
+</li>
+</ol>
+<h3><span id="1023-suppresswarnings">10.2.3 <code>@SuppressWarnings()</code></span></h3><ol>
+<li><p>当我们不想看到警告信息时，用 <code>@SuppressWarnings()</code></p>
+<p> 语法：<code>@SuppressWarnings(&#123;&quot;...&quot;&#125;)</code></p>
+<p> 在后面 <code>(&#123;&quot;unused&quot;, &quot;unchecked&quot;&#125;)</code> 这样写入你希望抑制的信息，以下是所有可以输入的关键字</p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>关键字</strong></th>
+<th align="left"><strong>用途</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">all</td>
+<td align="left">抑制所有警告</td>
+</tr>
+<tr>
+<td align="left">boxing</td>
+<td align="left">抑制与装箱&#x2F;解装箱操作相关的警告</td>
+</tr>
+<tr>
+<td align="left">cast</td>
+<td align="left">抑制与强制转换操作相关的警告</td>
+</tr>
+<tr>
+<td align="left">dep-ann</td>
+<td align="left">抑制与已弃用注释相关的警告</td>
+</tr>
+<tr>
+<td align="left">deprecation</td>
+<td align="left">抑制与弃用有关的警告</td>
+</tr>
+<tr>
+<td align="left">fallthrough</td>
+<td align="left">抑制与 switch 语句中丢失断点相关的警告</td>
+</tr>
+<tr>
+<td align="left">finally</td>
+<td align="left">抑制不返回的 finally 块的相关警告</td>
+</tr>
+<tr>
+<td align="left">hiding</td>
+<td align="left">抑制与隐藏变量的局部变量相关的警告</td>
+</tr>
+<tr>
+<td align="left">incomplete-switch</td>
+<td align="left">抑制与 switch 语句中缺少条目相关的警告（enum）</td>
+</tr>
+<tr>
+<td align="left">nls</td>
+<td align="left">抑制与 非nls 字符串字面值相关的警告</td>
+</tr>
+<tr>
+<td align="left">null</td>
+<td align="left">抑制相对于null分析的警告</td>
+</tr>
+<tr>
+<td align="left">rawtypes</td>
+<td align="left">在类参数上使用泛型时，抑制与非特定类型相关的警告</td>
+</tr>
+<tr>
+<td align="left">restriction</td>
+<td align="left">抑制与不推荐或禁止引用有关的警告</td>
+</tr>
+<tr>
+<td align="left">serial</td>
+<td align="left">抑制与可序列化类缺少serialVersionUID字段相关的警告</td>
+</tr>
+<tr>
+<td align="left">static-access</td>
+<td align="left">抑制与不正确的静态访问有关的警告</td>
+</tr>
+<tr>
+<td align="left">synthetic-access</td>
+<td align="left">抑制与未优化的内部类访问相关的警告</td>
+</tr>
+<tr>
+<td align="left">unchecked</td>
+<td align="left">抑制与未检查的操作相关的警告</td>
+</tr>
+<tr>
+<td align="left">unqualified-field-access</td>
+<td align="left">抑制与字段访问不合格相关的警告</td>
+</tr>
+<tr>
+<td align="left">unused</td>
+<td align="left">抑制与未使用代码相关的警告</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><code>@SuppressWarnings</code> 的范围与你放置的位置相关。</p>
+</li>
+</ol>
+<h3><span id="1024-jdk-的元注解了解即可">10.2.4 JDK 的元注解（了解即可）</span></h3><blockquote>
+<p>JDK 的 元注解 是用于修饰其他注解的注解</p>
+</blockquote>
+<ol>
+<li><p><code>@Rentention</code>：指定注解的作用范围，有三种范围 <code>SOURCE</code> <code>CLASS</code> <code>RUNTIME</code></p>
+<p> <code>@Rentention</code> 的三种值：</p>
+<ul>
+<li><code>RententionPolicy.SOURCE</code>：编译器使用后，直接丢弃这种策略的注释</li>
+<li><code>RententionPolicy.CLASS</code>：编译器把注解记录在 class 文件中。当运行 Java 程序时， JVM 不会保留注释。这是默认值</li>
+<li><code>RententionPolicy.RUNTIME</code>：编译器把注解记录在 class 文件中。当运行 Java 程序时，JVM 会保留注解。程序可以通过反射获取该注解</li>
+</ul>
+</li>
+<li><p><code>@Target</code>：指定注解的使用范围</p>
+<p> <code>@Target(&#123;TYPE, FIELD, METHOD, PARAMETER, CONSTRUCTOR, LOCAL_VARIABLE&#125;)</code></p>
+</li>
+<li><p><code>@Documented</code>：指定该注解会不会在 Javadoc 体现</p>
+</li>
+<li><p><code>@Inherited</code>：子类会继承父类注解</p>
+</li>
+</ol>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -553,11 +841,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 </body>

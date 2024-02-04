@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>9.1 类变量和类方法 | HatidaBlog</title>
+  <meta name="keywords" content=" java , 类 ">
+  <meta name="description" content="9.1 类变量和类方法 | HatidaBlog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="第4章 检索数据4.5 检索不同的行DISTINCT关键字：此关键字指示MySQL只返回不同的值。  不能部分使用DISTINCT DISTINCT关键字应用于所有列而不仅是前置它的列。如果给出SELECT DISTINCT vend_id,prod_price，除非指定的两个列都不同，否则所有行都将被检索出来。 相当于将distinct后面的列放在一起作为条件  4.6 限制结果-limit关键">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql必知必会">
+<meta property="og:url" content="http://example.com/2024/02/05/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/index.html">
+<meta property="og:site_name" content="HatidaBlog">
+<meta property="og:description" content="第4章 检索数据4.5 检索不同的行DISTINCT关键字：此关键字指示MySQL只返回不同的值。  不能部分使用DISTINCT DISTINCT关键字应用于所有列而不仅是前置它的列。如果给出SELECT DISTINCT vend_id,prod_price，除非指定的两个列都不同，否则所有行都将被检索出来。 相当于将distinct后面的列放在一起作为条件  4.6 限制结果-limit关键">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gitee.com/kilomi/pic-bed/raw/master/img/202402050101323.png">
+<meta property="article:published_time" content="2024-02-04T17:00:28.000Z">
+<meta property="article:modified_time" content="2024-02-04T17:01:13.136Z">
+<meta property="article:author" content="hatida">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/kilomi/pic-bed/raw/master/img/202402050101323.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/darcula.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>hatida</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/hatida"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(19)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据库">
+            
+            数据库
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="编程语言">
+            <i class="fold iconfont icon-right"></i>
+            编程语言
+            <small>(17)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;java">
+            
+            java
+            <small>(17)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="19">
+<input type="hidden" id="yelog_site_word_count" value="137.6k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>查找</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>多线程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>反射</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>集合</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>类</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>枚举</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>面向对象</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>排序</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据库</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数组</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>网络</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>项目</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>异常</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>正则表达式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>注解</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>字符串</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GUI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>IO</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>java</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>jdbc</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>jvm</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>mysql</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All 数据库 "
+           href="/2024/02/05/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A/"
+           data-tag="mysql"
+           data-author="" >
+            <span class="post-title" title="mysql必知必会">mysql必知必会</span>
+            <span class="post-date" title="2024-02-05 01:00:28">2024/02/05</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/10%20%E6%9E%9A%E4%B8%BE%E5%92%8C%E6%B3%A8%E8%A7%A3/"
+           data-tag="java,枚举,注解"
+           data-author="" >
+            <span class="post-title" title="10 枚举和注解">10 枚举和注解</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/11%20%E5%BC%82%E5%B8%B8%EF%BC%88Exception%EF%BC%89/"
+           data-tag="java,异常"
+           data-author="" >
+            <span class="post-title" title="11 异常（Exception）">11 异常（Exception）</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/21%20%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/"
+           data-tag="java,反射"
+           data-author="" >
+            <span class="post-title" title="21 反射">21 反射</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/25%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"
+           data-tag="java,正则表达式"
+           data-author="" >
+            <span class="post-title" title="25 正则表达式">25 正则表达式</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/5%20%E6%95%B0%E7%BB%84/"
+           data-tag="java,数组,排序,查找"
+           data-author="" >
+            <span class="post-title" title="5 数组、排序和查找">5 数组、排序和查找</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3String/"
+           data-tag="java,字符串,jvm"
+           data-author="" >
+            <span class="post-title" title="String深入理解">String深入理解</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/17%20IO%E6%B5%81/"
+           data-tag="java,IO"
+           data-author="" >
+            <span class="post-title" title="17 IO流">17 IO流</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/19%20%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"
+           data-tag="java,网络"
+           data-author="" >
+            <span class="post-title" title="19 网络编程">19 网络编程</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/7%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B(%E4%B8%AD%E7%BA%A7)/"
+           data-tag="java,面向对象"
+           data-author="" >
+            <span class="post-title" title="7 面向对象编程（中级）">7 面向对象编程（中级）</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/9%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B(%E9%AB%98%E7%BA%A7)/"
+           data-tag="java,类"
+           data-author="" >
+            <span class="post-title" title="9.1 类变量和类方法">9.1 类变量和类方法</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/12%20%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%92%8C%E6%B3%9B%E5%9E%8B/"
+           data-tag="java"
+           data-author="" >
+            <span class="post-title" title="12 常用类">12 常用类</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/16%20%E5%A4%9A%E7%BA%BF%E7%A8%8B/"
+           data-tag="java,多线程"
+           data-author="" >
+            <span class="post-title" title="16 多线程">16 多线程</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/23%20JDBC/"
+           data-tag="java,jdbc,数据库"
+           data-author="" >
+            <span class="post-title" title="23 JDBC 和数据库连接池">23 JDBC 和数据库连接池</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/6%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B(%E5%9F%BA%E7%A1%80)/"
+           data-tag="java"
+           data-author="" >
+            <span class="post-title" title="6.面向对象编程（基础）">6.面向对象编程（基础）</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/15%20%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1/"
+           data-tag="java,GUI"
+           data-author="" >
+            <span class="post-title" title="15 图形界面设计">15 图形界面设计</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/13%20java%E9%9B%86%E5%90%88/"
+           data-tag="java,集合"
+           data-author="" >
+            <span class="post-title" title="13 Java 数据结构">13 Java 数据结构</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 java "
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/24%20%E6%BB%A1%E6%B1%89%E6%A5%BC%E9%A1%B9%E7%9B%AE/"
+           data-tag="java,项目"
+           data-author="" >
+            <span class="post-title" title="24 项目：满汉楼">24 项目：满汉楼</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        
+        <a  class="All 数据库 "
+           href="/2024/02/04/mysql/mysql/"
+           data-tag="mysql"
+           data-author="" >
+            <span class="post-title" title="mysql">mysql</span>
+            <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-Java基础/9 面向对象编程(高级)" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">9.1 类变量和类方法</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="编程语言">编程语言</a> > 
+            
+            <a  data-rel="编程语言&lt;---&gt;java">java</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">java</a>
+            
+            <a class="color2">类</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2024-02-05 01:17:01'>2024-02-04 16:17</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:5.5k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">9.1 类变量和类方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">9.1.1 类变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">9.1.2 类方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">9.2 理解 main 方法语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">&#x3D;&#x3D;9.3 代码块&#x3D;&#x3D;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">9.3.1 使用细节</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">&#x3D;&#x3D;9.4 单例设计模式&#x3D;&#x3D;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">9.4.1 应用实例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">#9.4.1.1 饿汉式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">#9.4.1.2 懒汉式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">#9.4.1.3 两种方法对比</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">&#x3D;&#x3D;9.5 final 关键字&#x3D;&#x3D;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">9.5.1 使用细节</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">&#x3D;&#x3D;9.6 抽象类&#x3D;&#x3D;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">9.6.1 使用细节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">&#x3D;&#x3D;9.6.2 抽象类最佳实践-模板设计模式&#x3D;&#x3D;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">9.7 接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">9.7.1 使用细节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">9.7.2 实现接口 vs 继承类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">9.7.3 接口的多态特性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">9.8 内部类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">9.8.1 四种内部类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">9.8.2 局部内部类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">#9.8.2.1 使用细节</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">&#x3D;&#x3D;9.8.3 匿名内部类&#x3D;&#x3D;</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">#9.8.3.1 使用细节</span></a></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">#9.8.3.2 使用场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">9.8.4 成员内部类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">#9.8.4.1 使用细节</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">9.8.5 静态内部类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">#9.8.5.1 使用细节</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2><span id="91-类变量和类方法">9.1 类变量和类方法</span></h2><h3><span id="911-类变量">9.1.1 类变量</span></h3><blockquote>
+<p>类变量：也叫 静态变量&#x2F;静态属性。是该类所有对象共享的变量。任何一个该类对象访问时都是相同的值，任何一个该类对象修改时也是同一个变量。</p>
+<p>语法（推荐）：<code>访问修饰符 static 数据类型 变量名;</code></p>
+<p>或者也可以：<code>static 访问修饰符 数据类型 变量名;</code></p>
+<p>&#x3D;&#x3D;根据 JDK 版本的不同，类变量存放在 堆 中或 方法区 中。&#x3D;&#x3D;</p>
+</blockquote>
+<ol>
+<li><p>什么时候需要用类变量：</p>
+<p> 当我们需要让某个类的所有对象都共享一个变量时，就可以考虑使用类变量（静态变量）</p>
+</li>
+<li><p>类变量 与 实例变量（普通属性）的区别：</p>
+<p> 类变量 是该类所有对象共享的，而 实例变量 是每个对象独享的</p>
+</li>
+<li><p>加上 <code>static</code> 称为 类变量 或 静态变量。否则称为 实例变量&#x2F;普通变量&#x2F;非静态变量</p>
+</li>
+<li><p>静态变量 可以通过 <code>类名.类变量名;</code> 或 <code>对象名.类变量名;</code> 来访问。但 Java 设计者推荐我们用 <code>类名.类变量名;</code> 来访问。（需满足访问权限和范围）</p>
+</li>
+<li><p>&#x3D;&#x3D;类变量 是在加载类时就初始化了。&#x3D;&#x3D;所以，没有创建对象实例也能访问。</p>
+</li>
+<li><p>&#x3D;&#x3D;类变量 的生命周期是随着 类的加载 开始，随着 类的消亡 而销毁。&#x3D;&#x3D;</p>
+</li>
+<li><p>特别地：**<font color="red">一个 null 对象也可以访问静态变量 &#x2F; 静态方法</font>**</p>
+<pre><code class="java">public class Test&#123;
+    static int n = 0;
+    static void met() &#123;
+        System.out.println(++n);
+    &#125;
+    
+    public static void main(String[] args)&#123;
+        Test t = null;
+        System.out.println(t.n);			//这样不会报错
+        t.met();							//这样也不会报错
+    &#125;
+&#125;
+</code></pre>
+</li>
+</ol>
+<h3><span id="912-类方法">9.1.2 类方法</span></h3><blockquote>
+<p>当方法使用 <code>static</code> 修饰后，就是 静态方法。静态方法就能访问静态属性。如果我们不希望创建实例，也能调用方法，这个场合把方法做成静态方法是合适的。开发工具类时就可以如此做。</p>
+</blockquote>
+<ol>
+<li>类方法和普通方法都是随着类的加载而加载，将结构信息存储在 方法区。</li>
+<li>类方法中不允许使用和对象有关的关键字。所以，类方法没有 <code>this</code> 或 <code>super</code></li>
+<li>类方法可以通过类名调用，也能通过对象名调用。普通方法不能通过类名调用。</li>
+<li>&#x3D;&#x3D;类方法 中只能访问 类变量 或 类方法&#x3D;&#x3D;</li>
+<li>&#x3D;&#x3D;普通方法既可以访问普通方法也可以访问类方法&#x3D;&#x3D;</li>
+</ol>
+<h2><span id="92-理解-main-方法语法">9.2 理解 <code>main</code> 方法语法</span></h2><blockquote>
+<pre><code class="java">public static void main(String[] args)&#123;...&#125;
+</code></pre>
+</blockquote>
+<ol>
+<li><p><code>main</code> 方法 <strong>是 JVM 调用的方法</strong>。所以该方法的 访问权限 必须为 <code>public</code></p>
+</li>
+<li><p><strong>JVM 在执行 <code>main</code> 方法时不必创建对象，所以 <code>main</code>方法 必须为 <code>static</code></strong></p>
+</li>
+<li><p>&#x3D;&#x3D;该方法接收 <code>String</code> 类型的数组参数。该数组中保存执行 Java 命令 时传递给所运行的类的参数。&#x3D;&#x3D;</p>
+<blockquote>
+<p>工作台中：<code>javac 执行的程序.java</code></p>
+<p> <code>java 执行的程序 参数1(arg[0]) 参数2(arg[1]) 参数3(arg[2]) ..</code></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1fh411y7R8?p=385&t=129.5">IDEA中怎么做？</a></p>
+</blockquote>
+</li>
+<li><p>在 <code>main</code> 方法 中，我们可以直接调用 <code>main</code> 方法 所在类的静态方法或静态属性。</p>
+<p> 但是，不能直接访问该类中的非静态成员，必须创建该类的一个实例后才能通过该实例访问非静态成员。</p>
+<pre><code class="java">例如：
+public class Hello&#123;
+    private String str = &quot;hello&quot;;
+    public static void main(String args[])&#123;
+        //System.out.println(str);//这样做是错的，静态方法不能访问静态域
+        //1.创建此属性的一个实例
+        Hello hello =  new Hello();
+        System.out.println(hello.str);//这样间接访问了str
+&#125;
+&#125;
+</code></pre>
+</li>
+</ol>
+<h2><span id="x3dx3d93-代码块x3dx3d">&#x3D;&#x3D;9.3 代码块&#x3D;&#x3D;</span></h2><blockquote>
+<p>代码块：又称为 初始化块。属于类中的成员。类似于方法，将逻辑语句封装在方法体中，通过 <code>&#123; &#125;</code> 包围起来。</p>
+<p>和方法不同，没有方法名，没有返回，没有参数，只有方法体，而且不用通过对象或类 显式调用，而是&#x3D;&#x3D;加载类时，或创建对象时 隐式调用。&#x3D;&#x3D;</p>
+<p>语法：<code>[修饰符]&#123;代码&#125;;</code></p>
+</blockquote>
+<ol>
+<li>修饰符 是可选项，可不写。要写的话，只能写 <code>static</code></li>
+<li>代码块分为两类：<ul>
+<li>静态代码块：有 <code>static</code></li>
+<li>普通代码块：无 <code>static</code></li>
+</ul>
+</li>
+<li>逻辑语句可以为任意的逻辑语句。</li>
+<li><code>;</code> 可以写，也可以省略。建议写上。</li>
+<li>&#x3D;&#x3D;代码块相当于另一种形式的构造器（构造器的补充机制），可以做初始化操作&#x3D;&#x3D;</li>
+<li>&#x3D;&#x3D;如果多个构造器中都有重复语句，就可以抽取到初始化块中，<strong>提高代码复用率。</strong>这样，不管用哪个构造器，都会执行代码块。&#x3D;&#x3D;</li>
+</ol>
+<h3><span id="931-使用细节">9.3.1 使用细节</span></h3><ol>
+<li><code>static</code> 代码块：作用是对类进行初始化。**<font color="red">随着 类的加载 会且只会执行一次</font><strong>。相对的：</strong>普通代码块每创建一个对象就执行一次。**</li>
+</ol>
+<ul>
+<li><p>**类什么时候被加载？ **</p>
+<ul>
+<li>创建对象实例时（new）</li>
+<li>创建子类对象实例，父类也会加载</li>
+<li>使用类的静态成员时（父类也会加载）</li>
+</ul>
+<p>  以上情况下类会被加载。加载后不需要再次加载，所以，静态代码块也只会执行一次。</p>
+</li>
+</ul>
+<ol>
+<li><p>创建一个对象时，在 <strong>一个类里</strong> 调用顺序是：</p>
+<ul>
+<li>调用静态代码块 和 静态属性初始化。这两者优先级相同，多个存在时按照定义的顺序依次执行。</li>
+<li>调用普通代码块 和 普通属性初始化。这两者优先级也相同。</li>
+<li>调用构造器。</li>
+</ul>
+</li>
+<li><p>&#x3D;&#x3D;<code>构造器</code> 的最前面其实隐含了 <code>super();</code> 和 <code>调用普通代码块</code>。&#x3D;&#x3D;而静态相关的代码块，属性初始化，在类加载时就执行完毕了。</p>
+<p> 这样，创建一个对象时，在 <strong>有继承关系的多个类里</strong> 调用顺序是：</p>
+<ul>
+<li>父类 静态代码块 和 静态初始化</li>
+<li>子类 静态代码块 和 静态初始化</li>
+<li>父类 普通代码块 和 普通初始化</li>
+<li>父类 构造器</li>
+<li>子类 普通代码块 和 普通初始化</li>
+<li>子类 构造器</li>
+</ul>
+</li>
+<li><p>静态代码块 只能调用 静态成员。普通代码块 能调用 任意成员。</p>
+</li>
+</ol>
+<h2><span id="x3dx3d94-单例设计模式x3dx3d">&#x3D;&#x3D;9.4 单例设计模式&#x3D;&#x3D;</span></h2><blockquote>
+<p>什么是设计模式：设计模式是在大量的实践中总结和理论化后优选的代码结构、编程风格、解决问题的思考方式。设计模式就像是经典的棋谱，免去我们自己再思考和摸索。</p>
+</blockquote>
+<p>单例设计模式：采取一定的方法，保证再整个的软件系统中，对某个类只能存在一个对象实例，并且该类只提供一个取得其对象实例的方法</p>
+<h3><span id="941-应用实例">9.4.1 应用实例</span></h3><blockquote>
+<p>后面会学更多，这里先展示两种：饿汉式、懒汉式</p>
+</blockquote>
+<h4><span id="9411-饿汉式">#9.4.1.1 饿汉式</span></h4><p>步骤如下：</p>
+<ol>
+<li><p>构造器私有化（防止用户直接 new）</p>
+</li>
+<li><p>类的内部创建对象</p>
+</li>
+<li><p>向外暴露一个静态的公共方法</p>
+</li>
+<li><p>代码实现</p>
+<blockquote>
+<pre><code class="java">class GF&#123;
+       private String name;
+    private static GF gf = new GF(&quot;萝茵&quot;);
+       private GF(String name)&#123;
+           this.name = name;
+       &#125;
+       public static GF getGF()&#123;
+           return gf;
+       &#125; 
+&#125;
+</code></pre>
+<p>对象，通常都是重量级的对象</p>
+<p>有时，我们用不到这个创建的对象，那个场合，会造成资源浪费。</p>
+</blockquote>
+</li>
+</ol>
+<h4><span id="9412-懒汉式">#9.4.1.2 懒汉式</span></h4><p>步骤如下：</p>
+<ol>
+<li><p>构造器私有化</p>
+</li>
+<li><p>定义一个静态属性对象</p>
+</li>
+<li><p>提供一个静态的公共方法，可以返回对象。如果静态对象为空，则创建对象</p>
+</li>
+<li><p>代码实现</p>
+<blockquote>
+<pre><code class="java">  &gt;class GF&#123;
+   private String name;
+private static GF gf;
+   private GF(String name)&#123;
+       this.name = name;
+   &#125;
+   public static GF getGF()&#123;
+       if(gf == null)&#123;
+           gf = new GF(&quot;萝茵&quot;);
+       &#125;
+       return gf;
+   &#125; 
+  &gt;&#125;
+</code></pre>
+</blockquote>
+</li>
+</ol>
+<h4><span id="9413-两种方法对比">#9.4.1.3 两种方法对比</span></h4><ol>
+<li>二者创建对象的时机不同。饿汉式在加载类信息时创建，懒汉式在使用时才创建</li>
+<li>&#x3D;&#x3D;饿汉式可能造成资源浪费，懒汉式可能存在线程安全问题（学习[线程]后会进行完善）。&#x3D;&#x3D;</li>
+<li>Java SE 标准类中 java.lang.Runtime 就是一个单例模式。</li>
+</ol>
+<h2><span id="x3dx3d95-final-关键字x3dx3d">&#x3D;&#x3D;9.5 <code>final</code> 关键字&#x3D;&#x3D;</span></h2><blockquote>
+<p><code>final</code> 可以修饰 类、属性、方法、局部变量</p>
+<p>以下情况下，可能用到 <code>final</code></p>
+<ol>
+<li><code>final</code> 修饰类：该类不能被继承</li>
+<li><code>final</code> 修饰方法：该方法不能被重写</li>
+<li><code>final</code> 修饰值：该值不能被修改</li>
+</ol>
+</blockquote>
+<h3><span id="951-使用细节">9.5.1 使用细节</span></h3><ol>
+<li><p><code>final</code> 修饰的属性又叫常量，一般用 XX_XX_XX 来命名（全大写字母+下划线）</p>
+</li>
+<li><p>&#x3D;&#x3D;<code>final</code> 修饰的属性在定义时，<strong>必须赋初始值</strong>，且之后不能再修改。&#x3D;&#x3D;赋值可以在下列位置之一：</p>
+<ul>
+<li>定义时</li>
+<li>构造器中</li>
+<li>代码块中</li>
+</ul>
+<p> 注意：如果 <code>final</code> 修饰的属性是静态的，则只能在以下位置赋值。</p>
+<ul>
+<li>定义时</li>
+<li>静态代码块中</li>
+</ul>
+</li>
+<li><p><code>final</code> 类不能继承，但能实例化对象。对的，是可以的。</p>
+</li>
+<li><p>&#x3D;&#x3D;如果不是 <code>final</code> 类，但含有 <code>final</code> 方法，虽然该方法不能重写，但能被继承。&#x3D;&#x3D;</p>
+</li>
+<li><p>&#x3D;&#x3D;<code>final</code> 类可以有 <code>final</code> 方法。可以，但没必要&#x3D;&#x3D;</p>
+</li>
+<li><p>&#x3D;&#x3D;<code>final</code> 不能修饰构造方法。&#x3D;&#x3D;</p>
+</li>
+<li><p>&#x3D;&#x3D;<code>final</code> 和 <code>static</code> 搭配使用，效率更高（那个场合，虽然顺序不限，还是推荐 <code>static</code> 在前）。底层编译器做了优化处理。这样做，调用 <strong>属性（定义时赋值）</strong> 时居然 <strong>不会造成类的加载！</strong>&#x3D;&#x3D;</p>
+</li>
+<li><p>&#x3D;&#x3D;包装类（Integer、Double、Float、Boolean、String等）都是 <code>final</code> 类，都不能被继承。&#x3D;&#x3D;</p>
+</li>
+</ol>
+<h2><span id="x3dx3d96-抽象类x3dx3d">&#x3D;&#x3D;9.6 抽象类&#x3D;&#x3D;</span></h2><blockquote>
+<p>当父类的某些方法需要声明，却不知道如何实现时，可以将其声明为抽象方法。那个场合，要将该类声明为 <code>abstract</code> 类。</p>
+<p>&#x3D;&#x3D;抽象类的价值更多是用于设计。设计者设计好后，让子类继承并实现。也是考官爱问的考点。&#x3D;&#x3D;</p>
+</blockquote>
+<blockquote>
+<p>定义抽象类：<code>访问修饰符 abstract 类名&#123;...&#125;</code></p>
+<p>定义抽象方法（注意：无方法体<code>&#123;&#125;</code>）：<code>访问修饰符 abstract 返回值 方法名(形参列表);</code></p>
+</blockquote>
+<h3><span id="961-使用细节">9.6.1 使用细节</span></h3><ol>
+<li>抽象类<u>不能被实例化</u></li>
+<li><strong>抽象类不一定包含抽象方法。</strong>也就是说，抽象类可以没有 <code>abstract</code>方法</li>
+<li><strong>一旦包含 <code>abstract</code> 方法，则该类一定要声明为 <code>abstract</code></strong>,&#x3D;&#x3D;一个抽象类包含一个或多个抽象方法，并不是全部都是抽象方法&#x3D;&#x3D;</li>
+<li><strong><code>abstract</code> 只能修饰 类 和 方法</strong>，不能修饰其他。</li>
+<li>&#x3D;&#x3D;抽象类可以有任意成员（非抽象方法、构造器、静态属性等）&#x3D;&#x3D;。即，抽象类本质还是类。</li>
+<li>抽象方法不能有主体。即，抽象方法不能实现。</li>
+<li>&#x3D;&#x3D;如果一个类继承了 <code>abstract</code> 类，则其必须实现所有 <code>abstract</code> 方法，除非其自己也是 <code>abstract</code> 类。&#x3D;&#x3D;</li>
+<li><strong>抽象方法不能用 <code>private</code> <code>final</code> <code>static</code> 来修饰。</strong>因为，这些关键词都和 重写 相违背。</li>
+</ol>
+<h3><span id="x3dx3d962-抽象类最佳实践-模板设计模式x3dx3d">&#x3D;&#x3D;9.6.2 抽象类最佳实践-模板设计模式&#x3D;&#x3D;</span></h3><blockquote>
+<p>抽象类体现的就是一种模板模式的设计，抽象类作为多个子类的通用模板，子类在抽象类的基础上进行扩展、改造，但子类总体上会保留抽象类的行为方式。</p>
+</blockquote>
+<p>模板设计模式能解决的问题：</p>
+<ol>
+<li>当功能内部一部分实现是确定，一部分实现是不确定的。这时可以把不确定的部分暴露出去，让子类去实现。</li>
+<li>编写一个抽象父类，父类提供了多个子类的通用方法，并把一个或多个方法留给其子类实现，就是一种模板模式。</li>
+</ol>
+<p><strong>最佳实践</strong></p>
+<ol>
+<li>有多个类，完成不同的任务job</li>
+<li>要求统计得到各自完成任务的时间</li>
+<li>实现TestTemple.java</li>
+</ol>
+<pre><code class="java">package com.hspedu.abstract_;
+
+abstract public class Template &#123; //抽象类-模板设计模式
+
+    public abstract void job();//抽象方法
+
+    public void calculateTime() &#123;//实现方法，调用job方法
+        //得到开始的时间
+        long start = System.currentTimeMillis();
+        job(); //动态绑定机制，调用的是运行类型的job方法(是谁就用谁的)
+        //得的结束的时间
+        long end = System.currentTimeMillis();
+        System.out.println(&quot;任务执行时间 &quot; + (end - start));
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="java">package com.hspedu.abstract_;
+
+public class AA extends Template &#123;
+
+    //计算任务
+    //1+....+ 800000
+    @Override
+    public void job() &#123; //实现Template的抽象方法job
+
+        long num = 0;
+        for (long i = 1; i &lt;= 800000; i++) &#123;
+            num += i;
+        &#125;
+    &#125;
+
+//    public void job2() &#123;
+//        //得到开始的时间
+//        long start = System.currentTimeMillis();
+//        long num = 0;
+//        for (long i = 1; i &lt;= 200000; i++) &#123;
+//            num += i;
+//        &#125;
+//        //得的结束的时间
+//        long end = System.currentTimeMillis();
+//        System.out.println(&quot;AA 执行时间 &quot; + (end - start));
+//    &#125;
+&#125;
+</code></pre>
+<pre><code class="java">package com.hspedu.abstract_;
+
+public class BB extends Template&#123;
+
+    public void job() &#123;//这里也去，重写了Template的job方法
+
+        long num = 0;
+        for (long i = 1; i &lt;= 80000; i++) &#123;
+            num *= i;
+        &#125;
+
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="java">package com.hspedu.abstract_;
+
+public class TestTemplate &#123;
+    public static void main(String[] args) &#123;
+
+        AA aa = new AA();
+        aa.calculateTime(); //这里还是需要有良好的OOP基础，对多态
+
+        BB bb = new BB();
+        bb.calculateTime();
+    &#125;
+&#125;
+</code></pre>
+<h2><span id="97-接口">9.7 接口</span></h2><blockquote>
+<p>接口就是给出一些没有实现的方法，封装到一起，到某个类要用的时候，再根据具体情况把这些方法写出来。</p>
+<p>语法：<code>interface 接口名&#123;...&#125;</code></p>
+<pre><code>class 类名 implements 接口名&#123;...必须实现接口的抽象方法...&#125;
+</code></pre>
+<p>注意：JDK 7.0 以前，接口中只能是抽象方法。而 JDK 8.0 后，接口可以有静态（<code>static</code>）方法、默认（<code>default</code>）方法。</p>
+<p>在接口中，抽象方法可以省略 <code>abstract</code></p>
+</blockquote>
+<p>接口中可以存在：</p>
+<ul>
+<li>属性（只有静态 <code>static</code> 属性，可以不加 <code>static</code> 关键字）</li>
+<li>方法（抽象 <code>abstract</code> 方法、默认 <code>default</code> 实现方法、静态 <code>static</code> 方法）</li>
+</ul>
+<h3><span id="971-使用细节">9.7.1 使用细节</span></h3><ol>
+<li>接口 不能被实例化。</li>
+<li><strong>接口中所有方法都是 <code>public</code> 方法。</strong>接口中的 抽象方法 可以不用 <code>abstract</code> 修饰。</li>
+<li>一个普通类实现接口，就必须把该接口所有方法都实现。（快捷键<code>alt + enter</code>）</li>
+<li><strong>抽象类实现接口，可以不用实现接口的方法。</strong></li>
+<li>一个类可以同时实现多个接口。<code>class Name implements In1,In2&#123;...&#125;</code></li>
+<li>&#x3D;&#x3D;接口中的属性只能是 <code>final</code> 的，并且是 <code>public static final</code> 修饰符。修饰符就算不写，还是这样。&#x3D;&#x3D;</li>
+<li>接口中属性的访问形式：<code>接口名.属性名</code></li>
+<li>接口不能 <strong>继承</strong> 其他的类，但可以 <strong>继承</strong> 多个别的接口。（不是也不能 实现 别的接口）</li>
+<li>&#x3D;&#x3D;接口的修饰符<strong>只能是 <code>public</code> 和 默认</strong>。这点和类的修饰符相同。&#x3D;&#x3D;</li>
+</ol>
+<h3><span id="972-实现接口-vs-继承类">9.7.2 实现接口 vs 继承类</span></h3><ol>
+<li>当子类继承父类，就自动拥有父类的所有功能。如果需要扩展功能，可以通过接口方式扩展。</li>
+<li>可以认为，接口 是对于 Java 单继承机制的补充。</li>
+<li>继承的价值主要在于：解决代码的复用性和可维护性。</li>
+<li>接口的价值主要在于：设计。设计好各种规范，让其他类去实现这些方法。</li>
+<li>接口比继承更加灵活。继承需要满足 is - a 的关系，而接口只需要满足 like - a 关系。</li>
+<li>&#x3D;&#x3D;接口在一定程度上实现代码解耦。（即：接口规范性 + 动态绑定机制）&#x3D;&#x3D;</li>
+</ol>
+<h3><span id="973-接口的多态特性">9.7.3 接口的多态特性</span></h3><ol>
+<li><p>多态参数（接口的引用可以指向实现了接口的类的对象）</p>
+<blockquote>
+<p><code>viod work(Inerface01 i1)&#123;...&#125;</code> 参数可以传入任意实现该接口的类。</p>
+</blockquote>
+</li>
+<li><p>多态数组</p>
+</li>
+<li><p>接口存在多态传递现象</p>
+<blockquote>
+<p>&#x3D;&#x3D;如果有A、B两个接口，B继承了A接口，而C类实现了B接口，那么等同于间接也实现了A接口。&#x3D;&#x3D;</p>
+<p>这样c类的实例也可以赋给A类的接口。</p>
+</blockquote>
+</li>
+</ol>
+<h2><span id="98-内部类">9.8 内部类</span></h2><blockquote>
+<p>一个类的内部又完整的嵌套了另一个类结构。被嵌套的类被称为 内部类。</p>
+<pre><code class="java">class Outer&#123;		//外部类
+    class Inner&#123;	//内部类	
+    &#125;
+&#125;
+class Other&#123;		//外部其他类
+&#125;
+</code></pre>
+<p>内部类的最大特点是可以直接访问私有属性，并且可以体现类与类之间的包含关系。</p>
+</blockquote>
+<h3><span id="981-四种内部类">9.8.1 四种内部类</span></h3><p>分别是：</p>
+<ul>
+<li>定义在外部类的局部位置上<ul>
+<li>局部内部类：有 类名</li>
+<li><strong>匿名内部类：无 类名</strong></li>
+</ul>
+</li>
+<li>定义在外部类的成员位置上<ul>
+<li>成员内部类：无 <code>static</code> 修饰</li>
+<li>静态内部类： <code>static</code> 修饰的类</li>
+</ul>
+</li>
+</ul>
+<h3><span id="982-局部内部类">9.8.2 局部内部类</span></h3><blockquote>
+<p>局部内部类：定义在外部类的局部位置上，并且有类名。（局部位置？比如：方法&#x2F;代码块里）</p>
+<pre><code class="java">class Outer &#123;				//外部类
+    public void tools01() &#123;
+        class Inner &#123;		//局部内部类
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+</blockquote>
+<h4><span id="9821-使用细节">#9.8.2.1 使用细节</span></h4><ol>
+<li><p>定义在外部类的局部位置上，并且有类名。</p>
+</li>
+<li><p>&#x3D;&#x3D;可以访问外部类的所有成员，<strong>包含私有成员</strong>&#x3D;&#x3D;</p>
+</li>
+<li><p>局部内部类可以 直接访问 外部类的成员。</p>
+</li>
+<li><p>不能添加 访问修饰符，因为其地位相当于局部变量。但，可以使用 <code>final</code>，因为局部变量也能用 <code>final</code></p>
+</li>
+<li><p>&#x3D;&#x3D;作用域 仅仅在定义它的方法或代码块中&#x3D;&#x3D;</p>
+</li>
+<li><p>&#x3D;&#x3D;外部类 在方法中，可以创建 局部内部类 的对象实例，然后调用方法。&#x3D;&#x3D;</p>
+</li>
+<li><p>&#x3D;&#x3D;外部其他类 不能访问 局部内部类&#x3D;&#x3D;</p>
+</li>
+<li><p>如果外部类和局部内部类的成员重名时，默认遵循就近原则。那个场合，访问外部类成员使用 <code>外部类名.this.变量名</code></p>
+<p> <code>外部类名.this</code> 本质就是 外部类的对象。即，调用了该方法（上例的 <code>tools01</code> ）的对象</p>
+<p> 还不懂的话，看一下 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1fh411y7R8?p=415&t=289.9">这个视频</a> 悟一悟</p>
+</li>
+</ol>
+<h3><span id="x3dx3d983-匿名内部类x3dx3d">&#x3D;&#x3D;9.8.3 匿名内部类&#x3D;&#x3D;</span></h3><blockquote>
+<p>匿名内部类：定义在外部类的局部位置，且没有类名</p>
+<pre><code class="java">&gt;new 类/接口 (参数列表) &#123;
+   类体
+&gt;&#125;
+</code></pre>
+<p>匿名内部类本质是没有名字的类，而且是内部类。同时，还是一个对象。</p>
+<p>可以用匿名内部类简化开发</p>
+</blockquote>
+<blockquote>
+<p>一个例子</p>
+<pre><code class="java">&gt;class Outer &#123;							//外部类
+   public void tools01() &#123;
+       Inter whatEver = new Inter()&#123;	//匿名内部类            
+       &#125;;						
+   &#125;
+&gt;&#125;
+&gt;interface Inter&#123;
+&gt;&#125;
+</code></pre>
+<p>其实，这个匿名内部类 <code>new Inter()&#123;&#125;</code> 的运行类型就是 <code>class XXXX implements Inter</code>。系统自动分配的名字是 <code>Outer$1</code>（<code>whatEver.getClass = &quot;Outer$1&quot;</code>）</p>
+<p>JDK 在创建匿名内部类 <code>Outer$1</code> 时，立即创建了一个对象实例，并将地址返回给了 <code>whatEver</code></p>
+<p>匿名内部类使用一次后就不能再次使用（<code>Outer$1</code> 就这一个了）</p>
+</blockquote>
+<h4><span id="9831-使用细节">#9.8.3.1 使用细节</span></h4><ol>
+<li>匿名内部类语法比较独特。其既是一个类的定义，也是一个对象。因此，从语法上看，其既有 定义类的特征，也有 创建对象的特征。</li>
+<li>可以访问外部类的所有成员，包括私有的。</li>
+<li>局部内部类可以 直接访问 外部类的成员。</li>
+<li>不能添加 访问修饰符，因为其地位相当于局部变量。但，可以使用 <code>final</code>，因为局部变量也能用 <code>final</code></li>
+<li>作用域：仅仅在定义它的方法或方法快中</li>
+<li>外部其他类 不能访问 匿名内部类</li>
+<li>如果外部类和匿名内部类的成员重名时，默认遵循就近原则。那个场合，访问外部类成员使用 <code>外部类名.this.变量名</code></li>
+</ol>
+<h4><span id="9832-使用场景">#9.8.3.2 使用场景</span></h4><ol>
+<li><p>当作实参直接传递，简洁高效</p>
+<blockquote>
+<pre><code class="java">public class Homework1 &#123;
+    public static void main(String[] args) &#123;		
+        new Cellphone().clock(new Bell() &#123;				//看这里看这里
+            @Override
+            public void belling() &#123;
+                System.out.println(&quot;小懒猪起床了！&quot;);
+            &#125;
+        &#125;);
+    &#125;
+&#125;
+
+interface Bell &#123;
+    void ringing();
+&#125;
+
+class Cellphone&#123;
+    public void clock(Bell bell)&#123;
+        bell.ringing();
+    &#125;
+&#125;
+</code></pre>
+</blockquote>
+</li>
+</ol>
+<h3><span id="984-成员内部类">9.8.4 成员内部类</span></h3><blockquote>
+<p>成员内部类：定义在外部类的成员位置，并且没有 <code>static</code> 修饰。</p>
+<pre><code class="java">class Outer&#123;
+    class Inner&#123;
+    &#125;
+&#125;
+</code></pre>
+</blockquote>
+<h4><span id="9841-使用细节">#9.8.4.1 使用细节</span></h4><ol>
+<li>可以直接访问外部类的所有成员，包括私有的</li>
+<li>可以添加任意访问修饰符。因为，成员内部类的地位就是一个成员。</li>
+<li>作用域 和外部类其他成员相同，为整个类体。</li>
+<li>局部内部类可以 直接访问 外部类的成员。</li>
+<li>外部类可以通过创建对象的方式访问成员内部类</li>
+<li>外部其他类访问成员内部类<ul>
+<li><code>Outer.Inner name = Outer.new Inner(); </code>下个方法的缩写</li>
+<li><code>Outer.Inner name = new Outer().new Inner();</code></li>
+<li>在外部类中编写一个方法，返回一个 <code>Inner</code> 的对象实例（就是对象的 getter）</li>
+</ul>
+</li>
+<li>如果外部类和匿名内部类的成员重名时，默认遵循就近原则。那个场合，访问外部类成员使用 <code>外部类名.this.变量名</code></li>
+</ol>
+<h3><span id="985-静态内部类">9.8.5 静态内部类</span></h3><blockquote>
+<p>静态内部类：定义在外部类的成员位置，经由 <code>static</code> 修饰。</p>
+<pre><code class="java">class Outer&#123;
+    static class Inner&#123;
+    &#125;
+&#125;
+</code></pre>
+</blockquote>
+<h4><span id="9851-使用细节">#9.8.5.1 使用细节</span></h4><ol>
+<li>可以直接访问外部类的所有 <strong>静态</strong> 成员，包括私有的。但不能访问非静态成员</li>
+<li>可以添加访问修饰符。因为，静态内部类的地位就是一个成员。</li>
+<li>作用域 和其他成员相同，为整个类体。</li>
+<li>静态内部类可以 直接访问 外部类的成员。</li>
+<li>外部类可以通过创建对象的方式访问静态内部类</li>
+<li>外部其他类访问静态内部类<ul>
+<li><code>Outer.Inner name = new Outer.Inner();</code> 即通过类名直接访问</li>
+<li>在外部类中编写一个方法，返回一个 <code>Inner</code> 的对象实例</li>
+<li>如果外部类和匿名内部类的成员重名时，默认遵循就近原则。那个场合，访问外部类成员使用 <code>外部类名.变量名</code>。<em>（怎么不一样了呢？因为静态内部类访问的都是静态成员）</em></li>
+</ul>
+</li>
+</ol>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 Yelog
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().trim().split('\n').length, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 18px 3px 15px 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: ;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<div class="aplayer"
+
+    data-id="9126522781"
+
+    data-server="netease"
+
+    data-type="playlist"
+
+    data-fixed="true"
+
+    data-autoplay="false"
+
+    data-loop="all"
+
+    data-order="random"
+
+    data-preload="auto"
+
+    data-volume="0.7"
+
+    data-mutex="true"
+
+>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+
+<script>
+(function() {
+
+  var arr = new Array();
+  var $tags = $('.post-tags').children('a');
+  $tags.each(function() {
+    arr.push($(this).html())
+  })
+  if (arr.indexOf("图集") !== -1) {
+
+    $('.hj_img').each(function() {
+      $(this).wrap('<a class="fancybox" data-fancybox="gallery" href="' + $(this).prop("src") + '"></a>'); 
+    })
+    //初始化fancybox，padding设为0，loop设为false
+    $('.fancybox').fancybox({
+      padding: 0,
+      loop: false
+    });
+  }
+})();
+</script>
+
+<!-- // 文字 -->
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/shehuizhuyi.js"></script>
+<!-- // 爱心 -->
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/love.js"></script>
+<!-- // 按键屏蔽 需要jQuery -->
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn@latest/js/noSomeKey.js"></script>
+
+
+</html>

@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>HatidaBlog</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="HatidaBlog">
+  <title>5 数组、排序和查找 | HatidaBlog</title>
+  <meta name="keywords" content=" java , 数组 , 排序 , 查找 ">
+  <meta name="description" content="5 数组、排序和查找 | HatidaBlog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="第4章 检索数据4.5 检索不同的行DISTINCT关键字：此关键字指示MySQL只返回不同的值。  不能部分使用DISTINCT DISTINCT关键字应用于所有列而不仅是前置它的列。如果给出SELECT DISTINCT vend_id,prod_price，除非指定的两个列都不同，否则所有行都将被检索出来。 相当于将distinct后面的列放在一起作为条件  4.6 限制结果-limit关键">
 <meta property="og:type" content="article">
@@ -59,7 +59,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -500,12 +500,68 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-Java基础/5 数组" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-Blog"><span class="toc-text">Why Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-text">对博客的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%8F%B6%E8%90%BD%E9%98%81"><span class="toc-text">关于叶落阁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0"><span class="toc-text">博客平台</span></a></li></ol></li></ol>
+        <h1 class="article-title">5 数组、排序和查找</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="编程语言">编程语言</a> > 
+            
+            <a  data-rel="编程语言&lt;---&gt;java">java</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">java</a>
+            
+            <a class="color3">数组</a>
+            
+            <a class="color3">排序</a>
+            
+            <a class="color3">查找</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2024-02-05 01:16:40'>2024-02-04 16:17</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:1.4k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">5 数组、排序和查找</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">5.1 一维数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">5.1.1 数组赋值机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text">5.1.2 数组的扩容</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">5.2 二维数组</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -518,33 +574,170 @@
     }
 </style>
 </div>
-            <h1 id="Why-Blog"><a href="#Why-Blog" class="headerlink" title="Why Blog"></a>Why Blog</h1><h2 id="对博客的理解"><a href="#对博客的理解" class="headerlink" title="对博客的理解"></a>对博客的理解</h2><p>喜欢写Blog的人，会经历三个阶段。</p>
-<blockquote>
-<p>第一阶段，刚接触Blog，觉得很新鲜，试着选择一个免费空间来写。</p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1><span id="5-数组-排序和查找">5 数组、排序和查找</span></h1><blockquote>
+<p>数组：可以存放多个同一类型的数据。数组也是一种数据，是引用类型。</p>
+<p>即：数组就是一组数据。</p>
 </blockquote>
-<blockquote>
-<p>第二阶段，发现免费空间限制太多，就自己购买域名和空间，搭建独立博客。</p>
+<h2><span id="51-一维数组">5.1 一维数组</span></h2><blockquote>
+<p>数组可以是多个相同类型数据的组合，实现对这些数据的统一管理。</p>
+<p>数组中的元素可以是任何数据类型。包括基本类型和引用类型。</p>
+<p>数组的下标从 0 开始。且必须在指定范围内使用，否则报错。</p>
+<p>数组属于 引用类型，数组型数据是 对象（Object）</p>
+<p>数组创建后，如果没有赋值，有默认值：int（0），short（0），byte（0），long（0L），float（0.0F），double（0.0），char（\u0000），boolean（false），String（null），Object（null）</p>
 </blockquote>
-<blockquote>
-<p>第三阶段，觉得独立博客的管理太麻烦，最好在保留控制权的前提下，让别人来管，自己只负责写文章。</p>
-</blockquote>
-<p>我们每个人的在网络上产生的数据越来越多，这些信息是我们在互联网上存在过的痕迹，值得我们认真对待。但是它们被分散分布在各个网站上。很多时候我们很难将它们聚合在一起，而且各个网站的信息排布方式也没有办法自由控制，所以我们需要一个可以由自己主宰的空间——博客。</p>
-<p>通过博客，我们可以记录自己的生活和成长的轨迹。它不像 Twitter 那样碎片化，也不像 Facebook 那样关系化，它是私人的空间。</p>
-<h2 id="关于叶落阁"><a href="#关于叶落阁" class="headerlink" title="关于叶落阁"></a>关于叶落阁</h2><p><strong>叶落阁</strong> 是阁主（杨玉杰）的个人站。</p>
-<p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
-<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 生成，部署在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主题 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a> 已经在github上开源</p>
-<p><code>3-hexo</code> 主题使用交流可以加 Q群: <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=e8cf083cc097141eaf323396f1766809b8e90ff00c67bb441898f672892f6904"><img data-ignore border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="3-hexo使用交流" title="3-hexo使用交流"></a></p>
-<p>主要功能：</p>
+<p><strong>数组的构造方法：</strong></p>
+<p>使用数组的步骤：1.声明数组并开辟空间 2.给数组各个元素赋值 3.使用数组</p>
 <ul>
-<li>搜索支持文章标题、标签(#标签)、作者(@作者)</li>
-<li>pad&#x2F;手机等移动端适配</li>
-<li>页面全局快捷键 <a target="_blank" rel="noopener" href='http://yelog.org/2017/03/24/3-hexo-shortcuts/'>3-hexo快捷键说明</a></li>
+<li><p>构造方式1：动态初始化</p>
+<pre><code>int[] ints = new int[5];				// 创建了数组 name，存放5个int
+int ints2[] = new int[1];				// 这种写法也行
+ints[2] = 15;							// 访问数组第3个数JAVA
+</code></pre>
+</li>
+<li><p>构造方式2：动态初始化</p>
+<pre><code>char[] chars;							// 先声明数组 name，此时数组是 null
+chars = new char[2];					// 分配内存空间，可以存放数据了
+chars[1] = &#39;\t&#39;;JAVA
+</code></pre>
+</li>
+<li><p>构造方式3：静态初始化</p>
+<pre><code>boolean[] bools = &#123;true, false, true, false&#125;;
+String[] strs = new String[]&#123;&quot;阿伟，你又在打电动噢&quot;, &quot;烦啦&quot;&#125;;JAVA
+</code></pre>
+<p>  确切知道数组每个元素的场合可以用这个方法。</p>
+</li>
 </ul>
+<p><strong>数组的使用方法：</strong></p>
+<ul>
+<li><p>访问数组元素：<code>数组名[元素下标]</code></p>
+<p>  其中，元素下标从 0 开始编号。如：访问 strs 数组的第一个元素 <code>strs[0]</code></p>
+</li>
+<li><p>数组长度：<code>数组名.length</code></p>
+<p>  是一个 int 值。不能通过试图改变该值来改变数组容量</p>
+</li>
+</ul>
+<h3><span id="511-数组赋值机制">5.1.1 数组赋值机制</span></h3><ol>
+<li><p>基本数据类型赋值，赋值方式是值拷贝。这个值就是具体的数据，且互不影响</p>
+</li>
+<li><p>数组在默认情况下是引用传递，赋的值是地址，赋值方式为引用传达。</p>
+<pre><code>int[] array1 = &#123;0, 0, 0&#125;;
+int[] array2 = array1;
+array2[0] = 100;JAVA
+</code></pre>
+<p> 上述情况下，<code>array1[0]</code> 也会变成 <code>100</code>。因为数组在 JVM 的 栈 里是一个地址，指向 堆 里的一个空间。这两个数组在上述情况下指向同一空间。</p>
+<pre><code>int[] array1 = &#123;0, 0, 0&#125;;
+int[] array2 = new int[array1.length];
+for (int i = 0;i &lt; array1.length;i++) &#123;
+    array2[i] = array1[i];
+&#125;JAVA
+</code></pre>
+<p> 上述方式拷贝后，两数组相互独立。</p>
+</li>
+</ol>
+<h3><span id="512-数组的扩容">5.1.2 数组的扩容</span></h3><p>当数组达到上限时，创建一个容量更大的新数组。将旧数组的元素依次放入，之后替换旧数组。</p>
+<p>以下是一个扩容方法：</p>
+<pre><code>import java.util.Scanner;
+public class Code5_1_3&#123;
 
-        </article>
-        
-        
+    public static void main(String[] args)&#123;
+
+        Scanner inP = new Scanner(System.in);
+        int[] arr1 = &#123;1, 2, 3&#125;;		// 这是原数组
+        int add = 0;				// 这个变量记录输入的新元素的值
+        int count = arr1.length;	// 这个变量是新数组的长度
+        char yN = &#39;a&#39;;				// 记录询问继续与否时用户的输入字符
+
+        do&#123;
+           /* 创建多一位的新数组，把新元素赋给新数组的最后一位 */
+                System.out.println(&quot;请输入添加数字：&quot;);
+                add = inP.nextInt();
+                int[] tem = new int[arr1.length + 1];
+                tem[count] = add;
+
+           /* 把旧数组的值全部赋给新数组 */
+                for(int i = 0; i &lt; arr1.length; i++)&#123;
+                    tem[i] = arr1[i];
+                &#125;
+
+           /* 把新数组保存下来，输出现在的数组 */
+                arr1 = tem;
+                count++;
+                System.out.println(&quot;\n\n当前数组为：&quot;);
+
+                for(int i = 0; i &lt; arr1.length; i++)&#123;
+                    System.out.print(arr1[i] + &quot; &quot;);
+                &#125;
+
+           /* 询问是否继续添加，输入n跳出，否则循环 */
+                System.out.println(&quot;\n\n是否继续添加？（Y/N）&quot;);
+                yN = inP.next().charAt(0);
+
+        &#125;while(yN != &#39;N&#39; &amp;&amp; yN != &#39;n&#39;);
+
+    &#125;
+&#125;JAVA
+</code></pre>
+<h2><span id="52-二维数组">5.2 二维数组</span></h2><pre><code>int[][] ints;					// 声明一个二维数组
+int[] ints2[];					// 也能这样声明
+int ints3[][];					// 这样也行
+int[] x,y[];					// 声明了两个数组，一个是 int[] x 一个是 int[][] y
+                                // 把 int[] 视作一个类型，就能很好地理解这个写法JAVA
+</code></pre>
+<p>二维数组实际是由多个一维数组组成的，它的各个元素的长度可以相同，也可以不同。</p>
+<p>数组是一个对象，所以二维数组的元素存放的是一维数组的地址。</p>
+<p><strong>二维数组构造方法：</strong></p>
+<ul>
+<li><p>构造方法1：动态初始化</p>
+<pre><code>int[][] many_ints = new int[3][4]	// 创建 有3个 包含4个元素的一维数组 的二维数组
+JAVA
+</code></pre>
+</li>
+<li><p>构造方法2：动态初始化</p>
+<pre><code>double[][] many_doubles;			// 先声明变量
+many_doubles = new double[3][4];	// 再开辟空间JAVA
+</code></pre>
+</li>
+<li><p>构造方法3：动态初始化-列数不确定</p>
+<pre><code>char[][] many_chars = new char[3][];	// 创建一个三行列数不确定的二维数组
+for (int i = 0; i &lt; 3; i++) &#123;
+    many_chars[i] = new char[i + 1];	// 此时，每个数组空间依次增大
+&#125;JAVA
+</code></pre>
+</li>
+<li><p>构造方法4：静态初始化</p>
+<pre><code>int[][] many_many = &#123;&#123;1, 3&#125;, &#123;4, 10, 2&#125;, &#123;95&#125;&#125;;
+JAVA
+</code></pre>
+</li>
+</ul>
+<p><strong>二维数组使用方法：</strong></p>
+<ul>
+<li><code>ints.length</code>：该二维数组的长度，这里是 3</li>
+<li><code>ints[0]</code>：该二维数组的第一个子数组</li>
+<li><code>ints[0].length</code>：该二维数组的第一个子数组的长度，这里是 4</li>
+<li><code>ints[1][0]</code>：该二维数组第二个子数组的第一个元素的值，这里是 21</li>
+</ul>
+<p><del>这是一维数组：int[] a、这是二维数组：int[][] b。好了，现在来写一个堆排序吧</del></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -553,11 +746,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 </body>
