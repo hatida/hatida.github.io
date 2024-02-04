@@ -70,60 +70,12 @@
 <div class="icon">
     
         
-            <a title="rss"
-               href="/atom.xml"
-               target="_blank">
-                
-                    <svg class="iconfont-svg" aria-hidden="true">
-                        <use xlink:href="#icon-rss"></use>
-                    </svg>
-                
-            </a>
-        
-    
-        
             <a title="github"
                href="https://github.com/hatida"
                target="_blank">
                 
                     <svg class="iconfont-svg" aria-hidden="true">
                         <use xlink:href="#icon-github"></use>
-                    </svg>
-                
-            </a>
-        
-    
-        
-            <a title="qq"
-               href="http://wpa.qq.com/msgrd?v=3&uin=3180349973&site=qq&menu=yes"
-               target="_blank">
-                
-                    <svg class="iconfont-svg" aria-hidden="true">
-                        <use xlink:href="#icon-qq"></use>
-                    </svg>
-                
-            </a>
-        
-    
-        
-            <a title="kugou"
-               href="https://www.kugou.com/"
-               target="_blank">
-                
-                    <svg class="iconfont-svg" aria-hidden="true">
-                        <use xlink:href="#icon-kugou"></use>
-                    </svg>
-                
-            </a>
-        
-    
-        
-            <a title="neteasemusic"
-               href="https://music.163.com/#/user/home?id=88151013"
-               target="_blank">
-                
-                    <svg class="iconfont-svg" aria-hidden="true">
-                        <use xlink:href="#icon-neteasemusic"></use>
                     </svg>
                 
             </a>
@@ -303,7 +255,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2024-02-04 23:13:29'>2024-02-04 16:17</time>
+            Created At : <time class="date" title='Updated At: 2024-02-04 23:45:31'>2024-02-04 16:17</time>
         
     </div>
     <div class="article-meta">
@@ -343,7 +295,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1><span id="单表查询">单表查询</span></h1><h2><span id="1数据库-数据库管理系统-sql">1.数据库、数据库管理系统、SQL</span></h2><p><em><strong>什么是数据库？什么是数据库管理系统？什么是SQL？他们之间的关系是什么？</strong></em></p>
+        <p><code class="article_number"></code> <code class="site_word_count"></code></p>
+<p><code class="site_uv"></code> <code class="site_pv"></code></p>
+<h1><span id="单表查询">单表查询</span></h1><h2><span id="1数据库-数据库管理系统-sql">1.数据库、数据库管理系统、SQL</span></h2><p><em><strong>什么是数据库？什么是数据库管理系统？什么是SQL？他们之间的关系是什么？</strong></em></p>
 <blockquote>
 <p>数据库：英文单词DataBase，简称DB。按照一定格式存储数据的一些文件的组合。顾名思义：存储数据的仓库，实际上就是一堆文件。这些文件中存储了具有特定格式的数据。</p>
 </blockquote>
@@ -3508,4 +3462,36 @@ mysql&gt; select * from emp;
 
 
 
+<div id="musicMouseDrag" style="position:fixed; z-index: 9999; bottom: 0; right: 0;">
+    <div id="musicDragArea" style="position: absolute; top: 0; left: 0; width: 100%;height: 10px;cursor: move; z-index: 10;"></div>
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1345693396&auto=1&height=66"></iframe>
+</div>
+<!--以下代码是为了支持随时拖动音乐控件的位置，如没有需求，可去掉下面代码-->
+<script>
+    var $DOC = $(document)
+    $('#musicMouseDrag').on('mousedown', function (e) {
+      // 阻止文本选中
+      $DOC.bind("selectstart", function () {
+        return false;
+      });
+      $('#musicDragArea').css('height', '100%');
+      var $moveTarget = $('#musicMouseDrag');
+      $moveTarget.css('border', '1px dashed grey')
+      var div_x = e.pageX - $moveTarget.offset().left;
+      var div_y = e.pageY - $moveTarget.offset().top;
+      $DOC.on('mousemove', function (e) {
+        var targetX = e.pageX - div_x;
+        var targetY = e.pageY - div_y;
+        targetX = targetX < 0 ? 0 : (targetX + $moveTarget.outerWidth() >= window.innerWidth) ? window.innerWidth - $moveTarget.outerWidth() : targetX;
+        targetY = targetY < 0 ? 0 : (targetY + $moveTarget.outerHeight() >= window.innerHeight) ? window.innerHeight - $moveTarget.outerHeight() : targetY;
+        $moveTarget.css({'left': targetX + 'px', 'top': targetY + 'px', 'bottom': 'inherit', 'right': 'inherit'})
+      }).on('mouseup', function () {
+        $DOC.unbind("selectstart");
+        $DOC.off('mousemove')
+        $DOC.off('mouseup')
+        $moveTarget.css('border', 'none')
+        $('#musicDragArea').css('height', '10px');
+      })
+    })
+</script>
 </html>
