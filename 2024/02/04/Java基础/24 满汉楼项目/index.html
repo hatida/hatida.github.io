@@ -324,19 +324,19 @@
         
         
         <a  class="All 编程语言 java "
-           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/11%20%E5%BC%82%E5%B8%B8%EF%BC%88Exception%EF%BC%89/"
-           data-tag="java,异常"
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/10%20%E6%9E%9A%E4%B8%BE%E5%92%8C%E6%B3%A8%E8%A7%A3/"
+           data-tag="java,枚举,注解"
            data-author="" >
-            <span class="post-title" title="11 异常（Exception）">11 异常（Exception）</span>
+            <span class="post-title" title="10 枚举和注解">10 枚举和注解</span>
             <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
         </a>
         
         
         <a  class="All 编程语言 java "
-           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/10%20%E6%9E%9A%E4%B8%BE%E5%92%8C%E6%B3%A8%E8%A7%A3/"
-           data-tag="java,枚举,注解"
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/11%20%E5%BC%82%E5%B8%B8%EF%BC%88Exception%EF%BC%89/"
+           data-tag="java,异常"
            data-author="" >
-            <span class="post-title" title="10 枚举和注解">10 枚举和注解</span>
+            <span class="post-title" title="11 异常（Exception）">11 异常（Exception）</span>
             <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
         </a>
         
@@ -2841,8 +2841,29 @@ public class MenuUtility &#123;
 
     /*打赏页面隐藏与展示*/
     
-
+	
 </script>
+
+
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+  var now = new Date(); 
+  function createtime() { 
+    var grt= new Date("03/08/2020 16:44:00");//此处修改你的建站时间或者网站上线时间 
+    now.setTime(now.getTime()+250); 
+    days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+    hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+    if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+    mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+    seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+    snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+    document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+  } 
+  setInterval("createtime()",250);
+</script>
+
 
 <!--加入行号的高亮代码块样式-->
 
@@ -3087,21 +3108,5 @@ public class MenuUtility &#123;
 <!-- // 按键屏蔽 需要jQuery -->
 <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn@latest/js/noSomeKey.js"></script>
 
-<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
-<script>
-  var now = new Date(); 
-  function createtime() { 
-    var grt= new Date("03/08/2020 16:44:00");//此处修改你的建站时间或者网站上线时间 
-    now.setTime(now.getTime()+250); 
-    days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
-    hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
-    if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
-    mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
-    seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
-    snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
-    document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
-    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
-  } 
-  setInterval("createtime()",250);
-</script>
+
 </html>
