@@ -357,19 +357,19 @@
         
         
         <a  class="All 编程语言 java "
-           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/5%20%E6%95%B0%E7%BB%84/"
-           data-tag="java,数组,排序,查找"
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/25%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"
+           data-tag="java,正则表达式"
            data-author="" >
-            <span class="post-title" title="5 数组、排序和查找">5 数组、排序和查找</span>
+            <span class="post-title" title="25 正则表达式">25 正则表达式</span>
             <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
         </a>
         
         
         <a  class="All 编程语言 java "
-           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/25%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"
-           data-tag="java,正则表达式"
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/5%20%E6%95%B0%E7%BB%84/"
+           data-tag="java,数组,排序,查找"
            data-author="" >
-            <span class="post-title" title="25 正则表达式">25 正则表达式</span>
+            <span class="post-title" title="5 数组、排序和查找">5 数组、排序和查找</span>
             <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
         </a>
         
@@ -402,19 +402,19 @@
         
         
         <a  class="All 编程语言 java "
-           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/9%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B(%E9%AB%98%E7%BA%A7)/"
-           data-tag="java,类"
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/7%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B(%E4%B8%AD%E7%BA%A7)/"
+           data-tag="java,面向对象"
            data-author="" >
-            <span class="post-title" title="9.1 类变量和类方法">9.1 类变量和类方法</span>
+            <span class="post-title" title="7 面向对象编程（中级）">7 面向对象编程（中级）</span>
             <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
         </a>
         
         
         <a  class="All 编程语言 java "
-           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/7%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B(%E4%B8%AD%E7%BA%A7)/"
-           data-tag="java,面向对象"
+           href="/2024/02/04/Java%E5%9F%BA%E7%A1%80/9%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B(%E9%AB%98%E7%BA%A7)/"
+           data-tag="java,类"
            data-author="" >
-            <span class="post-title" title="7 面向对象编程（中级）">7 面向对象编程（中级）</span>
+            <span class="post-title" title="9.1 类变量和类方法">9.1 类变量和类方法</span>
             <span class="post-date" title="2024-02-04 16:17:27">2024/02/04</span>
         </a>
         
@@ -578,6 +578,38 @@
     .toc-level-6 ol {
         display: none !important;
     }
+	/* 为所有的无序列表项添加圆点样式 */
+.toc-ref ul li {
+    position: relative; /* 设置相对定位，以便于定位伪元素 */
+    list-style-type: none; /* 移除默认的列表样式 */
+    padding-left: 20px; /* 留出空间用于自定义圆点 */
+}
+
+/* 为列表项添加自定义圆点 */
+.toc-ref ul li:before {
+    content: ''; /* 伪元素的内容为空 */
+    position: absolute; /* 绝对定位 */
+    left: 0; /* 定位到列表项的最左侧 */
+    top: 50%; /* 定位到列表项的垂直中心 */
+    width: 6px; /* 圆点的宽度 */
+    height: 6px; /* 圆点的高度 */
+    background-color: #000; /* 圆点的颜色 */
+    border-radius: 50%; /* 圆点的形状 */
+    transform: translateY(-50%); /* 确保圆点垂直居中 */
+}
+
+/* 为最高级别的标题前的圆点添加连线 */
+.toc-ref ul li + li:before {
+    border-left: 2px solid #000; /* 左边框作为连线 */
+    height: 100%; /* 连线的高度 */
+    top: 0; /* 从列表项的顶部开始 */
+}
+
+/* 为最高级别的标题前的圆点调整样式，使其看起来是连在一起的 */
+.toc-ref > ul > li:before {
+    height: 10px; /* 调整圆点的高度 */
+    top: 5px; /* 调整圆点的位置 */
+}
 </style>
 </div>
     
